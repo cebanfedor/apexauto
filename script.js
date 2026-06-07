@@ -42,11 +42,11 @@ function calculateAuctionFeeFor(price, auction){
   return{total,detail:""};
 }
 function calculateAuctionFee(){return calculateAuctionFeeFor(num("lotPrice"), $("auction")?.value||"copart")}
-function initYears(){const y=$("year");if(!y)return;y.innerHTML="";for(let year=YEAR_NOW;year>=1980;year--){let o=document.createElement("option");o.value=year;o.textContent=year;if(year===YEAR_NOW)o.selected=true;y.appendChild(o)}}
-function initLiters(){const e=$("engineLiters");if(!e)return;e.innerHTML="";for(let i=1;i<=70;i++){let v=(i/10).toFixed(1),o=document.createElement("option");o.value=v;o.textContent=`${v} л`;if(v==="2.0")o.selected=true;e.appendChild(o)}}
+function initYears(){const y=$("year");if(!y)return;y.innerHTML="";for(let year=YEAR_NOW;year>=1980;year--){let o=document.createElement("option");o.value=year;o.textContent=year;if(year===YEAR_NOW)o.selected=true;y.appendChild(o)}refreshGlassSelect(y)}
+function initLiters(){const e=$("engineLiters");if(!e)return;e.innerHTML="";for(let i=1;i<=70;i++){let v=(i/10).toFixed(1),o=document.createElement("option");o.value=v;o.textContent=`${v} л`;if(v==="2.0")o.selected=true;e.appendChild(o)}refreshGlassSelect(e)}
 function normalizeAuction(v){return String(v||"").toLowerCase().replace(/\s+/g,"")}function matchesAuction(item){let a=normalizeAuction(item.auction),s=$("auction")?.value||"copart";if(s==="copart")return a.includes("copart");if(s==="iaai")return a.includes("iaai");return a.includes("manheim")||a.includes("manhei")}
 function getFilteredLocations(){return (window.LOCATIONS||[]).filter(matchesAuction)}
-function initLocations(){let select=$("location");if(!select)return;select.innerHTML='<option value="">Выбери локацию</option>';getFilteredLocations().forEach((item,i)=>{let o=document.createElement("option");o.value=String(i);o.textContent=item.displayName||"Локация";select.appendChild(o)})}
+function initLocations(){let select=$("location");if(!select)return;select.innerHTML='<option value="">Выбери локацию</option>';getFilteredLocations().forEach((item,i)=>{let o=document.createElement("option");o.value=String(i);o.textContent=item.displayName||"Локация";select.appendChild(o)});refreshGlassSelect(select)}
 function updateLocation(){let locationEl=$("location");if(!locationEl)return;let idx=locationEl.value;selectedLocation=idx===""?null:getFilteredLocations()[Number(idx)];if(!selectedLocation){if($("portView"))$("portView").value="—";if($("landView"))$("landView").value="0";return}if($("portView"))$("portView").value=selectedLocation.portLabel||SEA[selectedLocation.autoPort]?.label||"—";if($("landView"))$("landView").value=getLandShipping().toFixed(0)}
 function getLandMultiplier(){let t=$("vehicleType")?.value||"sedan";if(t==="suvLarge"||t==="pickupLarge")return 1.5;if(t==="vanLarge"||t==="pickupOversized")return 2;return 1}
 function getLandShipping(){if(!selectedLocation)return 0;const base=Number(selectedLocation.landPrice||selectedLocation.autoLand||0)*getLandMultiplier();const apexSurcharge=100;const offsite=$("offsite")&&$("offsite").checked?100:0;return Math.ceil(base+apexSurcharge+offsite)}
@@ -62,6 +62,69 @@ function updateHybridGuard(data){
   box.hidden = !shouldShow;
   box.classList.toggle("isPhevV125", fuel === "phev");
 }
+
+function closeGlassSelects(except){
+  document.querySelectorAll(".glassSelectV152.isOpenV152").forEach(item => {
+    if(item !== except) item.classList.remove("isOpenV152");
+  });
+}
+
+function refreshGlassSelect(select){
+  if(!select) return;
+  let wrap = select.nextElementSibling?.classList?.contains("glassSelectV152") ? select.nextElementSibling : null;
+  if(!wrap){
+    select.classList.add("nativeSelectV152");
+    wrap = document.createElement("div");
+    wrap.className = "glassSelectV152";
+    wrap.innerHTML = '<button class="glassSelectButtonV152" type="button"><span></span><b></b></button><div class="glassSelectMenuV152"></div>';
+    select.insertAdjacentElement("afterend", wrap);
+    wrap.querySelector("button").addEventListener("click", event => {
+      event.preventDefault();
+      closeGlassSelects(wrap);
+      wrap.classList.toggle("isOpenV152");
+    });
+    wrap.querySelector(".glassSelectMenuV152").addEventListener("click", event => {
+      const item = event.target.closest("[data-value]");
+      if(!item) return;
+      event.preventDefault();
+      select.value = item.dataset.value;
+      select.dispatchEvent(new Event("change", {bubbles:true}));
+      closeGlassSelects();
+      refreshGlassSelect(select);
+    });
+  }
+
+  const buttonText = wrap.querySelector(".glassSelectButtonV152 span");
+  const menu = wrap.querySelector(".glassSelectMenuV152");
+  const options = Array.from(select.options || []);
+  const signature = options.map(option => `${option.value}:${option.textContent}`).join("|");
+  const selected = options.find(option => option.selected) || options[0];
+  buttonText.textContent = selected ? selected.textContent : "";
+
+  if(wrap.dataset.signature === signature){
+    menu.querySelectorAll("[data-value]").forEach(item => {
+      item.classList.toggle("isSelectedV152", item.dataset.value === select.value);
+    });
+    return;
+  }
+
+  wrap.dataset.signature = signature;
+  menu.innerHTML = options.map(option => `
+    <button class="${option.value === select.value ? "isSelectedV152" : ""}" type="button" data-value="${escapeHtml(option.value)}">
+      <span>${option.value === select.value ? "✓" : ""}</span>${escapeHtml(option.textContent)}
+    </button>
+  `).join("");
+
+}
+
+function refreshGlassSelects(){
+  document.querySelectorAll("select").forEach(refreshGlassSelect);
+}
+
+document.addEventListener("click", event => {
+  if(!event.target.closest(".glassSelectV152")) closeGlassSelects();
+});
+
 function customsMdl(customsBaseMdl, luxuryBaseMdl){
   const type = $("vehicleType")?.value || "sedan";
   const fuel = $("fuel")?.value || "gasoline";
@@ -724,6 +787,7 @@ async function applyAuctionImport(){
   const location = detectLocationFromText([data.original,data.branch,data.location].filter(Boolean).join(" "));
   const appliedLocation = selectLocationByItem(location);
   lastImportedLot = data;
+  refreshGlassSelects();
   calculate();
   renderLotImportStatus(data, {location: appliedLocation ? location.displayName : ""});
 }
@@ -806,10 +870,10 @@ async function copyCalc(){try{await navigator.clipboard.writeText(textCalc());$(
 function downloadPng(){alert("PNG добавим следующим этапом. Сейчас расчет можно скопировать или отправить в Telegram.")}
 document.addEventListener("DOMContentLoaded",()=>{
   if(!$("calcForm")) return;
-  initYears();initLiters();initLocations();calculate();
+  initYears();initLiters();initLocations();refreshGlassSelects();calculate();
   $("calcForm").addEventListener("submit",e=>{e.preventDefault();calculate()});
   ["location","vehicleType","fuel","lotPrice","engineLiters","year","insurance","exportDocs","offsite","usdMdl","eurMdl","marketMin","marketMax","repairMin","repairMax","targetSavings"].forEach(id=>{if($(id)){$(id).addEventListener("input",()=>{if(id==="fuel")updateHybridGuard();calculate()});$(id).addEventListener("change",()=>{if(id==="fuel")updateHybridGuard();calculate()})}});
-  document.querySelectorAll("[data-fuel-choice]").forEach(button=>button.addEventListener("click",()=>{if($("fuel"))$("fuel").value=button.dataset.fuelChoice;updateHybridGuard();calculate()}));
+  document.querySelectorAll("[data-fuel-choice]").forEach(button=>button.addEventListener("click",()=>{if($("fuel")){$("fuel").value=button.dataset.fuelChoice;refreshGlassSelect($("fuel"))}updateHybridGuard();calculate()}));
   if($("auction"))$("auction").addEventListener("change",()=>{initLocations();$("location").value="";calculate()});
   if($("parseLotBtn"))$("parseLotBtn").addEventListener("click",applyAuctionImport);
   if($("auctionUrl")){
