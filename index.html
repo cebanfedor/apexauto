@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>APEX AUTO — просчет под ключ</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=ai-bid-fixed-v144">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
   <header class="siteHeader">
     <div class="container headerInner">
       <div class="headerBrand">
-        <img src="assets/apex-logo-v76.png" alt="Apex Auto">
+        <img src="assets/apex-logo-glass-upload-v117.png" alt="Apex Auto">
         <div>
           <strong class="brandTextV77"><span class="brandApexV77">Apex</span><span class="brandAutoV77">Auto</span></strong>
           <small>Доставка авто из США и Канады в Молдову</small>
@@ -53,13 +54,24 @@
 
 
     <section id="calculator" class="layout">
+        <div class="lotImportV118 lotImportWideV148">
+          <label for="auctionUrl">Ссылка на лот с аукциона</label>
+          <div class="lotImportControlV118">
+            <input id="auctionUrl" type="text" inputmode="url" placeholder="Вставьте ссылку Copart / IAAI / Manheim">
+            <button id="parseLotBtn" type="button">Разобрать</button>
+          </div>
+          <div id="lotImportStatus" class="lotImportStatusV118" hidden></div>
+          <button id="sendLotCheckBtn" class="lotImportCheckBtnV120" type="button" hidden>Отправить лот на проверку</button>
+        </div>
+
       <form id="calcForm" class="card formCard">
+
         <div class="formRow wide">
           <label>Аукцион</label>
           <select id="auction">
             <option value="copart">Copart</option>
             <option value="iaai">IAAI</option>
-            <option value="manheim">Manheimm</option>
+            <option value="manheim">Manheim</option>
           </select>
         </div>
 
@@ -81,7 +93,11 @@
               <option value="sedan">Седан</option>
               <option value="crossover">Кроссовер</option>
               <option value="suv">Внедорожник</option>
+              <option value="suvLarge">SUV Large</option>
               <option value="pickup">Пикап</option>
+              <option value="pickupLarge">Pickup Large</option>
+              <option value="vanLarge">Van Large</option>
+              <option value="pickupOversized">Pickup Oversized</option>
               <option value="moto">Мото</option>
               <option value="atv">Квадро / ATV</option>
             </select>
@@ -95,6 +111,15 @@
               <option value="electric">Электро</option>
               <option value="diesel">Дизель</option>
             </select>
+          </div>
+        </div>
+
+        <div id="hybridGuard" class="hybridGuardV125" hidden>
+          <strong>Проверьте тип гибрида</strong>
+          <p>Обычный Hybrid и Plug-in Hybrid считаются по-разному. Если авто заряжается от розетки или в названии есть PHEV / Plug-in, выберите Plug-in.</p>
+          <div>
+            <button type="button" data-fuel-choice="hybrid">Обычный гибрид</button>
+            <button type="button" data-fuel-choice="phev">Plug-in / PHEV</button>
           </div>
         </div>
 
@@ -181,6 +206,37 @@
           </div>
         </div>
 
+        <div class="bidAdvisorV138">
+          <div class="smartHeadV129">
+            <span>Торговая рекомендация</span>
+            <b>APEX</b>
+          </div>
+          <div class="bidAdvisorGridV138">
+            <label>
+              Рынок Молдовы от, $
+              <input id="marketMin" type="number" min="0" placeholder="20000">
+            </label>
+            <label>
+              Рынок Молдовы до, $
+              <input id="marketMax" type="number" min="0" placeholder="23000">
+            </label>
+            <label>
+              Ремонт от, $
+              <input id="repairMin" type="number" min="0" placeholder="3500">
+            </label>
+            <label>
+              Ремонт до, $
+              <input id="repairMax" type="number" min="0" placeholder="4000">
+            </label>
+            <label>
+              Желаемая экономия, $
+              <input id="targetSavings" type="number" min="0" value="3000">
+            </label>
+          </div>
+          <button id="aiBidBtn" class="aiBidBtnV139" type="button">AI оценить ставку</button>
+          <div id="bidAdvisorResult" class="bidAdvisorResultV138"></div>
+        </div>
+
 <div class="companyMini">
           <strong>Сопровождение APEX AUTO</strong>
           <span>Подбор и проверка лота, бесплатная проверка Carfax, участие в торгах, оформление документов, организация доставки и сопровождение автомобиля до выдачи.</span>
@@ -192,6 +248,8 @@
           <a id="tgBtn" href="#" target="_blank" rel="noopener">Поделиться расчетом</a>
         </div>
       </aside>
+
+      <div id="smartLotAdvice" class="smartLotAdviceV129 calcWideAdviceV146" hidden></div>
     </section>
 
   
@@ -217,8 +275,8 @@
   </div>
 </section>
 </main>
-  <script src="locations.js"></script>
-  <script src="script.js"></script>
+  <script src="locations.js?v=ai-bid-fixed-v144"></script>
+  <script src="script.js?v=ai-bid-fixed-v144"></script>
 
   <section class="leadSection" id="selection">
     <div class="container leadGrid">
@@ -357,7 +415,7 @@
       <div class="footerContacts">
         <a href="https://t.me/fedukusa" target="_blank" rel="noopener" class="contactBtn telegramIcon">Telegram: @fedukusa</a>
         <a href="https://wa.me/37361111123" target="_blank" rel="noopener" class="contactBtn whatsappIcon">WhatsApp: +373 61 111 123</a>
-        <a href="https://t.me/fedukusa" target="_blank" rel="noopener" class="contactBtn channelIcon">Telegram канал: @fedukauto</a>
+        <a href="https://t.me/fedukauto" target="_blank" rel="noopener" class="contactBtn channelIcon">Telegram канал: @fedukauto</a>
       </div>
     </div>
   </footer>
