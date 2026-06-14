@@ -1,0 +1,9064 @@
+:root{
+  --red:#ed0012;
+  --black:#070707;
+  --white:#ffffff;
+  --line:#dfe2e7;
+  --muted:#6b7280;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Inter,Arial,sans-serif;
+  color:#111;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.46) 36%,rgba(255,255,255,.12) 58%,rgba(0,0,0,.48) 100%),
+    linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.18)),
+    url("bg-port-sunset.png") center/cover fixed;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 74%,rgba(237,0,18,.13),transparent 22%),
+    radial-gradient(circle at 68% 38%,rgba(255,146,58,.12),transparent 20%);
+}
+
+.container{
+  width:min(1480px,calc(100% - 72px));
+  margin:0 auto;
+}
+
+.siteHeader{
+  padding:28px 0 8px;
+}
+
+.headerInner{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:28px;
+}
+
+.headerBrand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.headerBrand img{
+  width:64px;
+  height:64px;
+  object-fit:cover;
+  border-radius:16px;
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+}
+
+.headerBrand strong{
+  display:block;
+  font-size:34px;
+  line-height:1;
+  color:#111;
+  font-weight:950;
+  letter-spacing:-.04em;
+}
+
+.headerBrand strong span{
+  color:var(--red);
+}
+
+.headerBrand small{
+  display:block;
+  margin-top:8px;
+  color:#30343b;
+  font-size:15px;
+  font-weight:500;
+}
+
+.headerBenefits{
+  display:flex;
+  align-items:flex-start;
+  gap:34px;
+  color:#fff;
+  text-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+
+.headerBenefits div{
+  position:relative;
+  padding-left:28px;
+}
+
+.headerBenefits div::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:1px;
+  color:#fff;
+  font-weight:900;
+  font-size:18px;
+}
+
+.headerBenefits b{
+  display:block;
+  font-size:15px;
+  margin-bottom:3px;
+}
+
+.headerBenefits span{
+  display:block;
+  max-width:140px;
+  color:rgba(255,255,255,.78);
+  font-size:13px;
+  line-height:1.35;
+}
+
+.hero{
+  padding:34px 0 24px;
+}
+
+.hero h1{
+  margin:0;
+  color:#101010;
+  font-size:58px;
+  line-height:.95;
+  font-weight:950;
+  letter-spacing:-.045em;
+}
+
+.hero h1::after{
+  content:"";
+  display:block;
+  width:76px;
+  height:4px;
+  border-radius:999px;
+  background:var(--red);
+  margin-top:16px;
+}
+
+.hero p{
+  margin:18px 0 0;
+  max-width:660px;
+  color:#2f333a;
+  font-size:19px;
+  line-height:1.5;
+  font-weight:500;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:1.04fr .88fr;
+  gap:30px;
+  align-items:stretch;
+  padding-bottom:36px;
+}
+
+.card{
+  border-radius:28px;
+}
+
+.formCard{
+  background:rgba(255,255,255,.96);
+  color:#111;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:0 28px 90px rgba(0,0,0,.16);
+  backdrop-filter:blur(16px);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.formRow{
+  position:relative;
+  margin-bottom:18px;
+}
+
+.formRow label{
+  display:block;
+  margin-bottom:8px;
+  color:#111;
+  font-size:15px;
+  font-weight:900;
+}
+
+input,select{
+  width:100%;
+  height:54px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  color:#111;
+  padding:0 18px;
+  font-size:16px;
+  outline:none;
+}
+
+select{
+  cursor:pointer;
+}
+
+input:focus,select:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 4px rgba(237,0,18,.08);
+}
+
+input[readonly]{
+  background:#f2f3f5;
+  color:#30343b;
+}
+
+.formRow .inputIcon{
+  position:absolute;
+  left:14px;
+  bottom:14px;
+  width:24px;
+  height:24px;
+  color:#111!important;
+  background:transparent;
+  border:0;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  z-index:2;
+}
+
+.formRow.hasIcon input,
+.formRow.hasIcon select{
+  padding-left:48px;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+  margin:22px 0 18px;
+}
+
+.check{
+  min-height:54px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#f7f7f8;
+  border:1px solid #eceef2;
+  border-radius:14px;
+  padding:12px 16px;
+  color:#111;
+  font-weight:900;
+}
+
+.check input{
+  width:18px;
+  height:18px;
+  accent-color:var(--red);
+}
+
+.risk{
+  margin-top:8px;
+  padding:12px 14px;
+  color:#a8000b;
+  background:#fff0f1;
+  border:1px solid rgba(237,0,18,.22);
+  border-radius:13px;
+  line-height:1.45;
+}
+
+.currencyBox{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:18px 0;
+}
+
+.currencyBox span{
+  color:#111;
+  font-weight:900;
+}
+
+.currency{
+  min-height:42px;
+  padding:0 20px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  color:#111;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.currency.active{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+details{
+  margin:18px 0;
+  border:1px solid #e2e4e8;
+  border-radius:16px;
+  padding:16px;
+  background:#fff;
+  color:#111;
+}
+
+summary{
+  cursor:pointer;
+  font-weight:900;
+}
+
+details[open] summary{
+  margin-bottom:18px;
+}
+
+.primary{
+  width:100%;
+  height:58px;
+  background:linear-gradient(90deg,#e80012,#ff1728);
+  color:#fff;
+  border:0;
+  border-radius:16px;
+  font-size:17px;
+  font-weight:950;
+  cursor:pointer;
+  box-shadow:0 14px 34px rgba(237,0,18,.22);
+}
+
+.resultCard{
+  background:rgba(6,7,9,.91);
+  color:#fff;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 30px 90px rgba(0,0,0,.38);
+  backdrop-filter:blur(18px);
+  display:flex;
+  flex-direction:column;
+  align-self:stretch;
+}
+
+.resultHeader{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  padding-bottom:18px;
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+
+.topRoute{
+  margin:0;
+  color:#fff;
+  font-size:20px;
+  line-height:1.35;
+  font-weight:900;
+}
+
+.auctionBadge{
+  color:#fff;
+  border-left:1px solid rgba(255,255,255,.18);
+  padding-left:18px;
+  font-size:17px;
+  font-weight:950;
+  white-space:nowrap;
+}
+
+.breakdown{
+  display:grid;
+  margin-top:16px;
+}
+
+.row{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:18px;
+  align-items:center;
+  padding:11px 0 11px 42px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  color:#f1f1f1;
+  font-size:17px;
+}
+
+.row::before{
+  content:attr(data-icon);
+  position:absolute;
+  left:0;
+  top:10px;
+  width:26px;
+  height:26px;
+  color:#fff;
+  background:transparent;
+  border:0;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  filter:grayscale(1);
+}
+
+.row span small{
+  display:block;
+  color:#aaa;
+  font-size:13px;
+  margin-top:4px;
+  line-height:1.35;
+}
+
+.row b{
+  color:#fff;
+  white-space:nowrap;
+  font-size:17px;
+  font-weight:950;
+}
+
+.totalFooter{
+  margin-top:18px;
+  padding:18px 20px;
+  border:1px solid rgba(237,0,18,.45);
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(237,0,18,.18),rgba(255,255,255,.035));
+  display:grid;
+  grid-template-columns:1fr .9fr;
+  gap:20px;
+  align-items:center;
+}
+
+.resultLabel{
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:13px;
+  font-weight:950;
+}
+
+.total{
+  margin:8px 0 8px;
+  font-size:52px;
+  line-height:1;
+  font-weight:950;
+}
+
+.subTotal{
+  color:#d1d1d1;
+  font-size:17px;
+}
+
+.finalNote{
+  color:#f0d6d8;
+  font-size:15px;
+  line-height:1.45;
+  padding-left:18px;
+  border-left:1px solid rgba(237,0,18,.35);
+}
+
+.smartLotAdviceV129{
+  margin-top:14px;
+  padding:16px 18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.18);
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.045));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 18px 40px rgba(0,0,0,.18);
+  color:#fff;
+}
+
+.smartLotAdviceV129.is-good{
+  border-color:rgba(74,222,128,.42);
+  background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(255,255,255,.045));
+}
+
+.smartLotAdviceV129.is-watch{
+  border-color:rgba(251,191,36,.45);
+  background:linear-gradient(135deg,rgba(245,158,11,.18),rgba(255,255,255,.045));
+}
+
+.smartLotAdviceV129.is-risk{
+  border-color:rgba(255,77,91,.52);
+  background:linear-gradient(135deg,rgba(237,0,18,.20),rgba(255,255,255,.045));
+}
+
+.smartHeadV129{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:8px;
+}
+
+.smartHeadV129 span{
+  color:#ff8a92;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:12px;
+  font-weight:950;
+}
+
+.smartHeadV129 b{
+  min-width:58px;
+  text-align:center;
+  padding:6px 10px;
+  border-radius:999px;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.16);
+  font-size:13px;
+}
+
+.smartLotAdviceV129 strong{
+  display:block;
+  font-size:20px;
+  line-height:1.2;
+  font-weight:950;
+}
+
+.smartLotAdviceV129 p{
+  margin:8px 0 0;
+  color:rgba(255,255,255,.78);
+  font-size:14px;
+  line-height:1.45;
+}
+
+.smartLotAdviceV129 ul{
+  display:grid;
+  gap:6px;
+  margin:12px 0 0;
+  padding:0;
+  list-style:none;
+}
+
+.smartLotAdviceV129 li{
+  position:relative;
+  padding-left:18px;
+  color:rgba(255,255,255,.86);
+  font-size:14px;
+  line-height:1.4;
+}
+
+.smartLotAdviceV129 li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.62em;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#ff4350;
+  box-shadow:0 0 14px rgba(255,67,80,.55);
+}
+
+.bidAdvisorV138{
+  margin-top:14px;
+  padding:16px 18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.18);
+  background:linear-gradient(135deg,rgba(255,255,255,.105),rgba(255,255,255,.035));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 18px 40px rgba(0,0,0,.16);
+}
+
+.bidAdvisorGridV138{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.bidAdvisorGridV138 label{
+  display:grid;
+  gap:6px;
+  color:rgba(255,255,255,.82);
+  font-size:12px;
+  font-weight:850;
+}
+
+.bidAdvisorGridV138 label:last-child{
+  grid-column:1 / -1;
+}
+
+.bidAdvisorGridV138 input{
+  height:42px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  font-size:14px;
+  font-weight:850;
+}
+
+.bidAdvisorGridV138 input::placeholder{
+  color:rgba(255,255,255,.38);
+}
+
+.aiBidBtnV139{
+  width:100%;
+  height:44px;
+  margin-top:12px;
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:13px;
+  color:#fff;
+  background:linear-gradient(90deg,rgba(237,0,18,.92),rgba(255,67,80,.92));
+  font-size:14px;
+  font-weight:950;
+  cursor:pointer;
+  box-shadow:0 14px 30px rgba(237,0,18,.18);
+}
+
+.aiBidBtnV139:disabled{
+  cursor:wait;
+  opacity:.72;
+}
+
+.bidAdvisorResultV138{
+  margin-top:12px;
+  padding:13px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.075);
+  color:rgba(255,255,255,.78);
+  font-size:14px;
+  line-height:1.45;
+}
+
+.bidAdvisorResultV138 strong{
+  display:block;
+  color:#fff;
+  font-size:18px;
+  line-height:1.2;
+  margin-bottom:7px;
+}
+
+.bidAdvisorResultV138 p{
+  margin:5px 0 0;
+}
+
+.bidAdvisorResultV138 ul{
+  display:grid;
+  gap:5px;
+  margin:10px 0 0;
+  padding-left:18px;
+}
+
+.bidAdvisorResultV138 li{
+  color:rgba(255,255,255,.84);
+}
+
+.aiWarningsV139{
+  color:#ffd6d9!important;
+}
+
+.aiSourcesV139{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.aiSourcesV139 a{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  color:#fff;
+  text-decoration:none;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.16);
+  font-size:12px;
+  font-weight:850;
+}
+
+.bidAdvisorResultV138.is-good{
+  border-color:rgba(74,222,128,.38);
+  background:rgba(34,197,94,.13);
+}
+
+.bidAdvisorResultV138.is-watch{
+  border-color:rgba(251,191,36,.40);
+  background:rgba(245,158,11,.13);
+}
+
+.bidAdvisorResultV138.is-risk{
+  border-color:rgba(255,77,91,.44);
+  background:rgba(237,0,18,.14);
+}
+
+.companyMini{
+  margin-top:14px;
+  padding:15px 16px;
+  border:1px solid rgba(237,0,18,.35);
+  border-radius:16px;
+  background:rgba(237,0,18,.10);
+}
+
+.companyMini strong{
+  display:block;
+  color:#fff;
+  font-size:17px;
+  margin-bottom:7px;
+}
+
+.companyMini span{
+  display:block;
+  color:#f2d7d9;
+  font-size:14px;
+  line-height:1.43;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+
+.actions button,.actions a{
+  min-height:50px;
+  border:0;
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  text-decoration:none;
+  font-weight:950;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.actions a{
+  grid-column:1/-1;
+  background:linear-gradient(90deg,#e80012,#ff1728);
+  box-shadow:0 14px 34px rgba(237,0,18,.18);
+}
+
+.hidden{display:none!important}
+
+@media(max-width:1100px){
+  .headerBenefits{display:none}
+  .layout{grid-template-columns:1fr}
+}
+
+@media(max-width:650px){
+  .container{width:min(100% - 28px,1480px)}
+  .headerInner{align-items:flex-start;flex-direction:column}
+  .headerBrand img{width:54px;height:54px}
+  .headerBrand strong{font-size:28px}
+  .hero h1{font-size:40px}
+  .hero p{font-size:16px}
+  .grid{grid-template-columns:1fr}
+  .formCard,.resultCard{padding:20px}
+  .actions{grid-template-columns:1fr}
+  .totalFooter{grid-template-columns:1fr}
+  .finalNote{padding-left:0;border-left:0;border-top:1px solid rgba(237,0,18,.35);padding-top:14px}
+}
+
+
+/* v24 final visual patch */
+body{
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.50) 38%, rgba(255,255,255,.08) 58%, rgba(0,0,0,.48) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.18)),
+    url("bg-port-custom.jpg") center/cover fixed!important;
+}
+
+body::before{
+  background:
+    radial-gradient(circle at 18% 74%,rgba(237,0,18,.10),transparent 22%),
+    radial-gradient(circle at 68% 38%,rgba(255,146,58,.10),transparent 20%)!important;
+}
+
+.formCard{
+  background:rgba(255,255,255,.97)!important;
+  color:#111!important;
+  border:1px solid rgba(255,255,255,.80)!important;
+}
+
+.formRow label,
+.currencyBox span{
+  color:#111!important;
+}
+
+input,select{
+  background:#fff!important;
+  color:#111!important;
+  border-color:#dfe2e7!important;
+}
+
+input[readonly]{
+  background:#f2f3f5!important;
+  color:#30343b!important;
+}
+
+.check{
+  background:#f7f7f8!important;
+  color:#111!important;
+  border:1px solid #eceef2!important;
+}
+
+details{
+  background:#fff!important;
+  color:#111!important;
+  border-color:#e2e4e8!important;
+}
+
+.resultCard{
+  background:rgba(6,7,9,.92)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+}
+
+.formRow .inputIcon{
+  color:#111!important;
+  background:transparent!important;
+  border:0!important;
+  font-size:17px!important;
+}
+
+.row::before{
+  color:#fff!important;
+  background:transparent!important;
+  border:0!important;
+  font-size:18px!important;
+  filter:none!important;
+}
+
+.companyMini{
+  display:none!important;
+}
+
+.totalFooter{
+  margin-top:18px!important;
+}
+
+.actions{
+  margin-top:16px!important;
+}
+
+.hero h1,
+.headerBrand strong{
+  color:#101010!important;
+  text-shadow:none!important;
+}
+
+.headerBrand small,
+.hero p{
+  color:#2f333a!important;
+}
+
+.headerBenefits{
+  color:#fff!important;
+}
+
+
+/* v25: clean UI, no broken icons, lighter background */
+body{
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.84) 0%, rgba(255,255,255,.62) 38%, rgba(255,255,255,.20) 60%, rgba(0,0,0,.28) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(0,0,0,.10)),
+    url("bg-port-custom.jpg") center/cover fixed!important;
+}
+
+body::before{
+  background:
+    radial-gradient(circle at 20% 74%,rgba(237,0,18,.08),transparent 23%),
+    radial-gradient(circle at 65% 38%,rgba(255,146,58,.12),transparent 22%)!important;
+}
+
+.formCard{
+  background:rgba(255,255,255,.98)!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.13)!important;
+}
+
+.resultCard{
+  background:rgba(5,6,8,.92)!important;
+  box-shadow:0 30px 90px rgba(0,0,0,.34)!important;
+}
+
+/* remove all field icons completely */
+.formRow .inputIcon{
+  display:none!important;
+}
+
+.formRow.hasIcon input,
+.formRow.hasIcon select{
+  padding-left:18px!important;
+}
+
+/* remove result row icon column */
+.row{
+  padding-left:0!important;
+  grid-template-columns:1fr auto!important;
+}
+
+.row::before{
+  display:none!important;
+  content:none!important;
+}
+
+/* make the right card cleaner and shorter */
+.row{
+  padding-top:10px!important;
+  padding-bottom:10px!important;
+  font-size:17px!important;
+}
+
+.row span small{
+  font-size:13px!important;
+}
+
+.totalFooter{
+  padding:18px 20px!important;
+}
+
+.companyMini{
+  display:none!important;
+}
+
+/* highlight only essential accents */
+.hero h1::after{
+  width:74px!important;
+  height:4px!important;
+  background:var(--red)!important;
+}
+
+.currency.active,
+.primary,
+.actions a{
+  background:linear-gradient(90deg,#e80012,#ff1728)!important;
+}
+
+.currency.active{
+  color:#fff!important;
+  border-color:#e80012!important;
+}
+
+.headerBenefits div::before{
+  content:"✓"!important;
+  color:#fff!important;
+}
+
+@media(max-width:650px){
+  body{
+    background-attachment:scroll!important;
+  }
+}
+
+
+/* v26 luxury tax row support */
+.row span small{
+  max-width: 360px;
+}
+
+.resultCard{
+  overflow: hidden;
+}
+
+.breakdown{
+  margin-bottom: 4px;
+}
+
+
+/* v27: new light premium background + company commission block */
+body{
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.88) 0%, rgba(255,255,255,.64) 38%, rgba(255,255,255,.22) 61%, rgba(0,0,0,.26) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.08)),
+    url("bg-port-v27.jpg") center/cover fixed!important;
+}
+
+body::before{
+  background:
+    radial-gradient(circle at 20% 74%,rgba(237,0,18,.07),transparent 23%),
+    radial-gradient(circle at 64% 38%,rgba(255,146,58,.09),transparent 22%)!important;
+}
+
+.companyMini{
+  display:block!important;
+  margin-top:14px;
+  padding:15px 16px;
+  border:1px solid rgba(237,0,18,.34);
+  border-radius:16px;
+  background:rgba(237,0,18,.10);
+}
+
+.companyMini strong{
+  display:block;
+  color:#fff;
+  font-size:16px;
+  margin-bottom:7px;
+}
+
+.companyMini span{
+  display:block;
+  color:#f2d7d9;
+  font-size:13px;
+  line-height:1.42;
+}
+
+.row span small{
+  max-width:390px;
+}
+
+@media(max-width:650px){
+  body{
+    background-attachment:scroll!important;
+  }
+}
+
+
+/* v28 offsite checkbox */
+.offsiteCheck{
+  margin-top: -8px;
+  margin-bottom: 18px;
+  min-height: 48px;
+  font-size: 14px;
+  background: #fff!important;
+  border: 1px dashed #d6d8dd!important;
+}
+
+.offsiteCheck input{
+  width: 18px;
+  height: 18px;
+  accent-color: var(--red);
+}
+
+
+/* v29 compact layout for MacBook 14 */
+:root{
+  --compact-gap: 12px;
+}
+
+.container{
+  width:min(1560px,calc(100% - 36px))!important;
+}
+
+.siteHeader{
+  padding:14px 0 2px!important;
+}
+
+.headerBrand img{
+  width:52px!important;
+  height:52px!important;
+  border-radius:13px!important;
+}
+
+.headerBrand strong{
+  font-size:28px!important;
+}
+
+.headerBrand small{
+  font-size:13px!important;
+  margin-top:5px!important;
+}
+
+.headerBenefits{
+  gap:22px!important;
+}
+
+.headerBenefits b{
+  font-size:13px!important;
+}
+
+.headerBenefits span{
+  font-size:12px!important;
+}
+
+.hero{
+  padding:10px 0 12px!important;
+}
+
+.hero h1{
+  font-size:40px!important;
+}
+
+.hero h1::after{
+  margin-top:10px!important;
+  height:3px!important;
+  width:58px!important;
+}
+
+.hero p{
+  max-width:620px!important;
+  margin-top:9px!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+}
+
+.layout{
+  grid-template-columns: 1.02fr .88fr!important;
+  gap:18px!important;
+  align-items:start!important;
+  padding-bottom:20px!important;
+}
+
+.formCard,
+.resultCard{
+  padding:18px!important;
+  border-radius:20px!important;
+}
+
+.grid{
+  gap:10px!important;
+}
+
+.formRow{
+  margin-bottom:9px!important;
+}
+
+.formRow label{
+  font-size:12px!important;
+  margin-bottom:5px!important;
+  letter-spacing:-.01em!important;
+}
+
+input,
+select{
+  height:42px!important;
+  border-radius:11px!important;
+  font-size:13px!important;
+  padding-left:14px!important;
+  padding-right:12px!important;
+}
+
+.formRow.hasIcon input,
+.formRow.hasIcon select{
+  padding-left:14px!important;
+}
+
+.formRow .inputIcon{
+  display:none!important;
+}
+
+.offsiteCheck{
+  margin-top:-4px!important;
+  margin-bottom:10px!important;
+  min-height:38px!important;
+}
+
+.options{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+  margin:12px 0 10px!important;
+}
+
+.check{
+  min-height:40px!important;
+  padding:8px 10px!important;
+  font-size:12px!important;
+  border-radius:11px!important;
+}
+
+.check input{
+  width:16px!important;
+  height:16px!important;
+}
+
+.risk{
+  grid-column:1/-1!important;
+  font-size:12px!important;
+  padding:9px 11px!important;
+  margin-top:0!important;
+}
+
+.currencyBox{
+  margin:10px 0!important;
+  gap:8px!important;
+}
+
+.currencyBox span{
+  font-size:13px!important;
+}
+
+.currency{
+  min-height:34px!important;
+  padding:0 13px!important;
+  font-size:12px!important;
+  border-radius:10px!important;
+}
+
+details{
+  margin:10px 0!important;
+  padding:10px!important;
+  border-radius:12px!important;
+}
+
+summary{
+  font-size:13px!important;
+}
+
+details[open] summary{
+  margin-bottom:10px!important;
+}
+
+.primary{
+  height:44px!important;
+  font-size:14px!important;
+  border-radius:12px!important;
+}
+
+.resultHeader{
+  padding-bottom:9px!important;
+}
+
+.topRoute{
+  font-size:15px!important;
+  line-height:1.25!important;
+}
+
+.auctionBadge{
+  font-size:13px!important;
+  padding-left:12px!important;
+}
+
+.breakdown{
+  margin-top:8px!important;
+}
+
+.row{
+  padding:6px 0!important;
+  font-size:13px!important;
+  gap:12px!important;
+}
+
+.row::before{
+  display:none!important;
+}
+
+.row b{
+  font-size:13px!important;
+}
+
+.row span small{
+  font-size:10.5px!important;
+  line-height:1.25!important;
+  margin-top:2px!important;
+  max-width:320px!important;
+}
+
+.totalFooter{
+  margin-top:9px!important;
+  padding:12px 13px!important;
+  border-radius:14px!important;
+  gap:12px!important;
+}
+
+.resultLabel{
+  font-size:10px!important;
+}
+
+.total{
+  font-size:34px!important;
+  margin:4px 0 4px!important;
+}
+
+.subTotal{
+  font-size:12px!important;
+}
+
+.finalNote{
+  font-size:11px!important;
+  line-height:1.35!important;
+  padding-left:12px!important;
+}
+
+.companyMini{
+  margin-top:9px!important;
+  padding:10px 11px!important;
+  border-radius:12px!important;
+}
+
+.companyMini strong{
+  font-size:13px!important;
+  margin-bottom:4px!important;
+}
+
+.companyMini span{
+  font-size:11px!important;
+  line-height:1.32!important;
+}
+
+.actions{
+  margin-top:9px!important;
+  gap:8px!important;
+}
+
+.actions button,
+.actions a{
+  min-height:38px!important;
+  font-size:12px!important;
+  border-radius:11px!important;
+}
+
+/* Make advanced fields less tall */
+details .grid{
+  gap:8px!important;
+}
+
+details .formRow{
+  margin-bottom:8px!important;
+}
+
+/* Laptop 14-inch extra fit */
+@media (min-width:1100px) and (max-height:900px){
+  body{
+    zoom:.92;
+  }
+}
+
+@media (min-width:1100px) and (max-height:820px){
+  body{
+    zoom:.86;
+  }
+}
+
+
+/* v31 readability + premium layout */
+
+/* Bigger text in black block for screenshots */
+.resultCard .row{
+  font-size:16px !important;
+  padding-top:9px !important;
+  padding-bottom:9px !important;
+}
+
+.resultCard .row b{
+  font-size:17px !important;
+  font-weight:900 !important;
+}
+
+.resultCard .row span small{
+  font-size:12px !important;
+}
+
+.topRoute{
+  font-size:18px !important;
+}
+
+.auctionBadge{
+  font-size:15px !important;
+}
+
+.total{
+  font-size:42px !important;
+}
+
+.subTotal{
+  font-size:15px !important;
+}
+
+.companyMini strong{
+  font-size:15px !important;
+}
+
+.companyMini span{
+  font-size:13px !important;
+}
+
+/* More compact page height */
+.siteHeader{
+  padding-top:10px !important;
+  padding-bottom:0 !important;
+}
+
+.hero{
+  padding-top:4px !important;
+  padding-bottom:8px !important;
+}
+
+.hero h1{
+  font-size:34px !important;
+}
+
+.hero p{
+  font-size:13px !important;
+  margin-top:6px !important;
+}
+
+/* Premium background overlay */
+body{
+  background-position:center center !important;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+  linear-gradient(90deg,
+  rgba(255,255,255,.90) 0%,
+  rgba(255,255,255,.68) 40%,
+  rgba(255,255,255,.15) 62%,
+  rgba(0,0,0,.22) 100%);
+}
+
+.aboutStoryV82,
+.aboutStatsV82 div,
+.pageHeroV82,
+.calcInfoPlainV52,
+.leadSection,
+.checkSection .infoCard,
+.checkForm,
+.miniForm{
+  background:linear-gradient(180deg, rgba(255,255,255,.64), rgba(255,255,255,.38))!important;
+  border:1px solid rgba(255,255,255,.70)!important;
+  box-shadow:0 22px 60px rgba(31,41,55,.12), inset 0 1px 0 rgba(255,255,255,.82)!important;
+  backdrop-filter:blur(28px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(165%)!important;
+}
+
+.pageHeroV82{
+  border-radius:28px!important;
+  padding:34px!important;
+  overflow:hidden!important;
+}
+
+.aboutStatsV82 div{
+  border-radius:22px!important;
+  padding:22px!important;
+}
+
+.aboutStoryV82{
+  color:rgba(17,24,39,.82)!important;
+}
+
+.aboutStoryV82 p{
+  color:rgba(17,24,39,.78)!important;
+}
+
+/* Fit better on laptop screens */
+.layout{
+  gap:14px !important;
+}
+
+.formCard,
+.resultCard{
+  padding:16px !important;
+}
+
+
+/* v32 visual balance fixes */
+
+/* Return total size closer to v30 */
+.total{
+  font-size:36px !important;
+}
+
+/* Keep right block from visually stretching */
+.layout{
+  align-items:start !important;
+}
+
+.formCard,
+.resultCard{
+  height:auto !important;
+  align-self:start !important;
+}
+
+/* Slightly reduce spacing in company block */
+.companyMini{
+  margin-top:8px !important;
+}
+
+/* Keep black block compact */
+.resultCard{
+  padding-bottom:14px !important;
+}
+
+.actions{
+  margin-top:8px !important;
+}
+
+
+/* v33 service cleanup + visual balance */
+.formCard{
+  padding-bottom:36px !important;
+}
+
+.layout{
+  align-items:stretch !important;
+}
+
+.formCard,
+.resultCard{
+  height:100% !important;
+}
+
+.companyMini{
+  margin-top:10px !important;
+  padding:12px 14px !important;
+}
+
+.companyMini strong{
+  font-size:14px !important;
+}
+
+.companyMini span{
+  font-size:12px !important;
+  line-height:1.32 !important;
+}
+
+.row{
+  padding-top:7px !important;
+  padding-bottom:7px !important;
+}
+
+.total{
+  font-size:36px !important;
+}
+
+
+/* v35 footer trust block */
+.siteFooter{
+  padding: 8px 0 28px;
+}
+
+.footerInner{
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(255,255,255,.76);
+  border-radius: 22px;
+  box-shadow: 0 22px 70px rgba(0,0,0,.12);
+  backdrop-filter: blur(16px);
+  padding: 22px;
+  display: grid;
+  grid-template-columns: .9fr 1.8fr 1fr;
+  gap: 22px;
+  align-items: center;
+}
+
+.footerBrand strong{
+  display:block;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -.04em;
+  color:#111;
+}
+
+.footerBrand strong span{
+  color: var(--red);
+}
+
+.footerBrand p{
+  margin: 8px 0 0;
+  color:#50545c;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.footerStats{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+}
+
+.footerStats div{
+  min-height: 78px;
+  border-radius: 16px;
+  padding: 14px 12px;
+  background: #f7f7f8;
+  border: 1px solid #ebeef2;
+}
+
+.footerStats b{
+  display:block;
+  color:#111;
+  font-size: 15px;
+  line-height: 1.1;
+  margin-bottom: 7px;
+}
+
+.footerStats span{
+  display:block;
+  color:#626873;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.footerContacts{
+  display:grid;
+  gap: 10px;
+}
+
+.contactBtn{
+  min-height: 44px;
+  border-radius: 14px;
+  padding: 0 14px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.contactBtn::before{
+  width: 22px;
+  height: 22px;
+  display:grid;
+  place-items:center;
+  border-radius: 8px;
+  background: var(--red);
+  color:#fff;
+  flex: 0 0 22px;
+}
+
+.telegramIcon::before{
+  content:"✈";
+}
+
+.channelIcon::before{
+  content:"▶";
+}
+
+@media(max-width:1100px){
+  .footerInner{
+    grid-template-columns:1fr;
+  }
+  .footerStats{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .siteFooter{
+    padding-bottom:18px;
+  }
+  .footerInner{
+    padding:16px;
+  }
+  .footerStats{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* v36 premium realistic port background */
+body{
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.82) 0%, rgba(255,255,255,.58) 38%, rgba(255,255,255,.12) 62%, rgba(0,0,0,.42) 100%),
+    url("bg-port-v36.jpg") center/cover fixed!important;
+}
+
+body::before{
+  background:
+    radial-gradient(circle at 18% 72%,rgba(237,0,18,.07),transparent 24%),
+    radial-gradient(circle at 70% 42%,rgba(255,140,50,.08),transparent 22%)!important;
+}
+
+.formCard{
+  background:rgba(255,255,255,.985)!important;
+}
+
+.resultCard{
+  background:rgba(8,9,12,.93)!important;
+}
+
+.footerInner{
+  background:rgba(255,255,255,.96)!important;
+}
+
+
+/* v37 one-page SaaS-style landing */
+body{
+  background:
+    radial-gradient(circle at 15% 16%, rgba(237,0,18,.18), transparent 24%),
+    radial-gradient(circle at 78% 10%, rgba(255,255,255,.08), transparent 18%),
+    radial-gradient(circle at 70% 80%, rgba(237,0,18,.10), transparent 24%),
+    linear-gradient(135deg,#0b1020 0%,#111827 46%,#07090f 100%)!important;
+  color:#111!important;
+}
+
+body::before{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  pointer-events:none!important;
+  z-index:-1!important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px)!important;
+  background-size:42px 42px!important;
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.90), rgba(0,0,0,.28))!important;
+}
+
+body::after{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  pointer-events:none!important;
+  z-index:-1!important;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.03) 42%, rgba(0,0,0,.10) 100%)!important;
+}
+
+.headerBrand strong,
+.headerBrand small,
+.hero h1,
+.hero p{
+  color:#fff!important;
+}
+
+.headerBrand small,
+.hero p{
+  color:rgba(255,255,255,.78)!important;
+}
+
+.headerBenefits{
+  color:#fff!important;
+}
+
+.hero h1{
+  text-shadow:none!important;
+}
+
+.hero h1::after{
+  background:linear-gradient(90deg,#ed0012,#ff7a2b)!important;
+}
+
+.formCard{
+  background:rgba(255,255,255,.985)!important;
+  border:1px solid rgba(255,255,255,.80)!important;
+  box-shadow:0 34px 100px rgba(0,0,0,.28)!important;
+}
+
+.resultCard{
+  background:rgba(10,12,17,.94)!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:0 34px 100px rgba(0,0,0,.38)!important;
+}
+
+.leadSection,
+.checkSection,
+.hotLots,
+.routeSection,
+.siteFooter{
+  padding:28px 0;
+}
+
+.leadGrid,
+.splitCards,
+.routeBox{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  align-items:stretch;
+}
+
+.leadText,
+.infoCard,
+.routeText,
+.miniForm,
+.checkForm,
+.routeMap,
+.lotCard{
+  border-radius:24px;
+  box-shadow:0 24px 80px rgba(0,0,0,.22);
+}
+
+.leadText,
+.routeText{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  padding:28px;
+  backdrop-filter:blur(16px);
+}
+
+.sectionKicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#ff6b74;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.leadText h2,
+.infoCard h2,
+.sectionHead h2,
+.routeText h2{
+  margin:0 0 12px;
+  color:#fff;
+  font-size:34px;
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+
+.leadText p,
+.infoCard p,
+.sectionHead p,
+.routeText p{
+  margin:0;
+  color:rgba(255,255,255,.74);
+  font-size:16px;
+  line-height:1.55;
+}
+
+.leadBadges,
+.routePoints{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:22px;
+}
+
+.leadBadges span,
+.routePoints span{
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  background:rgba(255,255,255,.07);
+  border-radius:999px;
+  padding:9px 13px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.miniForm,
+.checkForm{
+  background:rgba(255,255,255,.985);
+  padding:24px;
+  border:1px solid rgba(255,255,255,.80);
+}
+
+.miniGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.miniForm input,
+.checkForm input{
+  margin-bottom:12px;
+}
+
+.miniForm button,
+.checkForm button{
+  width:100%;
+  height:52px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(90deg,#ed0012,#ff1728);
+  color:#fff;
+  font-weight:950;
+  cursor:pointer;
+}
+
+.miniForm small,
+.checkForm small{
+  display:block;
+  margin-top:10px;
+  color:#667085;
+  font-size:12px;
+}
+
+.darkInfo{
+  background:rgba(10,12,17,.92);
+  border:1px solid rgba(255,255,255,.13);
+  padding:28px;
+}
+
+.sectionHead{
+  max-width:820px;
+  margin-bottom:20px;
+}
+
+.sectionHead h2{
+  color:#fff;
+}
+
+.lotsGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.lotCard{
+  background:rgba(255,255,255,.97);
+  padding:20px;
+  border:1px solid rgba(255,255,255,.78);
+}
+
+.lotTop{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.lotTop b{
+  font-size:20px;
+  letter-spacing:-.02em;
+}
+
+.lotTop span{
+  background:#111827;
+  color:#fff;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.lotCard p{
+  color:#5c6270;
+  line-height:1.45;
+  min-height:62px;
+}
+
+.saving{
+  color:#ed0012;
+  font-weight:950;
+  margin-bottom:14px;
+}
+
+.lotCard a{
+  display:flex;
+  height:42px;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  font-weight:950;
+}
+
+.routeBox{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:20px;
+  box-shadow:0 28px 90px rgba(0,0,0,.22);
+}
+
+.routeText{
+  box-shadow:none;
+  background:transparent;
+  border:0;
+  padding:12px;
+}
+
+.routeMap{
+  background:rgba(255,255,255,.96);
+  padding:18px;
+  min-height:330px;
+  display:grid;
+  place-items:center;
+}
+
+.routeMap svg{
+  width:100%;
+  height:auto;
+}
+
+.mapLand{
+  fill:#dfe4ec;
+  stroke:#b8c0cc;
+  stroke-width:2;
+}
+
+.routeLine{
+  fill:none;
+  stroke:url(#routeGrad);
+  stroke-width:5;
+  stroke-linecap:round;
+  stroke-dasharray:10 10;
+}
+
+.routeLine.road{
+  stroke:#111827;
+  stroke-width:4;
+  stroke-dasharray:0;
+}
+
+.pin{
+  fill:#111827;
+  stroke:#fff;
+  stroke-width:4;
+}
+
+.pin.red{
+  fill:#ed0012;
+}
+
+.routeMap text{
+  font-family:Inter,Arial,sans-serif;
+  fill:#111827;
+  font-size:17px;
+  font-weight:900;
+}
+
+.ship path,
+.ship rect{
+  fill:#111827;
+}
+
+.siteFooter{
+  padding-bottom:32px;
+}
+
+.footerInner{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid rgba(255,255,255,.80)!important;
+}
+
+@media(max-width:1100px){
+  .leadGrid,
+  .splitCards,
+  .routeBox{
+    grid-template-columns:1fr;
+  }
+  .lotsGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .miniGrid,
+  .lotsGrid{
+    grid-template-columns:1fr;
+  }
+  .leadText h2,
+  .infoCard h2,
+  .sectionHead h2,
+  .routeText h2{
+    font-size:28px;
+  }
+}
+
+    .lotPhoto{
+        height:180px;
+        background:#fff;
+        border-radius:16px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#666;
+        font-weight:700;
+        margin-bottom:14px;
+        border:1px solid #e5e5e5;
+    }
+    
+
+/* v39 fixes: hot lots with clean car photos + request destination */
+.hotHead{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-end;
+  max-width:none!important;
+}
+
+.allLotsBtn{
+  min-height:44px;
+  padding:0 18px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+}
+
+.lotsGridV39{
+  align-items:stretch;
+}
+
+.lotCard{
+  overflow:hidden;
+}
+
+.carPhoto{
+  height:178px;
+  background:#fff;
+  border-radius:18px;
+  margin-bottom:14px;
+  display:grid;
+  place-items:center;
+  border:1px solid #eef0f4;
+}
+
+.carPhoto svg{
+  width:96%;
+  height:96%;
+}
+
+.carPhoto .body{
+  fill:#f8f9fb;
+  stroke:#c8cdd6;
+  stroke-width:3;
+}
+
+.carPhoto .roof{
+  fill:#f0f2f6;
+  stroke:#c8cdd6;
+  stroke-width:3;
+}
+
+.carPhoto .window{
+  fill:#20242c;
+  opacity:.90;
+}
+
+.carPhoto .wheel{
+  fill:#111;
+}
+
+.carPhoto .rim{
+  fill:#d8dde6;
+}
+
+.carPhoto .grill{
+  fill:#111;
+}
+
+.carPhoto .light{
+  fill:#eef3ff;
+  stroke:#cbd5e1;
+  stroke-width:2;
+}
+
+.carPhoto .shadow{
+  fill:none;
+  stroke:rgba(17,24,39,.18);
+  stroke-width:14;
+  stroke-linecap:round;
+}
+
+.lotPrices{
+  display:grid;
+  gap:8px;
+  margin:14px 0;
+}
+
+.lotPrices p{
+  min-height:0!important;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin:0;
+  color:#5c6270;
+}
+
+.lotPrices span{
+  font-size:13px;
+}
+
+.lotPrices b{
+  color:#111827;
+  font-size:15px;
+}
+
+.lotPrices .green b{
+  color:#13a046;
+}
+
+.whatsappIcon::before{
+  content:"☎";
+}
+
+@media(max-width:850px){
+  .hotHead{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .allLotsBtn{
+    width:100%;
+  }
+}
+
+
+/* v40 hot lots: compact cards with uploaded car photos */
+.hotHead{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:22px;
+  max-width:none!important;
+}
+
+.allLotsBtn{
+  min-height:44px;
+  padding:0 18px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+}
+
+.lotsGridV40{
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:16px!important;
+}
+
+.lotCardV40{
+  background:#fff!important;
+  border-radius:20px!important;
+  padding:14px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.22)!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+
+.carPhotoV40{
+  height:150px;
+  background:#fff;
+  border:1px solid #edf0f4;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  margin-bottom:12px;
+  overflow:hidden;
+}
+
+.carPhotoV40 img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.lotInfoV40{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.lotTitleRow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.lotTitleRow h3{
+  margin:0;
+  color:#10131a;
+  font-size:20px;
+  line-height:1.05;
+  letter-spacing:-.03em;
+}
+
+.lotTitleRow span{
+  background:#f1f2f5;
+  color:#111827;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.lotPricesV40{
+  display:grid;
+  gap:8px;
+  margin:4px 0 14px;
+}
+
+.lotPricesV40 p{
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px dashed #d8dde6;
+  padding-bottom:7px;
+}
+
+.lotPricesV40 p:last-child{
+  border-bottom:0;
+  padding-bottom:0;
+}
+
+.lotPricesV40 small{
+  color:#667085;
+  font-size:13px;
+}
+
+.lotPricesV40 b{
+  color:#111827;
+  font-size:16px;
+}
+
+.lotPricesV40 .green b{
+  color:#139447;
+}
+
+.lotInfoV40 a{
+  margin-top:auto;
+  min-height:42px;
+  border-radius:12px;
+  border:1px solid var(--red);
+  color:var(--red);
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-weight:950;
+}
+
+.lotInfoV40 a:hover{
+  background:var(--red);
+  color:#fff;
+}
+
+@media(max-width:1200px){
+  .lotsGridV40{
+    grid-template-columns:repeat(2,1fr)!important;
+  }
+}
+
+@media(max-width:650px){
+  .hotHead{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .lotsGridV40{
+    grid-template-columns:1fr!important;
+  }
+  .allLotsBtn{
+    width:100%;
+  }
+}
+
+
+/* v41: final hot offers block + bigger header logo */
+.headerBrand img{
+  width:72px!important;
+  height:72px!important;
+  border-radius:18px!important;
+}
+
+.headerBrand strong{
+  font-size:42px!important;
+  letter-spacing:-.05em!important;
+}
+
+.headerBrand small{
+  font-size:13px!important;
+  letter-spacing:.02em!important;
+}
+
+.siteHeader{
+  padding-top:18px!important;
+}
+
+.hotHeadV41{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  max-width:none!important;
+  margin-bottom:22px!important;
+}
+
+.hotHeadV41 h2{
+  font-size:40px!important;
+  line-height:1.04!important;
+  margin-bottom:10px!important;
+}
+
+.hotHeadV41 p{
+  max-width:1100px!important;
+  color:rgba(255,255,255,.72)!important;
+}
+
+.allLotsBtn{
+  min-height:54px!important;
+  padding:0 24px!important;
+  border-radius:18px!important;
+  border:1px solid rgba(255,255,255,.24)!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  font-weight:950!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  white-space:nowrap!important;
+  background:rgba(255,255,255,.04)!important;
+}
+
+.lotsGridV41{
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:16px!important;
+}
+
+.lotCardV41{
+  background:#fff!important;
+  border-radius:22px!important;
+  padding:14px!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.28)!important;
+  overflow:hidden!important;
+  border:1px solid rgba(255,255,255,.92)!important;
+}
+
+.carPhotoV41{
+  height:185px!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  border:1px solid #edf0f4!important;
+  display:grid!important;
+  place-items:center!important;
+  overflow:hidden!important;
+  margin-bottom:14px!important;
+}
+
+.carPhotoV41 img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  display:block!important;
+}
+
+.lotBodyV41{
+  display:flex!important;
+  flex-direction:column!important;
+  min-height:260px!important;
+}
+
+.lotTitleRowV41{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  margin-bottom:10px!important;
+}
+
+.lotTitleRowV41 h3{
+  margin:0!important;
+  color:#0d1117!important;
+  font-size:24px!important;
+  line-height:1.02!important;
+  letter-spacing:-.04em!important;
+}
+
+.lotTitleRowV41 span{
+  background:#f1f2f5!important;
+  color:#111827!important;
+  border-radius:999px!important;
+  padding:6px 10px!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+  text-transform:none!important;
+}
+
+.lotMainPrice{
+  margin:8px 0 14px!important;
+  color:#111827!important;
+  font-size:18px!important;
+}
+
+.lotMainPrice small{
+  font-size:18px!important;
+  color:#111827!important;
+}
+
+.lotMainPrice b{
+  color:var(--red)!important;
+  font-size:30px!important;
+  letter-spacing:-.04em!important;
+}
+
+.lotMainPrice em{
+  font-style:normal!important;
+  color:#111827!important;
+  font-size:18px!important;
+}
+
+.lotMetaV41{
+  display:grid!important;
+  gap:0!important;
+  margin-bottom:16px!important;
+}
+
+.lotMetaV41 p{
+  margin:0!important;
+  padding:11px 0!important;
+  border-top:1px dashed #d8dde6!important;
+  min-height:0!important;
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  color:#4b5563!important;
+}
+
+.lotMetaV41 span{
+  font-size:15px!important;
+}
+
+.lotMetaV41 b{
+  font-size:18px!important;
+  color:#111827!important;
+}
+
+.lotMetaV41 .green b{
+  color:#139447!important;
+}
+
+.lotBodyV41 a{
+  margin-top:auto!important;
+  min-height:52px!important;
+  border-radius:14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:linear-gradient(90deg,#ed0012,#ff1728)!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  font-weight:950!important;
+  font-size:16px!important;
+  border:0!important;
+}
+
+.hotTrustV41{
+  margin-top:28px!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
+}
+
+.hotTrustV41 div{
+  padding:22px 24px!important;
+  border-right:1px solid rgba(255,255,255,.10)!important;
+}
+
+.hotTrustV41 div:last-child{
+  border-right:0!important;
+}
+
+.hotTrustV41 strong{
+  display:block!important;
+  color:#fff!important;
+  font-size:18px!important;
+  margin-bottom:7px!important;
+}
+
+.hotTrustV41 span{
+  color:rgba(255,255,255,.70)!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+}
+
+@media(max-width:1200px){
+  .lotsGridV41{
+    grid-template-columns:repeat(2,1fr)!important;
+  }
+  .hotTrustV41{
+    grid-template-columns:repeat(2,1fr)!important;
+  }
+}
+
+@media(max-width:650px){
+  .hotHeadV41{
+    flex-direction:column!important;
+    align-items:stretch!important;
+  }
+  .hotHeadV41 h2{
+    font-size:30px!important;
+  }
+  .lotsGridV41{
+    grid-template-columns:1fr!important;
+  }
+  .hotTrustV41{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* v42: hot offers without photos, premium text cards */
+.hotHeadV42{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  max-width:none!important;
+  margin-bottom:22px!important;
+}
+
+.hotHeadV42 h2{
+  font-size:40px!important;
+  line-height:1.04!important;
+  margin-bottom:10px!important;
+}
+
+.hotHeadV42 p{
+  max-width:1100px!important;
+  color:rgba(255,255,255,.72)!important;
+}
+
+.textLotsGridV42{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px;
+}
+
+.textLotCard{
+  background:linear-gradient(180deg,#ffffff,#f6f7f9);
+  border:1px solid rgba(255,255,255,.88);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 24px 70px rgba(0,0,0,.26);
+  display:flex;
+  flex-direction:column;
+  min-height:330px;
+  position:relative;
+  overflow:hidden;
+}
+
+.textLotCard::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(237,0,18,.10), transparent 28%),
+    linear-gradient(135deg, rgba(17,24,39,.045), transparent 42%);
+  pointer-events:none;
+}
+
+.textLotCard > *{
+  position:relative;
+  z-index:1;
+}
+
+.textLotTop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.lotYear{
+  font-size:13px;
+  font-weight:950;
+  color:#fff;
+  background:#111827;
+  border-radius:999px;
+  padding:7px 10px;
+}
+
+.lotType{
+  font-size:12px;
+  font-weight:900;
+  color:#111827;
+  background:#eef0f4;
+  border-radius:999px;
+  padding:7px 10px;
+  text-transform:lowercase;
+  white-space:nowrap;
+}
+
+.textLotCard h3{
+  margin:0 0 18px;
+  color:#0d1117;
+  font-size:25px;
+  line-height:1.02;
+  letter-spacing:-.045em;
+  min-height:52px;
+}
+
+.textLotPrice{
+  margin-bottom:18px;
+}
+
+.textLotPrice small{
+  display:block;
+  color:#667085;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.textLotPrice b{
+  color:var(--red);
+  font-size:30px;
+  line-height:1;
+  letter-spacing:-.045em;
+}
+
+.textLotRows{
+  display:grid;
+  gap:0;
+  margin-bottom:18px;
+}
+
+.textLotRows p{
+  margin:0;
+  padding:12px 0;
+  border-top:1px dashed #d8dde6;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.textLotRows span{
+  color:#5b6472;
+  font-size:14px;
+}
+
+.textLotRows b{
+  color:#111827;
+  font-size:15px;
+  text-align:right;
+}
+
+.textLotRows .green b{
+  color:#129447;
+}
+
+.textLotCard a{
+  margin-top:auto;
+  min-height:48px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(90deg,#ed0012,#ff1728);
+  color:#fff;
+  text-decoration:none;
+  font-weight:950;
+  font-size:14px;
+}
+
+.accentLot{
+  background:linear-gradient(180deg,#fff,#fff3f4);
+  border-color:rgba(237,0,18,.22);
+}
+
+.hotTrustV42{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:22px;
+  overflow:hidden;
+}
+
+.hotTrustV42 div{
+  padding:22px 24px;
+  border-right:1px solid rgba(255,255,255,.10);
+}
+
+.hotTrustV42 div:last-child{
+  border-right:0;
+}
+
+.hotTrustV42 strong{
+  display:block;
+  color:#fff;
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.hotTrustV42 span{
+  color:rgba(255,255,255,.70);
+  font-size:14px;
+  line-height:1.35;
+}
+
+@media(max-width:1400px){
+  .textLotsGridV42{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:900px){
+  .textLotsGridV42{
+    grid-template-columns:repeat(2,1fr);
+  }
+  .hotTrustV42{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .hotHeadV42{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .hotHeadV42 h2{
+    font-size:30px!important;
+  }
+  .textLotsGridV42{
+    grid-template-columns:1fr;
+  }
+  .hotTrustV42{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* v43: новая шапка + новый фон */
+body{
+  background:
+    linear-gradient(90deg, rgba(8,11,18,.92) 0%, rgba(8,11,18,.78) 42%, rgba(8,11,18,.88) 100%),
+    url("assets/hero-bg-v43.jpg") center/cover fixed!important;
+}
+
+body::before{
+  background:
+    radial-gradient(circle at 14% 14%, rgba(237,0,18,.22), transparent 24%),
+    radial-gradient(circle at 78% 68%, rgba(255,120,42,.10), transparent 20%)!important;
+}
+
+.siteHeader{
+  padding:24px 0 8px!important;
+}
+
+.headerBrand img{
+  width:76px!important;
+  height:76px!important;
+  border-radius:18px!important;
+}
+
+.headerBrand strong{
+  font-size:42px!important;
+  color:#fff!important;
+}
+
+.headerBrand small{
+  color:rgba(255,255,255,.74)!important;
+}
+
+.headerActionsV43{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+}
+
+.headerActionsV43 a{
+  min-height:42px;
+  padding:0 16px;
+  border-radius:999px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  display:flex;
+  align-items:center;
+}
+
+.headerActionsV43 .topCtaV43{
+  background:linear-gradient(90deg,#ed0012,#ff1728);
+  border-color:transparent;
+}
+
+.heroV43{
+  display:grid!important;
+  grid-template-columns:1fr 340px;
+  gap:28px;
+  align-items:stretch;
+  padding:46px 0 34px!important;
+}
+
+.heroMainV43{
+  max-width:900px;
+}
+
+.heroBadgeV43{
+  display:inline-flex;
+  color:#fff;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  padding:10px 14px;
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+.heroV43 h1{
+  margin:0!important;
+  max-width:880px;
+  color:#fff!important;
+  font-size:64px!important;
+  line-height:.96!important;
+  letter-spacing:-.06em!important;
+  text-shadow:0 20px 60px rgba(0,0,0,.42)!important;
+}
+
+.heroV43 h1::after{
+  content:"";
+  display:block;
+  width:82px;
+  height:4px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ed0012,#ff7a2b);
+  margin-top:20px;
+}
+
+.heroV43 p{
+  margin:22px 0 0!important;
+  max-width:720px!important;
+  color:rgba(255,255,255,.78)!important;
+  font-size:18px!important;
+  line-height:1.55!important;
+}
+
+.calcIncludesV43{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:24px 0 14px;
+}
+
+.calcIncludesV43 span{
+  color:#fff;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  padding:9px 13px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.heroMainV43 small{
+  display:block;
+  max-width:690px;
+  color:rgba(255,255,255,.58);
+  font-size:13px;
+  line-height:1.45;
+}
+
+.heroContactV43{
+  background:rgba(255,255,255,.095);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:26px;
+  padding:24px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 24px 80px rgba(0,0,0,.25);
+  display:flex;
+  flex-direction:column;
+  align-self:center;
+}
+
+.heroContactV43 b{
+  color:#fff;
+  font-size:20px;
+  margin-bottom:16px;
+}
+
+.heroContactV43 a{
+  min-height:48px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  text-decoration:none;
+  font-weight:950;
+  display:flex;
+  align-items:center;
+  padding:0 14px;
+  margin-bottom:10px;
+}
+
+.heroContactV43 button{
+  margin-top:8px;
+  min-height:52px;
+  border:0;
+  border-radius:16px;
+  background:linear-gradient(90deg,#ed0012,#ff1728);
+  color:#fff;
+  font-weight:950;
+  cursor:pointer;
+}
+
+.layout{
+  margin-top:4px!important;
+}
+
+@media(max-width:1100px){
+  .heroV43{
+    grid-template-columns:1fr!important;
+  }
+  .heroContactV43{
+    align-self:stretch;
+  }
+}
+
+@media(max-width:650px){
+  .headerActionsV43{
+    flex-direction:column!important;
+    align-items:stretch!important;
+    width:100%;
+  }
+  .headerActionsV43 a{
+    justify-content:center;
+  }
+  .heroV43{
+    padding-top:26px!important;
+  }
+  .heroV43 h1{
+    font-size:42px!important;
+  }
+}
+
+
+/* v44: compact hero, no duplicated contacts */
+.siteHeader{
+  padding:14px 0 4px!important;
+}
+
+.headerBrand img{
+  width:62px!important;
+  height:62px!important;
+  border-radius:16px!important;
+}
+
+.headerBrand strong{
+  font-size:34px!important;
+}
+
+.headerBrand small{
+  font-size:12px!important;
+  margin-top:5px!important;
+}
+
+.headerActionsV44{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+
+.headerActionsV44 span,
+.headerActionsV44 a{
+  min-height:38px;
+  padding:0 14px;
+  border-radius:999px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  display:flex;
+  align-items:center;
+  font-size:13px;
+}
+
+.headerActionsV44 .topCtaV44{
+  background:linear-gradient(90deg,#ed0012,#ff1728);
+  border-color:transparent;
+}
+
+.heroV44{
+  display:grid!important;
+  grid-template-columns:1.05fr .95fr!important;
+  gap:26px!important;
+  align-items:center!important;
+  padding:26px 0 22px!important;
+}
+
+.heroMainV44{
+  max-width:820px!important;
+}
+
+.heroBadgeV44{
+  display:inline-flex;
+  color:#fff;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  font-size:12px;
+  margin-bottom:14px;
+}
+
+.heroV44 h1{
+  margin:0!important;
+  color:#fff!important;
+  font-size:46px!important;
+  line-height:1!important;
+  letter-spacing:-.055em!important;
+  text-shadow:0 20px 60px rgba(0,0,0,.35)!important;
+}
+
+.heroV44 h1::after{
+  content:"";
+  display:block;
+  width:64px;
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ed0012,#ff7a2b);
+  margin-top:14px;
+}
+
+.heroV44 p{
+  margin:16px 0 0!important;
+  max-width:720px!important;
+  color:rgba(255,255,255,.76)!important;
+  font-size:16px!important;
+  line-height:1.45!important;
+}
+
+.heroSideV44{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:24px;
+  padding:18px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 22px 70px rgba(0,0,0,.22);
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  align-items:center;
+}
+
+.quickLineV44{
+  grid-column:1/-1;
+}
+
+.quickLineV44 b{
+  display:block;
+  color:#fff;
+  font-size:16px;
+  line-height:1.3;
+  margin-bottom:5px;
+}
+
+.quickLineV44 span{
+  color:rgba(255,255,255,.62);
+  font-size:13px;
+  font-weight:800;
+}
+
+.heroContactsV44{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.heroContactsV44 a{
+  min-height:40px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  text-decoration:none;
+  font-weight:950;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  font-size:13px;
+}
+
+.heroSideV44 button{
+  min-height:42px;
+  border:0;
+  border-radius:13px;
+  background:linear-gradient(90deg,#ed0012,#ff1728);
+  color:#fff;
+  font-weight:950;
+  padding:0 16px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.layout{
+  margin-top:0!important;
+}
+
+@media(max-width:1100px){
+  .heroV44{
+    grid-template-columns:1fr!important;
+  }
+  .heroSideV44{
+    grid-template-columns:1fr!important;
+  }
+  .heroSideV44 button{
+    width:100%;
+  }
+}
+
+@media(max-width:650px){
+  .headerActionsV44{
+    flex-direction:column!important;
+    align-items:stretch!important;
+    width:100%;
+  }
+  .headerActionsV44 span,
+  .headerActionsV44 a{
+    justify-content:center;
+  }
+  .heroV44 h1{
+    font-size:36px!important;
+  }
+  .heroV44{
+    padding-top:20px!important;
+  }
+}
+
+
+/* v45: cleaned hero text, no duplicated CTA buttons */
+.headerActionsV44 .topCtaV44{
+  display:none!important;
+}
+
+.headerActionsV44{
+  gap:10px!important;
+}
+
+.heroV45{
+  display:grid!important;
+  grid-template-columns:1fr .92fr!important;
+  gap:30px!important;
+  align-items:center!important;
+  padding:30px 0 24px!important;
+}
+
+.heroMainV45{
+  max-width:850px!important;
+}
+
+.heroBadgeV45{
+  display:inline-flex;
+  color:#fff;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  font-size:12px;
+  margin-bottom:14px;
+}
+
+.heroV45 h1{
+  margin:0!important;
+  color:#fff!important;
+  font-size:48px!important;
+  line-height:1!important;
+  letter-spacing:-.055em!important;
+  text-shadow:0 20px 60px rgba(0,0,0,.35)!important;
+}
+
+.heroV45 h1::after{
+  content:"";
+  display:block;
+  width:68px;
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ed0012,#ff7a2b);
+  margin-top:15px;
+}
+
+.heroV45 p{
+  margin:16px 0 0!important;
+  max-width:760px!important;
+  color:rgba(255,255,255,.78)!important;
+  font-size:16px!important;
+  line-height:1.48!important;
+}
+
+.heroSideV45{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:24px;
+  padding:22px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 22px 70px rgba(0,0,0,.22);
+}
+
+.sideLabelV45{
+  display:inline-flex;
+  color:#ff6b74;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:11px;
+  font-weight:950;
+  margin-bottom:10px;
+}
+
+.heroSideV45 h2{
+  margin:0;
+  color:#fff;
+  font-size:24px;
+  line-height:1.15;
+  letter-spacing:-.03em;
+}
+
+.heroSideV45 p{
+  margin:12px 0 18px!important;
+  color:rgba(255,255,255,.70)!important;
+  font-size:14px!important;
+  line-height:1.5!important;
+}
+
+.heroContactsV45{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.heroContactsV45 a{
+  min-height:40px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  text-decoration:none;
+  font-weight:950;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  font-size:13px;
+}
+
+.layout{
+  margin-top:0!important;
+}
+
+@media(max-width:1100px){
+  .heroV45{
+    grid-template-columns:1fr!important;
+  }
+}
+
+@media(max-width:650px){
+  .heroV45{
+    padding-top:20px!important;
+  }
+  .heroV45 h1{
+    font-size:36px!important;
+  }
+}
+
+
+/* v47: header, synchronized layout and auction links */
+
+/* верхняя строка */
+.headerActionsV47{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+}
+
+.locationTopV47{
+  min-height:42px;
+  padding:0 18px;
+  border-radius:999px;
+  color:#fff;
+  font-weight:950;
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.15);
+  display:flex;
+  align-items:center;
+  font-size:14px;
+  letter-spacing:.01em;
+}
+
+/* убираем старые кнопки, если где-то остались */
+.topCtaV44,
+.topCtaV45,
+.heroBadgeV45,
+.heroBadgeV44{
+  display:none!important;
+}
+
+/* одинаковая сетка hero и калькулятора */
+.heroV45{
+  grid-template-columns:1.04fr .88fr!important;
+  gap:30px!important;
+  align-items:stretch!important;
+  padding:30px 0 24px!important;
+}
+
+.layout{
+  grid-template-columns:1.04fr .88fr!important;
+  gap:30px!important;
+}
+
+.heroSideV45{
+  width:100%!important;
+  max-width:none!important;
+  align-self:stretch!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  min-height:100%!important;
+}
+
+/* ширина белого/черного блока калькулятора как у нижних секций */
+.formCard,
+.resultCard{
+  width:100%!important;
+}
+
+/* кнопки аукционов в блоке заявки */
+.auctionLinksV47{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.auctionLinksV47 a{
+  min-height:60px;
+  border-radius:15px;
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.14);
+  text-decoration:none;
+  color:#fff;
+  padding:12px 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  transition:.18s ease;
+}
+
+.auctionLinksV47 a:hover{
+  transform:translateY(-2px);
+  border-color:rgba(237,0,18,.55);
+  background:rgba(237,0,18,.13);
+}
+
+.auctionLinksV47 b{
+  font-size:15px;
+  line-height:1.1;
+  letter-spacing:-.01em;
+}
+
+.auctionLinksV47 span{
+  color:rgba(255,255,255,.66);
+  font-size:12px;
+  margin-top:5px;
+  line-height:1.25;
+}
+
+.auctionHintV47{
+  margin:14px 0 0!important;
+  color:rgba(255,255,255,.80)!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+  font-weight:850;
+}
+
+@media(max-width:1100px){
+  .heroV45,
+  .layout{
+    grid-template-columns:1fr!important;
+  }
+}
+
+@media(max-width:650px){
+  .headerActionsV47{
+    width:100%;
+    justify-content:flex-start!important;
+  }
+  .locationTopV47{
+    width:100%;
+    justify-content:center;
+  }
+  .auctionLinksV47{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* v48: clickable auction badges in selection block */
+.leadBadgesLinksV48{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+  margin-top:22px!important;
+}
+
+.leadBadgesLinksV48 a{
+  color:#fff!important;
+  background:rgba(255,255,255,.075)!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  border-radius:999px!important;
+  padding:10px 15px!important;
+  font-size:13px!important;
+  font-weight:950!important;
+  text-decoration:none!important;
+  transition:.18s ease!important;
+}
+
+.leadBadgesLinksV48 a:hover{
+  transform:translateY(-2px)!important;
+  background:rgba(237,0,18,.15)!important;
+  border-color:rgba(237,0,18,.55)!important;
+}
+
+.auctionHintV48{
+  margin:14px 0 0!important;
+  color:rgba(255,255,255,.78)!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+  font-weight:850!important;
+}
+
+/* hide older separate auction buttons if cached CSS/html still exists */
+.auctionLinksV47,
+.auctionHintV47{
+  display:none!important;
+}
+
+
+/* v49 - все секции под калькулятором по одной ширине с калькулятором */
+
+.hotLots .container,
+.leadSection .container,
+.contactSection .container,
+.aboutSection .container,
+.advantagesSection .container,
+.faqSection .container{
+    max-width: 1380px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* центрирование всех карточек */
+.hotLots,
+.leadSection,
+.contactSection,
+.aboutSection,
+.advantagesSection,
+.faqSection{
+    display:block !important;
+}
+
+/* небольшое выравнивание по сетке калькулятора */
+.hotLots{
+    margin-top: 10px !important;
+}
+
+
+
+/* v50 — финальная полировка сетки, карточек и отступов */
+
+:root{
+  --site-max-width: 1380px;
+  --card-radius-main: 24px;
+  --card-radius-small: 18px;
+  --section-gap: 34px;
+  --card-pad-main: 28px;
+}
+
+/* единая ширина всех крупных секций */
+.container,
+.heroV45,
+.heroV44,
+.layout,
+.leadSection > .container,
+.checkSection > .container,
+.hotLots > .container,
+.siteFooter > .container,
+.footerInner{
+  max-width: var(--site-max-width) !important;
+  width: calc(100% - 40px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* чтобы hero и калькулятор стояли в одной вертикальной сетке */
+.heroV45,
+.heroV44,
+.layout{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* единые промежутки между основными блоками */
+.layout{
+  margin-bottom: var(--section-gap) !important;
+}
+
+.leadSection,
+.checkSection,
+.hotLots,
+.siteFooter{
+  padding-top: 0 !important;
+  padding-bottom: var(--section-gap) !important;
+}
+
+/* единые радиусы карточек */
+.formCard,
+.resultCard,
+.leadText,
+.miniForm,
+.infoCard,
+.checkForm,
+.textLotCard,
+.lotCard,
+.lotCardV41,
+.lotCardV40,
+.footerInner,
+.hotTrustV42,
+.hotTrustV41{
+  border-radius: var(--card-radius-main) !important;
+}
+
+/* единые внутренние отступы */
+.formCard,
+.resultCard,
+.leadText,
+.miniForm,
+.infoCard,
+.checkForm{
+  padding: var(--card-pad-main) !important;
+}
+
+/* заголовки секций по одной сетке */
+.sectionHead,
+.hotHeadV42,
+.hotHeadV41,
+.hotHeadV40,
+.hotHead,
+.leadText,
+.infoCard{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* карточки горячих предложений плотнее и ровнее */
+.textLotsGridV42{
+  gap: 16px !important;
+}
+
+.textLotCard{
+  min-height: 315px !important;
+  padding: 22px !important;
+}
+
+.textLotCard h3{
+  min-height: 48px !important;
+}
+
+.textLotPrice b{
+  font-size: 28px !important;
+}
+
+/* нижний блок преимуществ внутри горячих предложений по общей сетке */
+.hotTrustV42,
+.hotTrustV41{
+  margin-top: 22px !important;
+}
+
+/* блок заявки и проверки ровнее по высоте */
+.leadGrid,
+.splitCards{
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+.leadText,
+.miniForm,
+.infoCard,
+.checkForm{
+  height: 100% !important;
+}
+
+/* футер визуально привязать к ширине всего сайта */
+.siteFooter{
+  padding-top: 0 !important;
+}
+
+.footerInner{
+  box-sizing: border-box !important;
+}
+
+/* единая высота кнопок */
+.primary,
+.miniForm button,
+.checkForm button,
+.textLotCard a,
+.lotCard a,
+.actions button,
+.actions a{
+  min-height: 48px !important;
+  border-radius: 14px !important;
+}
+
+/* шапка чуть аккуратнее и по общей сетке */
+.siteHeader .container,
+.headerInner{
+  max-width: var(--site-max-width) !important;
+  width: calc(100% - 40px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.siteHeader{
+  padding-top: 18px !important;
+  padding-bottom: 8px !important;
+}
+
+/* калькулятор: белый и черный блок визуально одного класса */
+.formCard,
+.resultCard{
+  box-shadow: 0 28px 90px rgba(0,0,0,.26) !important;
+}
+
+/* правый блок не должен казаться отдельно живущим */
+.resultCard{
+  background: rgba(9,11,16,.94) !important;
+}
+
+/* аккуратный responsive */
+@media(max-width: 1100px){
+  .container,
+  .heroV45,
+  .heroV44,
+  .layout,
+  .leadSection > .container,
+  .checkSection > .container,
+  .hotLots > .container,
+  .siteFooter > .container,
+  .footerInner,
+  .siteHeader .container,
+  .headerInner{
+    width: calc(100% - 28px) !important;
+  }
+
+  .leadGrid,
+  .splitCards{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media(max-width: 650px){
+  :root{
+    --card-pad-main: 20px;
+    --section-gap: 24px;
+  }
+
+  .textLotCard{
+    min-height: auto !important;
+  }
+}
+
+
+/* v51 - information block after calculator */
+.calcInfoSection{
+  padding-top:0!important;
+  padding-bottom:var(--section-gap, 34px)!important;
+}
+
+.calcInfoBox{
+  max-width:var(--site-max-width, 1380px)!important;
+  width:calc(100% - 40px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+.calcInfoText{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 24px 80px rgba(0,0,0,.20);
+  backdrop-filter:blur(16px);
+}
+
+.calcInfoText h2{
+  margin:0 0 14px;
+  color:#fff;
+  font-size:32px;
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+
+.calcInfoText p{
+  margin:0;
+  max-width:1120px;
+  color:rgba(255,255,255,.74);
+  font-size:16px;
+  line-height:1.55;
+}
+
+.calcInfoText p + p{
+  margin-top:10px;
+}
+
+@media(max-width:1100px){
+  .calcInfoBox{
+    width:calc(100% - 28px)!important;
+  }
+}
+
+@media(max-width:650px){
+  .calcInfoText{
+    padding:20px;
+  }
+  .calcInfoText h2{
+    font-size:26px;
+  }
+  .calcInfoText p{
+    font-size:14px;
+  }
+}
+
+
+/* v52 - текст без дополнительного блока */
+
+.calcInfoPlainV52{
+  padding: 8px 0 34px !important;
+}
+
+.calcInfoPlainV52 .container{
+  max-width: var(--site-max-width, 1380px) !important;
+  width: calc(100% - 40px) !important;
+  margin: 0 auto !important;
+}
+
+.calcInfoPlainV52 h2{
+  margin: 10px 0 18px !important;
+  color: #fff !important;
+  font-size: 34px !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.03em !important;
+}
+
+.calcInfoPlainV52 p{
+  margin: 0 !important;
+  max-width: 1050px !important;
+  color: rgba(255,255,255,.72) !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+}
+
+.calcInfoPlainV52 p + p{
+  margin-top: 10px !important;
+}
+
+@media(max-width:650px){
+  .calcInfoPlainV52 h2{
+    font-size: 26px !important;
+  }
+
+  .calcInfoPlainV52 p{
+    font-size: 14px !important;
+  }
+}
+
+
+/* v53 - экономия 20-35% text block polish */
+.locationTopV47,
+.locationTopV46{
+  white-space: nowrap !important;
+}
+
+.calcInfoPlainV52 h2{
+  max-width: 980px !important;
+}
+
+.calcInfoPlainV52 p{
+  max-width: 1120px !important;
+}
+
+
+/* v54 */
+
+.calcInfoPlainV52 h2{
+    max-width: 100% !important;
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+}
+
+.locationTopV47,
+.locationTopV46{
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+}
+
+
+/* v55b */
+#tgBtn,
+.shareBtn,
+.telegramShare{
+    min-height:48px !important;
+    height:48px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+.primary,
+#calculateBtn,
+.updateBtn{
+    min-height:48px !important;
+    height:48px !important;
+}
+
+.actions{
+    align-items:stretch !important;
+}
+
+
+/* v56 — Apex Auto logo/header alignment */
+:root{
+  --site-max-width: 1380px;
+}
+
+/* вся шапка в той же сетке, что калькулятор и нижние блоки */
+.siteHeader .container,
+.headerInner{
+  max-width: var(--site-max-width) !important;
+  width: calc(100% - 40px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* убираем старые сдвиги, чтобы левый край совпадал с блоками ниже */
+.headerBrand{
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* логотип и название чуть крупнее */
+.headerBrand img{
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 24px !important;
+}
+
+.headerBrand strong{
+  font-size: 54px !important;
+  line-height: .92 !important;
+  letter-spacing: -.055em !important;
+}
+
+.headerBrand small{
+  font-size: 15px !important;
+  margin-top: 9px !important;
+}
+
+/* чуть больше воздуха в шапке, но без растягивания */
+.siteHeader{
+  padding-top: 20px !important;
+  padding-bottom: 10px !important;
+}
+
+@media(max-width: 1100px){
+  .siteHeader .container,
+  .headerInner{
+    width: calc(100% - 28px) !important;
+  }
+}
+
+@media(max-width: 650px){
+  .headerBrand img{
+    width: 74px !important;
+    height: 74px !important;
+    border-radius: 18px !important;
+  }
+
+  .headerBrand strong{
+    font-size: 38px !important;
+  }
+
+  .headerBrand small{
+    font-size: 13px !important;
+  }
+}
+
+
+/* v57: VIN check form validation */
+.inputErrorV57{
+  border-color:#ed0012!important;
+  box-shadow:0 0 0 4px rgba(237,0,18,.13)!important;
+}
+
+
+/* v62 — Apple Liquid Glass style, safe version */
+
+/* мягкий apple-like фон */
+body{
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,255,255,.42), transparent 22%),
+    radial-gradient(circle at 86% 14%, rgba(255,45,56,.28), transparent 25%),
+    radial-gradient(circle at 18% 82%, rgba(88,160,255,.24), transparent 30%),
+    radial-gradient(circle at 80% 78%, rgba(255,150,70,.16), transparent 28%),
+    linear-gradient(135deg,#cbd5e4 0%,#f1f4f8 44%,#aeb9ca 100%) !important;
+  color:#111827 !important;
+}
+
+body::before{
+  content:"" !important;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:-1 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.26), transparent 34%, rgba(255,255,255,.16)),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.58), transparent 20%) !important;
+}
+
+/* светлая типографика */
+.headerBrand strong,
+.heroV45 h1,
+.heroV44 h1,
+.heroV43 h1,
+.calcInfoPlainV52 h2,
+.sectionHead h2,
+.hotHeadV42 h2,
+.leadText h2,
+.infoCard h2{
+  color:#111827 !important;
+  text-shadow:none !important;
+}
+
+.headerBrand small,
+.heroV45 p,
+.heroV44 p,
+.heroV43 p,
+.calcInfoPlainV52 p,
+.sectionHead p,
+.leadText p,
+.infoCard p{
+  color:rgba(17,24,39,.70) !important;
+}
+
+.sectionKicker{
+  color:#ff2d38 !important;
+}
+
+/* стеклянные карточки — только визуально, без изменения логики */
+.formCard,
+.leadText,
+.miniForm,
+.infoCard,
+.checkForm,
+.textLotCard,
+.footerInner,
+.hotTrustV42,
+.hotTrustV41{
+  background:rgba(255,255,255,.44) !important;
+  border:1px solid rgba(255,255,255,.66) !important;
+  box-shadow:0 28px 90px rgba(31,41,55,.18) !important;
+  backdrop-filter:blur(26px) saturate(165%) !important;
+  -webkit-backdrop-filter:blur(26px) saturate(165%) !important;
+}
+
+/* правый блок калькулятора оставляем темным для читаемости */
+.resultCard{
+  background:rgba(16,20,28,.78) !important;
+  border:1px solid rgba(255,255,255,.24) !important;
+  box-shadow:0 30px 100px rgba(0,0,0,.30) !important;
+  backdrop-filter:blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter:blur(32px) saturate(160%) !important;
+}
+
+/* правый hero-блок затемнен */
+.heroSideV45,
+.heroSideV44,
+.heroContactV43{
+  background:rgba(16,20,28,.64) !important;
+  border:1px solid rgba(255,255,255,.24) !important;
+  color:#fff !important;
+  box-shadow:0 28px 90px rgba(0,0,0,.28) !important;
+  backdrop-filter:blur(30px) saturate(160%) !important;
+  -webkit-backdrop-filter:blur(30px) saturate(160%) !important;
+}
+
+.heroSideV45 h2,
+.heroSideV44 h2,
+.heroContactV43 b{
+  color:#fff !important;
+}
+
+.heroSideV45 p,
+.heroSideV44 p{
+  color:rgba(255,255,255,.76) !important;
+}
+
+.sideLabelV45{
+  color:#ff7b84 !important;
+}
+
+.heroContactsV45 a,
+.heroContactsV44 a,
+.heroContactV43 a{
+  background:rgba(255,255,255,.10) !important;
+  border:1px solid rgba(255,255,255,.20) !important;
+  color:#fff !important;
+}
+
+/* поля */
+input,
+select,
+textarea{
+  background:rgba(255,255,255,.62) !important;
+  border:1px solid rgba(17,24,39,.12) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:rgba(255,45,56,.55) !important;
+  box-shadow:0 0 0 5px rgba(255,45,56,.12) !important;
+}
+
+/* кнопки */
+.primary,
+button,
+.textLotCard a,
+.miniForm button,
+.checkForm button,
+#tgBtn{
+  background:linear-gradient(135deg,#ff2d38,#ff5963) !important;
+  box-shadow:0 16px 36px rgba(255,45,56,.25) !important;
+}
+
+/* убрать Скачать PNG, если остался в DOM */
+#pngBtn,
+.pngBtn,
+button[aria-label*="PNG"],
+a[aria-label*="PNG"]{
+  display:none !important;
+}
+
+/* Скопировать расчет и Поделиться расчетом — одинаково широкие */
+.actions{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:10px !important;
+}
+
+.actions button,
+.actions a,
+#tgBtn{
+  width:100% !important;
+  min-height:48px !important;
+  height:48px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:14px !important;
+}
+
+/* аукционные кнопки */
+.leadBadgesLinksV48 a,
+.leadBadges a,
+.leadBadges span{
+  background:rgba(255,255,255,.38) !important;
+  border:1px solid rgba(255,255,255,.62) !important;
+  color:#111827 !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70) !important;
+}
+
+.auctionHintV48,
+.auctionHintV47{
+  color:rgba(17,24,39,.66) !important;
+}
+
+/* горячие предложения */
+.textLotCard{
+  background:rgba(255,255,255,.52) !important;
+}
+
+.textLotCard::before{
+  background:
+    radial-gradient(circle at 16% 0%, rgba(255,45,56,.12), transparent 28%),
+    linear-gradient(135deg, rgba(255,255,255,.22), transparent 42%) !important;
+}
+
+/* футер и доверие */
+.hotTrustV42 strong,
+.hotTrustV41 strong,
+.footerBrand strong,
+.footerStats b{
+  color:#111827 !important;
+}
+
+.hotTrustV42 span,
+.hotTrustV41 span,
+.footerBrand p,
+.footerStats span{
+  color:rgba(17,24,39,.64) !important;
+}
+
+.footerStats div{
+  background:rgba(255,255,255,.38) !important;
+  border:1px solid rgba(255,255,255,.58) !important;
+}
+
+.contactBtn{
+  background:rgba(17,24,39,.86) !important;
+  color:#fff !important;
+}
+
+/* более apple-like скругления */
+.formCard,
+.resultCard,
+.textLotCard,
+.leadText,
+.miniForm,
+.infoCard,
+.checkForm,
+.footerInner,
+.hotTrustV42,
+.hotTrustV41,
+.heroSideV45{
+  border-radius:30px !important;
+}
+
+input,
+select,
+textarea{
+  border-radius:18px !important;
+}
+
+
+/* v63 — remove empty insurance note */
+.resultCard small:empty,
+.resultCard .muted:empty,
+.row small:empty{
+  display:none!important;
+}
+
+
+/* v64 — Offsite/Sublot glass style + info tooltip */
+
+/* делаем строку Offsite в том же liquid glass стиле, а не чисто белой */
+.formCard label:has(input[type="checkbox"]){
+  background:rgba(255,255,255,.38)!important;
+  border:1px solid rgba(255,255,255,.62)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70)!important;
+}
+
+/* конкретно Offsite/Sublot */
+.formCard label:has(input[id*="off" i]),
+.formCard label:has(input[name*="off" i]),
+.formCard label:has(input[id*="sublot" i]),
+.formCard label:has(input[name*="sublot" i]){
+  background:rgba(255,255,255,.36)!important;
+  border:1px dashed rgba(17,24,39,.18)!important;
+}
+
+/* иконка i */
+.offsiteInfoV64{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:19px;
+  height:19px;
+  margin-left:7px;
+  border-radius:50%;
+  font-size:12px;
+  line-height:1;
+  font-weight:950;
+  font-style:normal;
+  color:#fff;
+  background:rgba(17,24,39,.72);
+  border:1px solid rgba(255,255,255,.55);
+  cursor:help;
+  vertical-align:middle;
+}
+
+/* плашка при наведении */
+.offsiteInfoV64::after{
+  content:"Машина находится не на основной локации аукциона";
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 10px);
+  transform:translateX(-50%) translateY(4px);
+  width:280px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(16,20,28,.92);
+  color:#fff;
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+  text-align:left;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  z-index:999;
+}
+
+/* маленький треугольник */
+.offsiteInfoV64::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 3px);
+  transform:translateX(-50%);
+  border:7px solid transparent;
+  border-top-color:rgba(16,20,28,.92);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  z-index:1000;
+}
+
+.offsiteInfoV64:hover::after,
+.offsiteInfoV64:focus::after,
+.offsiteInfoV64:hover::before,
+.offsiteInfoV64:focus::before{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+
+@media(max-width:650px){
+  .offsiteInfoV64::after{
+    left:auto;
+    right:-20px;
+    transform:none;
+    width:240px;
+  }
+  .offsiteInfoV64:hover::after,
+  .offsiteInfoV64:focus::after{
+    transform:none;
+  }
+}
+
+
+/* v65 — unified info tooltips for Offsite, Export docs and Insurance */
+
+/* единый стиль строк с чекбоксами */
+.formCard label:has(input[type="checkbox"]){
+  background:rgba(255,255,255,.38)!important;
+  border:1px solid rgba(255,255,255,.62)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70)!important;
+}
+
+/* offsite остается слегка пунктирным, чтобы отличался как условная доплата */
+.formCard label:has(input[id*="off" i]),
+.formCard label:has(input[name*="off" i]),
+.formCard label:has(input[id*="sublot" i]),
+.formCard label:has(input[name*="sublot" i]){
+  background:rgba(255,255,255,.36)!important;
+  border:1px dashed rgba(17,24,39,.18)!important;
+}
+
+/* единая иконка i */
+.infoTipV65{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:19px;
+  height:19px;
+  margin-left:7px;
+  border-radius:50%;
+  font-size:12px;
+  line-height:1;
+  font-weight:950;
+  font-style:normal;
+  color:#fff;
+  background:rgba(17,24,39,.72);
+  border:1px solid rgba(255,255,255,.55);
+  cursor:help;
+  vertical-align:middle;
+  flex:0 0 auto;
+}
+
+/* текст подсказки из aria-label */
+.infoTipV65::after{
+  content:attr(aria-label);
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 10px);
+  transform:translateX(-50%) translateY(4px);
+  width:310px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(16,20,28,.94);
+  color:#fff;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:750;
+  text-align:left;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  z-index:999;
+}
+
+/* стрелка */
+.infoTipV65::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 3px);
+  transform:translateX(-50%);
+  border:7px solid transparent;
+  border-top-color:rgba(16,20,28,.94);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  z-index:1000;
+}
+
+.infoTipV65:hover::after,
+.infoTipV65:focus::after,
+.infoTipV65:hover::before,
+.infoTipV65:focus::before{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* если старый класс остался — переиспользуем */
+.offsiteInfoV64{
+  display:none!important;
+}
+
+@media(max-width:650px){
+  .infoTipV65::after{
+    left:auto;
+    right:-20px;
+    transform:none;
+    width:250px;
+  }
+  .infoTipV65:hover::after,
+  .infoTipV65:focus::after{
+    transform:none;
+  }
+}
+
+
+/* v66 — tooltip fixes */
+
+/* во всех трех подсказках делаем текст легче */
+.infoTipV65::after,
+.offsiteInfoV65::after,
+.exportInfoV65::after,
+.insuranceInfoV65::after{
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
+
+/* подсказку экспортных документов уводим влево, чтобы ее не перекрывал правый блок калькулятора */
+.exportInfoV65::after{
+  left:auto!important;
+  right:0!important;
+  transform:translateX(0) translateY(4px)!important;
+  width:300px!important;
+}
+
+.exportInfoV65::before{
+  left:auto!important;
+  right:5px!important;
+  transform:translateX(0)!important;
+}
+
+.exportInfoV65:hover::after,
+.exportInfoV65:focus::after{
+  transform:translateX(0) translateY(0)!important;
+}
+
+.exportInfoV65:hover::before,
+.exportInfoV65:focus::before{
+  transform:translateX(0)!important;
+}
+
+/* для страховки тоже чуть аккуратнее, чтобы текст не был жирным */
+.insuranceInfoV65::after,
+.offsiteInfoV65::after{
+  font-weight:500!important;
+}
+
+/* на маленьких экранах все подсказки открываем в пределах формы */
+@media(max-width:900px){
+  .infoTipV65::after{
+    left:auto!important;
+    right:-20px!important;
+    transform:none!important;
+    width:250px!important;
+  }
+
+  .infoTipV65:hover::after,
+  .infoTipV65:focus::after{
+    transform:none!important;
+  }
+
+  .infoTipV65::before{
+    left:auto!important;
+    right:6px!important;
+    transform:none!important;
+  }
+}
+
+
+/* v69 — идеальное выравнивание кнопок */
+
+.layout,
+.calculatorGrid,
+.calcGrid{
+    align-items:stretch !important;
+}
+
+.formCard,
+.resultCard{
+    display:flex !important;
+    flex-direction:column !important;
+    height:100% !important;
+}
+
+/* левая колонка */
+.formCard form,
+.formCard #calcForm{
+    flex:1 1 auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+}
+
+.formCard .primary,
+.formCard button[type="submit"]{
+    margin-top:auto !important;
+    height:50px !important;
+    min-height:50px !important;
+}
+
+/* правая колонка */
+.resultCard .actions{
+    margin-top:auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+}
+
+.resultCard .actions button,
+.resultCard .actions a{
+    height:50px !important;
+    min-height:50px !important;
+    margin-top:0 !important;
+}
+
+/* скрываем share если остался */
+#tgBtn{
+    display:none !important;
+}
+
+/* обе карточки одинаковой высоты */
+@media (min-width: 992px){
+    .formCard,
+    .resultCard{
+        min-height:100% !important;
+    }
+}
+
+
+/* v70 — полностью убираем бейдж Кишинев в правом верхнем углу */
+.headerBenefits,
+.headerActionsV44,
+.headerActionsV45,
+.headerActionsV46,
+.headerActionsV47,
+.headerActionsV54,
+.locationTopV46,
+.locationTopV47,
+.locationTopV54,
+[class*="locationTop"],
+[class*="locationBadge"],
+[class*="geoBadge"],
+[class*="headerActions"]{
+  display:none!important;
+}
+
+/* шапка после удаления правого блока */
+.headerInner{
+  justify-content:flex-start!important;
+}
+
+
+/* v71 — hot offers buttons send request to Telegram */
+.hotLots .textLotCard a[target="_blank"],
+.hotLots .lotCard a[target="_blank"]{
+  cursor:pointer!important;
+}
+
+.hotLots .textLotCard a::after,
+.hotLots .lotCard a::after{
+  content:"";
+}
+
+
+/* v76 — header like uploaded/logo reference */
+
+/* Шапка как отдельная glass-плашка */
+.siteHeader{
+  padding-top:26px!important;
+  padding-bottom:42px!important;
+}
+
+.siteHeader .container,
+.headerInner{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+
+.headerInner{
+  min-height:154px!important;
+  border-radius:36px!important;
+  padding:26px 34px!important;
+  background:rgba(255,255,255,.38)!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  box-shadow:0 28px 90px rgba(31,41,55,.16)!important;
+  backdrop-filter:blur(28px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(165%)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  box-sizing:border-box!important;
+}
+
+/* Блок бренда */
+.headerBrand{
+  display:flex!important;
+  align-items:center!important;
+  gap:34px!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+/* Иконка как на референсе */
+.headerBrand img{
+  width:132px!important;
+  height:132px!important;
+  border-radius:28px!important;
+  object-fit:cover!important;
+  box-shadow:0 24px 60px rgba(15,23,42,.22)!important;
+  flex:0 0 auto!important;
+}
+
+/* Брендовый текст в духе самого логотипа */
+.headerBrand strong,
+.headerBrand .brandTextV76{
+  display:flex!important;
+  align-items:baseline!important;
+  gap:18px!important;
+  margin:0!important;
+  padding:0!important;
+  font-family:Eurostile, "Microgramma D Extended", "Bank Gothic", "Arial Black", Impact, system-ui, sans-serif!important;
+  font-size:72px!important;
+  line-height:.86!important;
+  font-weight:900!important;
+  letter-spacing:.045em!important;
+  text-transform:uppercase!important;
+  transform:scaleX(1.08)!important;
+  transform-origin:left center!important;
+  text-shadow:0 2px 0 rgba(255,255,255,.38), 0 18px 46px rgba(15,23,42,.10)!important;
+}
+
+.headerBrand .brandApexV76{
+  color:#081120!important;
+}
+
+.headerBrand .brandAutoV76{
+  color:#F30616!important;
+}
+
+/* Если браузер не зацепит span, сохраняем общий вид */
+.headerBrand strong{
+  color:#081120!important;
+}
+
+/* Слоган */
+.headerBrand small{
+  display:block!important;
+  margin-top:18px!important;
+  font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Inter, Arial, sans-serif!important;
+  font-size:22px!important;
+  line-height:1.18!important;
+  font-weight:500!important;
+  color:rgba(15,23,42,.62)!important;
+  letter-spacing:-.018em!important;
+}
+
+/* Убираем старые правые бейджи, если остались */
+.headerBenefits,
+[class*="headerActions"],
+[class*="locationTop"],
+[class*="locationBadge"],
+[class*="geoBadge"]{
+  display:none!important;
+}
+
+/* Добавляем простой glass hamburger как на референсе */
+.headerInner::after{
+  content:"☰";
+  width:74px;
+  height:74px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  line-height:1;
+  font-weight:500;
+  color:rgba(15,23,42,.76);
+  background:rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.62);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.78), 0 18px 44px rgba(31,41,55,.12);
+}
+
+/* Отступ hero после новой шапки */
+.heroV45,
+.heroV44,
+.heroV43{
+  padding-top:18px!important;
+}
+
+@media(max-width:1100px){
+  .siteHeader .container,
+  .headerInner{
+    width:calc(100% - 28px)!important;
+  }
+
+  .headerInner{
+    min-height:126px!important;
+    padding:22px 24px!important;
+    border-radius:30px!important;
+  }
+
+  .headerBrand{
+    gap:22px!important;
+  }
+
+  .headerBrand img{
+    width:100px!important;
+    height:100px!important;
+    border-radius:24px!important;
+  }
+
+  .headerBrand strong,
+  .headerBrand .brandTextV76{
+    font-size:52px!important;
+    gap:12px!important;
+  }
+
+  .headerBrand small{
+    font-size:16px!important;
+    margin-top:12px!important;
+  }
+
+  .headerInner::after{
+    width:60px;
+    height:60px;
+    border-radius:18px;
+    font-size:28px;
+  }
+}
+
+@media(max-width:720px){
+  .headerInner{
+    min-height:auto!important;
+    padding:18px!important;
+  }
+
+  .headerBrand{
+    gap:14px!important;
+  }
+
+  .headerBrand img{
+    width:76px!important;
+    height:76px!important;
+    border-radius:18px!important;
+  }
+
+  .headerBrand strong,
+  .headerBrand .brandTextV76{
+    font-size:34px!important;
+    gap:7px!important;
+    letter-spacing:.025em!important;
+    transform:scaleX(1.03)!important;
+  }
+
+  .headerBrand small{
+    font-size:12px!important;
+    margin-top:7px!important;
+  }
+
+  .headerInner::after{
+    display:none!important;
+  }
+}
+
+
+/* v77 — compact premium header, no huge banner */
+
+/* Убираем большую glass-плашку из v76 */
+.siteHeader{
+  padding-top:24px!important;
+  padding-bottom:18px!important;
+}
+
+.siteHeader .container,
+.headerInner{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+
+/* Header снова легкий, без отдельного баннера */
+.headerInner{
+  min-height:auto!important;
+  padding:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+}
+
+/* Убираем декоративное меню справа */
+.headerInner::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Логотип + текст */
+.headerBrand{
+  display:flex!important;
+  align-items:center!important;
+  gap:18px!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+/* Иконка крупная, но без перегруза */
+.headerBrand img{
+  width:96px!important;
+  height:96px!important;
+  border-radius:23px!important;
+  object-fit:cover!important;
+  box-shadow:0 22px 60px rgba(15,23,42,.18)!important;
+  flex:0 0 auto!important;
+}
+
+/* Название бренда: спокойный премиум, черно-красный */
+.headerBrand strong,
+.headerBrand .brandTextV77{
+  display:flex!important;
+  align-items:baseline!important;
+  gap:7px!important;
+  margin:0!important;
+  padding:0!important;
+  font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Inter, Arial, sans-serif!important;
+  font-size:56px!important;
+  line-height:.94!important;
+  font-weight:800!important;
+  letter-spacing:-.065em!important;
+  text-transform:none!important;
+  transform:none!important;
+  text-shadow:none!important;
+}
+
+.headerBrand .brandApexV77{
+  color:#0F172A!important;
+}
+
+.headerBrand .brandAutoV77{
+  color:#F30616!important;
+}
+
+/* fallback если span не сработали */
+.headerBrand strong{
+  color:#0F172A!important;
+}
+
+/* Слоган */
+.headerBrand small{
+  display:block!important;
+  margin-top:8px!important;
+  font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Inter, Arial, sans-serif!important;
+  font-size:16px!important;
+  line-height:1.25!important;
+  font-weight:500!important;
+  color:rgba(15,23,42,.62)!important;
+  letter-spacing:-.015em!important;
+}
+
+/* Убираем старые бейджи справа */
+.headerBenefits,
+[class*="headerActions"],
+[class*="locationTop"],
+[class*="locationBadge"],
+[class*="geoBadge"]{
+  display:none!important;
+}
+
+/* Hero ближе к шапке, без огромного провала */
+.heroV45,
+.heroV44,
+.heroV43{
+  padding-top:20px!important;
+}
+
+@media(max-width:1100px){
+  .siteHeader .container,
+  .headerInner{
+    width:calc(100% - 28px)!important;
+  }
+
+  .headerBrand img{
+    width:82px!important;
+    height:82px!important;
+    border-radius:20px!important;
+  }
+
+  .headerBrand strong,
+  .headerBrand .brandTextV77{
+    font-size:44px!important;
+    gap:6px!important;
+  }
+
+  .headerBrand small{
+    font-size:14px!important;
+  }
+}
+
+@media(max-width:650px){
+  .headerBrand{
+    gap:12px!important;
+  }
+
+  .headerBrand img{
+    width:68px!important;
+    height:68px!important;
+    border-radius:17px!important;
+  }
+
+  .headerBrand strong,
+  .headerBrand .brandTextV77{
+    font-size:34px!important;
+    letter-spacing:-.05em!important;
+  }
+
+  .headerBrand small{
+    font-size:12px!important;
+    margin-top:5px!important;
+  }
+}
+
+
+/* v78 — moto/pickup customs note */
+.customsMotoPickupNoteV78{
+  color:rgba(255,255,255,.62);
+  font-size:12px;
+  line-height:1.3;
+}
+
+
+/* v79 — чистый расчет таможни для мото/пикапов без лишней серой подписи */
+.customsMotoPickupNoteV78{
+  display:none!important;
+}
+.resultCard small:empty,
+.row small:empty{
+  display:none!important;
+}
+
+
+/* v80 — VAT note for moto/pickup customs */
+.resultCard small{
+  color:rgba(255,255,255,.58);
+  font-size:12px;
+  line-height:1.25;
+}
+
+.aboutFounderV81{max-width:1380px;margin:60px auto;padding:0 20px}
+.aboutWrapV81{display:grid;grid-template-columns:2fr 1fr;gap:30px}
+.aboutTextV81,.aboutStatsV81{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:28px}
+.aboutTextV81 h2{margin:10px 0 18px}
+.aboutTextV81 p{margin:0 0 14px}
+.aboutStatsV81{display:flex;flex-direction:column;gap:18px}
+.statV81 strong{display:block;font-size:24px;margin-bottom:4px}
+.statV81 span{opacity:.8}
+@media(max-width:900px){.aboutWrapV81{grid-template-columns:1fr}}
+
+
+/* v82 — multipage structure */
+
+.mainNavV82{
+  max-width:1380px;
+  width:calc(100% - 40px);
+  margin:18px auto 0;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.mainNavV82 a{
+  min-height:42px;
+  padding:0 16px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+  color:#111827;
+  font-weight:850;
+  background:rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.62);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+}
+
+.mainNavV82 a:hover,
+.mainNavV82 a.active{
+  color:#fff;
+  background:linear-gradient(135deg,#ff2d38,#ff5963);
+  border-color:transparent;
+}
+
+.pageHeroV82{
+  max-width:1380px;
+  width:calc(100% - 40px);
+  margin:38px auto 28px;
+}
+
+.pageHeroV82 h1{
+  max-width:980px;
+  margin:10px 0 14px;
+  color:#111827;
+  font-size:56px;
+  line-height:1;
+  letter-spacing:-.055em;
+}
+
+.pageHeroV82 p{
+  max-width:860px;
+  color:rgba(17,24,39,.68);
+  font-size:18px;
+  line-height:1.55;
+}
+
+.hotPageGridV82{
+  max-width:1380px;
+  width:calc(100% - 40px);
+  margin:0 auto 60px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.aboutPageV82{
+  max-width:1380px;
+  width:calc(100% - 40px);
+  margin:0 auto 70px;
+  display:grid;
+  grid-template-columns:1.55fr .85fr;
+  gap:26px;
+  align-items:start;
+}
+
+.aboutStoryV82,
+.aboutStatsV82,
+.contactsPageV82{
+  background:rgba(255,255,255,.42);
+  border:1px solid rgba(255,255,255,.64);
+  box-shadow:0 28px 90px rgba(31,41,55,.18);
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+  border-radius:30px;
+}
+
+.aboutStoryV82{
+  padding:34px;
+}
+
+.aboutStoryV82 p{
+  margin:0 0 16px;
+  color:rgba(17,24,39,.74);
+  font-size:17px;
+  line-height:1.68;
+}
+
+.aboutStoryV82 .aboutFinalV82{
+  margin-top:24px;
+  color:#111827;
+  font-weight:900;
+  font-size:22px;
+  line-height:1.35;
+}
+
+.aboutStatsV82{
+  padding:24px;
+  display:grid;
+  gap:16px;
+  position:sticky;
+  top:20px;
+}
+
+.aboutStatsV82 div{
+  padding:18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.38);
+  border:1px solid rgba(255,255,255,.58);
+}
+
+.aboutStatsV82 strong{
+  display:block;
+  color:#111827;
+  font-size:24px;
+  line-height:1.1;
+  margin-bottom:6px;
+}
+
+.aboutStatsV82 span{
+  color:rgba(17,24,39,.64);
+  line-height:1.35;
+}
+
+.contactsPageV82{
+  max-width:1380px;
+  width:calc(100% - 40px);
+  margin:0 auto 70px;
+  padding:28px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.contactsPageV82 a{
+  min-height:64px;
+  padding:0 20px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  color:#fff;
+  font-weight:950;
+  background:linear-gradient(135deg,#ff2d38,#ff5963);
+  box-shadow:0 16px 36px rgba(255,45,56,.22);
+}
+
+@media(max-width:1100px){
+  .hotPageGridV82,
+  .aboutPageV82,
+  .contactsPageV82{
+    grid-template-columns:1fr;
+  }
+  .aboutStatsV82{
+    position:static;
+  }
+  .pageHeroV82 h1{
+    font-size:42px;
+  }
+}
+
+@media(max-width:650px){
+  .mainNavV82,
+  .pageHeroV82,
+  .hotPageGridV82,
+  .aboutPageV82,
+  .contactsPageV82{
+    width:calc(100% - 28px);
+  }
+  .mainNavV82 a{
+    flex:1 1 auto;
+    justify-content:center;
+  }
+  .pageHeroV82 h1{
+    font-size:34px;
+  }
+  .aboutStoryV82{
+    padding:22px;
+  }
+}
+
+
+/* v86 — Telegram tile replaces first two hot offer cards */
+
+/* блок горячих предложений: telegram занимает 2 колонки, далее 3 авто */
+.hotLots,
+.hotPageGridV82{
+  display:grid!important;
+  grid-template-columns:2fr 1fr 1fr 1fr!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+
+/* новая карточка Telegram в стиле сайта */
+.telegramHotTileV86{
+  min-width:0;
+  height:100%;
+  padding:28px;
+  border-radius:30px;
+  background:rgba(255,255,255,.38);
+  border:1px solid rgba(255,255,255,.64);
+  box-shadow:0 28px 90px rgba(31,41,55,.16);
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.telegramHotTileIconV86{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.44);
+  border:1px solid rgba(255,255,255,.68);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72);
+  font-size:24px;
+  margin-bottom:18px;
+}
+
+.telegramHotTileV86 h3{
+  margin:0 0 14px;
+  color:#111827;
+  font-size:32px;
+  line-height:1.06;
+  letter-spacing:-.045em;
+}
+
+.telegramHotTileV86 p{
+  margin:0 0 12px;
+  color:rgba(17,24,39,.68);
+  font-size:16px;
+  line-height:1.5;
+  max-width:560px;
+}
+
+.telegramHotTileV86 a{
+  margin-top:auto;
+  min-height:56px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  color:#fff;
+  font-weight:950;
+  background:linear-gradient(135deg,#ff2d38,#ff5963);
+  box-shadow:0 16px 36px rgba(255,45,56,.24);
+}
+
+/* карточки авто справа не растягиваются криво */
+.hotLots .textLotCard,
+.hotPageGridV82 .textLotCard{
+  min-width:0!important;
+  width:auto!important;
+}
+
+/* старую одиночную кнопку/карточку telegram отключаем, если осталась */
+.telegramHotCardV83,
+.telegramHotCardV84,
+.telegramHotWideV85{
+  display:none!important;
+}
+
+@media(max-width:1200px){
+  .hotLots,
+  .hotPageGridV82{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .telegramHotTileV86{
+    grid-column:1 / -1;
+  }
+}
+
+@media(max-width:700px){
+  .hotLots,
+  .hotPageGridV82{
+    grid-template-columns:1fr!important;
+  }
+  .telegramHotTileV86{
+    padding:22px;
+    border-radius:24px;
+  }
+  .telegramHotTileV86 h3{
+    font-size:26px;
+  }
+}
+
+
+/* v87 — выравниваем блок горячих предложений */
+
+.hotLots,
+.hotPageGridV82{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  display:grid!important;
+  grid-template-columns:1.65fr repeat(3, 1fr)!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+
+/* Telegram-карточка теперь одной высоты с авто-карточками */
+.telegramHotTileV86{
+  height:auto!important;
+  min-height:360px!important;
+  padding:26px!important;
+  border-radius:30px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  box-sizing:border-box!important;
+}
+
+.telegramHotTileV86 h3{
+  font-size:30px!important;
+  line-height:1.05!important;
+  max-width:520px!important;
+}
+
+.telegramHotTileV86 p{
+  font-size:15px!important;
+  line-height:1.45!important;
+  max-width:560px!important;
+}
+
+.telegramHotTileV86 a{
+  width:100%!important;
+  min-height:52px!important;
+  height:52px!important;
+  margin-top:auto!important;
+  flex:0 0 auto!important;
+}
+
+/* Авто-карточки приводим к одной высоте */
+.hotLots .textLotCard,
+.hotPageGridV82 .textLotCard{
+  min-width:0!important;
+  width:100%!important;
+  min-height:360px!important;
+  height:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  box-sizing:border-box!important;
+  padding:24px!important;
+}
+
+/* кнопки в карточках авто строго внизу */
+.hotLots .textLotCard a,
+.hotPageGridV82 .textLotCard a{
+  margin-top:auto!important;
+  min-height:52px!important;
+  height:52px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+/* данные внутри авто-карточки не должны разъезжаться */
+.hotLots .textLotCard h3,
+.hotPageGridV82 .textLotCard h3{
+  min-height:62px!important;
+}
+
+.hotLots .textLotPrice,
+.hotPageGridV82 .textLotPrice{
+  margin-top:8px!important;
+}
+
+.hotLots .textLotRows,
+.hotPageGridV82 .textLotRows{
+  margin-bottom:22px!important;
+}
+
+/* общий блок преимуществ под лотами — выравниваем по этой же сетке */
+.hotTrustV42,
+.hotTrustV41{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* адаптив */
+@media(max-width:1200px){
+  .hotLots,
+  .hotPageGridV82{
+    grid-template-columns:1fr 1fr!important;
+  }
+
+  .telegramHotTileV86{
+    grid-column:1 / -1!important;
+    min-height:auto!important;
+  }
+
+  .hotLots .textLotCard,
+  .hotPageGridV82 .textLotCard{
+    min-height:340px!important;
+  }
+}
+
+@media(max-width:700px){
+  .hotLots,
+  .hotPageGridV82,
+  .hotTrustV42,
+  .hotTrustV41{
+    width:calc(100% - 28px)!important;
+    grid-template-columns:1fr!important;
+  }
+
+  .hotLots .textLotCard,
+  .hotPageGridV82 .textLotCard{
+    min-height:auto!important;
+  }
+
+  .hotLots .textLotCard h3,
+  .hotPageGridV82 .textLotCard h3{
+    min-height:auto!important;
+  }
+}
+
+
+/* v88 — финальный Telegram-блок в горячих предложениях */
+
+.hotLots,
+.hotPageGridV82{
+  grid-template-columns:1.65fr repeat(3, 1fr)!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+
+.telegramHotTileV88{
+  min-height:380px!important;
+  padding:28px!important;
+  border-radius:30px!important;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,45,56,.13), transparent 30%),
+    radial-gradient(circle at 92% 92%, rgba(15,23,42,.10), transparent 30%),
+    rgba(255,255,255,.30)!important;
+  border:1px solid rgba(255,255,255,.66)!important;
+  box-shadow:0 30px 90px rgba(31,41,55,.18)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  overflow:hidden!important;
+}
+
+.telegramHotTopV88{
+  display:block;
+}
+
+.telegramHotTileV88 .telegramHotTileIconV86{
+  width:54px!important;
+  height:54px!important;
+  margin-bottom:18px!important;
+}
+
+.telegramHotTileV88 h3{
+  margin:0 0 18px!important;
+  color:#111827!important;
+  font-size:31px!important;
+  line-height:1.05!important;
+  letter-spacing:-.045em!important;
+  max-width:520px!important;
+}
+
+.telegramHotBodyV88{
+  margin-bottom:22px;
+}
+
+.telegramHotTileV88 p{
+  margin:0 0 12px!important;
+  color:rgba(17,24,39,.70)!important;
+  font-size:15.5px!important;
+  line-height:1.48!important;
+  max-width:570px!important;
+}
+
+.telegramHotChecksV88{
+  display:grid!important;
+  gap:9px!important;
+  margin-top:18px!important;
+}
+
+.telegramHotChecksV88 span{
+  color:rgba(17,24,39,.82)!important;
+  font-size:14px!important;
+  line-height:1.25!important;
+  font-weight:850!important;
+}
+
+.telegramHotChecksV88 span::before{
+  content:"✓";
+  display:inline-flex;
+  width:22px;
+  color:#16a34a;
+  font-weight:950;
+}
+
+.telegramHotTileV88 a{
+  width:100%!important;
+  min-height:52px!important;
+  height:52px!important;
+  border-radius:18px!important;
+  margin-top:auto!important;
+  flex:0 0 auto!important;
+}
+
+/* выравнивание правых карточек с Telegram */
+.hotLots .textLotCard,
+.hotPageGridV82 .textLotCard{
+  min-height:380px!important;
+}
+
+@media(max-width:1200px){
+  .hotLots,
+  .hotPageGridV82{
+    grid-template-columns:1fr 1fr!important;
+  }
+
+  .telegramHotTileV88{
+    grid-column:1 / -1!important;
+    min-height:auto!important;
+  }
+}
+
+@media(max-width:700px){
+  .hotLots,
+  .hotPageGridV82{
+    grid-template-columns:1fr!important;
+  }
+
+  .telegramHotTileV88{
+    padding:22px!important;
+    border-radius:24px!important;
+  }
+
+  .telegramHotTileV88 h3{
+    font-size:26px!important;
+  }
+
+  .hotLots .textLotCard,
+  .hotPageGridV82 .textLotCard{
+    min-height:auto!important;
+  }
+}
+
+
+/* v89 — polish hot offers section */
+
+/* Нормальный заголовок секции */
+.hotSectionIntroV89{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin:54px auto 24px!important;
+}
+
+.hotSectionIntroV89 h2{
+  max-width:980px!important;
+  margin:10px 0 12px!important;
+  color:#111827!important;
+  font-size:46px!important;
+  line-height:1.04!important;
+  letter-spacing:-.055em!important;
+}
+
+.hotSectionIntroV89 p{
+  max-width:980px!important;
+  margin:0!important;
+  color:rgba(17,24,39,.68)!important;
+  font-size:17px!important;
+  line-height:1.5!important;
+}
+
+/* Сетка: Telegram + 3 карточки */
+.hotLots,
+.hotPageGridV82{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin:0 auto 42px!important;
+  grid-template-columns:1.65fr repeat(3, 1fr)!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+
+/* Telegram-карточка: меньше тавтологии, аккуратнее по высоте */
+.telegramHotTileV89{
+  min-height:400px!important;
+  padding:28px!important;
+}
+
+.telegramHotTileV89 h3{
+  margin:0 0 16px!important;
+  font-size:30px!important;
+  line-height:1.06!important;
+}
+
+.telegramHotTileV89 p{
+  font-size:15.5px!important;
+  line-height:1.46!important;
+  margin-bottom:10px!important;
+}
+
+.telegramHotTileV89 .telegramHotChecksV88{
+  gap:8px!important;
+  margin-top:16px!important;
+}
+
+.telegramHotTileV89 .telegramHotChecksV88 span{
+  font-size:14px!important;
+}
+
+/* Все карточки одной высоты, заголовки на одном уровне */
+.hotLots .textLotCard,
+.hotPageGridV82 .textLotCard,
+.telegramHotTileV89{
+  min-height:400px!important;
+  height:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  box-sizing:border-box!important;
+}
+
+/* верхняя зона карточки фиксируется, чтобы названия были на одном уровне */
+.hotLots .textLotCard .textLotTop,
+.hotPageGridV82 .textLotCard .textLotTop{
+  min-height:36px!important;
+  margin-bottom:18px!important;
+}
+
+.hotLots .textLotCard h3,
+.hotPageGridV82 .textLotCard h3{
+  min-height:58px!important;
+  margin-top:0!important;
+  margin-bottom:20px!important;
+  display:flex!important;
+  align-items:flex-start!important;
+}
+
+/* блок цены/строк */
+.hotLots .textLotPrice,
+.hotPageGridV82 .textLotPrice{
+  margin-top:0!important;
+}
+
+.hotLots .textLotRows,
+.hotPageGridV82 .textLotRows{
+  margin-bottom:18px!important;
+}
+
+/* две кнопки в авто-карточках: первая спокойная, вторая красная */
+.hotLots .textLotCard a,
+.hotPageGridV82 .textLotCard a{
+  width:100%!important;
+  min-height:48px!important;
+  height:48px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:16px!important;
+  text-decoration:none!important;
+}
+
+.hotLots .textLotCard .examplesBtnV89,
+.hotPageGridV82 .textLotCard .examplesBtnV89{
+  margin-top:auto!important;
+  margin-bottom:10px!important;
+  color:#111827!important;
+  background:rgba(255,255,255,.46)!important;
+  border:1px solid rgba(255,255,255,.70)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.74), 0 12px 28px rgba(31,41,55,.10)!important;
+  font-weight:900!important;
+}
+
+.hotLots .textLotCard a:not(.examplesBtnV89),
+.hotPageGridV82 .textLotCard a:not(.examplesBtnV89){
+  margin-top:0!important;
+}
+
+/* Telegram кнопка остается основной */
+.telegramHotTileV89 a{
+  margin-top:auto!important;
+}
+
+/* адаптив */
+@media(max-width:1200px){
+  .hotLots,
+  .hotPageGridV82{
+    grid-template-columns:1fr 1fr!important;
+  }
+
+  .telegramHotTileV89{
+    grid-column:1 / -1!important;
+    min-height:auto!important;
+  }
+
+  .hotLots .textLotCard,
+  .hotPageGridV82 .textLotCard{
+    min-height:380px!important;
+  }
+}
+
+@media(max-width:700px){
+  .hotSectionIntroV89,
+  .hotLots,
+  .hotPageGridV82{
+    width:calc(100% - 28px)!important;
+  }
+
+  .hotSectionIntroV89 h2{
+    font-size:34px!important;
+  }
+
+  .hotLots,
+  .hotPageGridV82{
+    grid-template-columns:1fr!important;
+  }
+
+  .hotLots .textLotCard,
+  .hotPageGridV82 .textLotCard,
+  .telegramHotTileV89{
+    min-height:auto!important;
+  }
+
+  .hotLots .textLotCard h3,
+  .hotPageGridV82 .textLotCard h3{
+    min-height:auto!important;
+  }
+}
+
+
+/* v90 — calculator width + 50/50 proportions */
+
+/* Калькулятор приводим к общей ширине сайта */
+.calculator,
+.calcSection,
+#calculator,
+.layout{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* Основная сетка калькулятора: 50/50 */
+.layout,
+.calculatorGrid,
+.calcGrid{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:28px!important;
+  align-items:stretch!important;
+}
+
+/* Левая и правая карточки одинаковые по высоте */
+.formCard,
+.resultCard{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  box-sizing:border-box!important;
+}
+
+/* Левая форма растягивается, кнопка уходит вниз */
+.formCard form,
+.formCard #calcForm{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+}
+
+.formCard .primary,
+.formCard button[type="submit"]{
+  margin-top:auto!important;
+  min-height:50px!important;
+  height:50px!important;
+}
+
+/* Правая карточка становится визуально легче */
+.resultCard{
+  padding:28px!important;
+}
+
+/* Правая кнопка на одной линии с левой */
+.resultCard .actions{
+  margin-top:auto!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:0!important;
+}
+
+.resultCard .actions button,
+.resultCard .actions a{
+  width:100%!important;
+  min-height:50px!important;
+  height:50px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:14px!important;
+}
+
+/* Убираем кнопку поделиться, если вдруг осталась */
+#tgBtn,
+a[href*="t.me/share"],
+a[href*="telegram"][id="tgBtn"]{
+  display:none!important;
+}
+
+/* На средних экранах оставляем 50/50 чуть дольше */
+@media(max-width:1050px){
+  .layout,
+  .calculatorGrid,
+  .calcGrid{
+    grid-template-columns:1fr!important;
+  }
+
+  .calculator,
+  .calcSection,
+  #calculator,
+  .layout{
+    width:calc(100% - 28px)!important;
+  }
+}
+
+@media(max-width:650px){
+  .calculator,
+  .calcSection,
+  #calculator,
+  .layout{
+    width:calc(100% - 28px)!important;
+  }
+
+  .layout,
+  .calculatorGrid,
+  .calcGrid{
+    gap:18px!important;
+  }
+
+  .resultCard{
+    padding:22px!important;
+  }
+}
+
+
+/* v91 — выравниваем блок «Рабочий инструмент Apex Auto» */
+
+/* Верхний hero-блок: делаем правую карточку спокойнее и синхроннее с шириной калькулятора */
+.heroV45,
+.heroV44,
+.heroV43{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:28px!important;
+  align-items:end!important;
+}
+
+/* Левая текстовая часть */
+.heroV45 > div:first-child,
+.heroV44 > div:first-child,
+.heroV43 > div:first-child{
+  min-width:0!important;
+}
+
+/* Правая карточка «Рабочий инструмент» */
+.heroSideV45,
+.heroSideV44,
+.heroContactV43{
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+  padding:34px 36px!important;
+  border-radius:30px!important;
+  min-height:235px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-self:end!important;
+}
+
+/* Заголовок внутри карточки */
+.heroSideV45 h2,
+.heroSideV44 h2,
+.heroContactV43 h2{
+  max-width:620px!important;
+  font-size:28px!important;
+  line-height:1.14!important;
+  letter-spacing:-.035em!important;
+  margin:0 0 16px!important;
+}
+
+/* Текст внутри карточки */
+.heroSideV45 p,
+.heroSideV44 p,
+.heroContactV43 p{
+  max-width:660px!important;
+  font-size:16px!important;
+  line-height:1.45!important;
+  margin:0 0 20px!important;
+}
+
+/* Контакты в карточке */
+.heroContactsV45,
+.heroContactsV44,
+.heroContactV43 .heroContactsV45{
+  display:flex!important;
+  gap:10px!important;
+  flex-wrap:wrap!important;
+  margin-top:0!important;
+}
+
+.heroContactsV45 a,
+.heroContactsV44 a,
+.heroContactV43 a{
+  min-height:42px!important;
+  padding:0 16px!important;
+  border-radius:14px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+}
+
+/* Чтобы правая карточка в hero визуально попадала в колонку правого блока калькулятора */
+@media(min-width:1051px){
+  .heroSideV45,
+  .heroSideV44,
+  .heroContactV43{
+    margin-top:0!important;
+  }
+}
+
+/* Планшеты/мобилка */
+@media(max-width:1050px){
+  .heroV45,
+  .heroV44,
+  .heroV43{
+    grid-template-columns:1fr!important;
+    width:calc(100% - 28px)!important;
+    gap:22px!important;
+    align-items:stretch!important;
+  }
+
+  .heroSideV45,
+  .heroSideV44,
+  .heroContactV43{
+    min-height:auto!important;
+    padding:28px!important;
+    align-self:stretch!important;
+  }
+}
+
+@media(max-width:650px){
+  .heroSideV45,
+  .heroSideV44,
+  .heroContactV43{
+    padding:22px!important;
+    border-radius:24px!important;
+  }
+
+  .heroSideV45 h2,
+  .heroSideV44 h2,
+  .heroContactV43 h2{
+    font-size:24px!important;
+  }
+
+  .heroSideV45 p,
+  .heroSideV44 p,
+  .heroContactV43 p{
+    font-size:15px!important;
+  }
+}
+
+
+/* v94 — logo path fix for local preview + Vercel */
+img[src="apex-logo.png"],
+img[src="/apex-logo.png"]{
+  display:block!important;
+  object-fit:cover!important;
+  background:#050509!important;
+  border-radius:22px!important;
+}
+
+header img[src="apex-logo.png"],
+.siteHeader img[src="apex-logo.png"],
+.heroBrand img[src="apex-logo.png"],
+.brand img[src="apex-logo.png"],
+header img[src="/apex-logo.png"],
+.siteHeader img[src="/apex-logo.png"],
+.heroBrand img[src="/apex-logo.png"],
+.brand img[src="/apex-logo.png"]{
+  width:118px!important;
+  height:118px!important;
+}
+
+
+/* v95 — Liquid Glass dark header */
+
+body{
+  background:
+    radial-gradient(circle at 76px 64px, rgba(255,255,255,.75), transparent 34%),
+    radial-gradient(circle at 82% 2%, rgba(255,45,56,.22), transparent 30%),
+    radial-gradient(circle at 20% 28%, rgba(190,215,245,.30), transparent 34%),
+    linear-gradient(135deg,#e9f0f8 0%,#eef4fb 38%,#ead9df 100%)!important;
+}
+
+/* Главную шапку делаем как темную стеклянную капсулу */
+.siteHeader,
+.header,
+header{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin:28px auto 46px!important;
+  padding:18px 26px!important;
+  border-radius:34px!important;
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:28px!important;
+  min-height:112px!important;
+  box-sizing:border-box!important;
+  background:
+    linear-gradient(135deg, rgba(14,18,27,.82), rgba(36,40,52,.58) 48%, rgba(118,20,32,.48))!important;
+  border:1px solid rgba(255,255,255,.24)!important;
+  box-shadow:
+    0 34px 90px rgba(15,23,42,.26),
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(255,255,255,.08)!important;
+  backdrop-filter:blur(28px) saturate(170%)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(170%)!important;
+  overflow:hidden!important;
+}
+
+/* красный свет справа как в референсе */
+.siteHeader::after,
+.header::after,
+header::after{
+  content:""!important;
+  position:absolute!important;
+  right:-130px!important;
+  top:-110px!important;
+  width:520px!important;
+  height:280px!important;
+  background:radial-gradient(circle, rgba(255,34,48,.38), rgba(255,34,48,.14) 36%, transparent 70%)!important;
+  pointer-events:none!important;
+  filter:blur(4px)!important;
+  z-index:0!important;
+}
+
+.siteHeader::before,
+.header::before,
+header::before{
+  content:""!important;
+  position:absolute!important;
+  inset:8px!important;
+  border-radius:28px!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+
+/* Весь контент шапки поверх стекла */
+.siteHeader > *,
+.header > *,
+header > *{
+  position:relative!important;
+  z-index:1!important;
+}
+
+/* Бренд в шапке */
+.brand,
+.logo,
+.heroBrand,
+.siteBrand,
+.headerBrand{
+  display:flex!important;
+  align-items:center!important;
+  gap:16px!important;
+  min-width:0!important;
+}
+
+/* Иконку в шапке делаем маленькой, как на референсе */
+header img[src="apex-logo.png"],
+.siteHeader img[src="apex-logo.png"],
+.header img[src="apex-logo.png"],
+.heroBrand img[src="apex-logo.png"],
+.brand img[src="apex-logo.png"],
+.logo img[src="apex-logo.png"],
+img[src="apex-logo.png"]{
+  width:72px!important;
+  height:72px!important;
+  object-fit:cover!important;
+  border-radius:18px!important;
+  background:#050509!important;
+  box-shadow:
+    0 16px 36px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.18)!important;
+}
+
+/* Название в шапке на темном фоне */
+.brand h1,
+.logo h1,
+.heroBrand h1,
+.siteBrand h1,
+.headerBrand h1,
+header h1{
+  color:#fff!important;
+  font-size:36px!important;
+  line-height:1!important;
+  letter-spacing:-.055em!important;
+  margin:0!important;
+  text-shadow:0 10px 28px rgba(0,0,0,.28)!important;
+}
+
+.brand h1 span,
+.logo h1 span,
+.heroBrand h1 span,
+.siteBrand h1 span,
+.headerBrand h1 span,
+header h1 span{
+  color:#ff2030!important;
+}
+
+/* Подзаголовок в шапке */
+.brand p,
+.logo p,
+.heroBrand p,
+.siteBrand p,
+.headerBrand p,
+header .tagline,
+header p{
+  color:rgba(255,255,255,.68)!important;
+  margin-top:8px!important;
+  font-size:15px!important;
+  line-height:1.2!important;
+}
+
+/* Навигация переезжает в правую часть темной капсулы */
+.mainNavV82,
+nav{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:14px!important;
+  margin:0!important;
+  flex-wrap:wrap!important;
+}
+
+.mainNavV82 a,
+nav a{
+  min-height:46px!important;
+  padding:0 18px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:18px!important;
+  color:rgba(255,255,255,.88)!important;
+  text-decoration:none!important;
+  font-weight:850!important;
+  background:transparent!important;
+  border:1px solid transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+.mainNavV82 a:hover,
+nav a:hover{
+  background:rgba(255,255,255,.08)!important;
+  border-color:rgba(255,255,255,.14)!important;
+}
+
+.mainNavV82 a.active,
+nav a.active,
+.mainNavV82 a[aria-current="page"],
+nav a[aria-current="page"]{
+  color:#ff2d38!important;
+  background:rgba(255,255,255,.04)!important;
+  border-color:rgba(255,255,255,.10)!important;
+  position:relative!important;
+}
+
+.mainNavV82 a.active::after,
+nav a.active::after,
+.mainNavV82 a[aria-current="page"]::after,
+nav a[aria-current="page"]::after{
+  content:""!important;
+  position:absolute!important;
+  left:18px!important;
+  right:18px!important;
+  bottom:-6px!important;
+  height:3px!important;
+  border-radius:999px!important;
+  background:#ff2d38!important;
+  box-shadow:0 0 18px rgba(255,45,56,.5)!important;
+}
+
+/* Hero чуть поднимаем к новой шапке */
+.heroV45,
+.heroV44,
+.heroV43{
+  margin-top:0!important;
+}
+
+/* Если в шапке старое меню было отдельной строкой, убираем лишние отступы */
+.siteHeader + .mainNavV82,
+.header + .mainNavV82{
+  margin-top:-30px!important;
+}
+
+/* Мобилка */
+@media(max-width:950px){
+  .siteHeader,
+  .header,
+  header{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+    padding:20px!important;
+    border-radius:28px!important;
+    width:calc(100% - 28px)!important;
+    margin-top:18px!important;
+  }
+
+  .mainNavV82,
+  nav{
+    width:100%!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
+  }
+
+  .mainNavV82 a,
+  nav a{
+    min-height:42px!important;
+    padding:0 14px!important;
+    border-radius:15px!important;
+  }
+
+  header img[src="apex-logo.png"],
+  .siteHeader img[src="apex-logo.png"],
+  .header img[src="apex-logo.png"],
+  .heroBrand img[src="apex-logo.png"],
+  .brand img[src="apex-logo.png"]{
+    width:64px!important;
+    height:64px!important;
+  }
+
+  .brand h1,
+  .logo h1,
+  .heroBrand h1,
+  .siteBrand h1,
+  .headerBrand h1,
+  header h1{
+    font-size:30px!important;
+  }
+}
+
+@media(max-width:560px){
+  .mainNavV82,
+  nav{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+
+
+/* v96 — светлая Apple Liquid Glass шапка */
+
+/* перебиваем темную v95-шапку */
+.siteHeader,
+.header,
+header{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin:28px auto 52px!important;
+  padding:18px 24px!important;
+  min-height:112px!important;
+  border-radius:34px!important;
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:28px!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.46), rgba(255,255,255,.22) 48%, rgba(255,92,110,.15))!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  box-shadow:
+    0 28px 80px rgba(31,41,55,.13),
+    inset 0 1px 0 rgba(255,255,255,.82),
+    inset 0 -1px 0 rgba(255,255,255,.28)!important;
+  backdrop-filter:blur(30px) saturate(175%)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(175%)!important;
+}
+
+.siteHeader::after,
+.header::after,
+header::after{
+  content:""!important;
+  position:absolute!important;
+  right:-120px!important;
+  top:-120px!important;
+  width:480px!important;
+  height:260px!important;
+  pointer-events:none!important;
+  background:radial-gradient(circle, rgba(255,45,56,.26), rgba(255,45,56,.10) 38%, transparent 72%)!important;
+  filter:blur(10px)!important;
+  z-index:0!important;
+}
+
+.siteHeader::before,
+.header::before,
+header::before{
+  content:""!important;
+  position:absolute!important;
+  inset:7px!important;
+  border-radius:28px!important;
+  border:1px solid rgba(255,255,255,.38)!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+
+.siteHeader > *,
+.header > *,
+header > *{
+  position:relative!important;
+  z-index:1!important;
+}
+
+/* бренд */
+.brand,
+.logo,
+.heroBrand,
+.siteBrand,
+.headerBrand{
+  display:flex!important;
+  align-items:center!important;
+  gap:18px!important;
+  min-width:0!important;
+}
+
+/* новая стеклянная иконка */
+header img[src="apex-logo.png"],
+.siteHeader img[src="apex-logo.png"],
+.header img[src="apex-logo.png"],
+.heroBrand img[src="apex-logo.png"],
+.brand img[src="apex-logo.png"],
+.logo img[src="apex-logo.png"],
+img[src="apex-logo.png"]{
+  width:78px!important;
+  height:78px!important;
+  object-fit:cover!important;
+  border-radius:22px!important;
+  background:rgba(255,255,255,.28)!important;
+  box-shadow:
+    0 18px 44px rgba(31,41,55,.18),
+    inset 0 1px 0 rgba(255,255,255,.72)!important;
+}
+
+/* шрифт названия легче и ближе к Apple */
+.brand h1,
+.logo h1,
+.heroBrand h1,
+.siteBrand h1,
+.headerBrand h1,
+header h1{
+  color:#111827!important;
+  font-size:42px!important;
+  line-height:.95!important;
+  letter-spacing:-.07em!important;
+  font-weight:760!important;
+  margin:0!important;
+  text-shadow:none!important;
+}
+
+.brand h1 span,
+.logo h1 span,
+.heroBrand h1 span,
+.siteBrand h1 span,
+.headerBrand h1 span,
+header h1 span{
+  color:#ff1024!important;
+  font-weight:780!important;
+}
+
+/* подпись */
+.brand p,
+.logo p,
+.heroBrand p,
+.siteBrand p,
+.headerBrand p,
+header .tagline,
+header p{
+  color:rgba(17,24,39,.58)!important;
+  margin-top:8px!important;
+  font-size:15px!important;
+  line-height:1.2!important;
+  font-weight:650!important;
+  text-shadow:none!important;
+}
+
+/* меню — легкие стеклянные элементы, не темные */
+.mainNavV82,
+nav{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:12px!important;
+  margin:0!important;
+  flex-wrap:wrap!important;
+}
+
+.mainNavV82 a,
+nav a{
+  min-height:46px!important;
+  padding:0 18px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:18px!important;
+  color:rgba(17,24,39,.78)!important;
+  text-decoration:none!important;
+  font-weight:820!important;
+  background:rgba(255,255,255,.30)!important;
+  border:1px solid rgba(255,255,255,.54)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.75),
+    0 10px 26px rgba(31,41,55,.07)!important;
+  backdrop-filter:blur(18px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(165%)!important;
+}
+
+.mainNavV82 a:hover,
+nav a:hover{
+  background:rgba(255,255,255,.46)!important;
+  color:#111827!important;
+  border-color:rgba(255,255,255,.76)!important;
+}
+
+.mainNavV82 a.active,
+nav a.active,
+.mainNavV82 a[aria-current="page"],
+nav a[aria-current="page"]{
+  color:#ff1024!important;
+  background:rgba(255,255,255,.52)!important;
+  border-color:rgba(255,255,255,.82)!important;
+  position:relative!important;
+}
+
+.mainNavV82 a.active::after,
+nav a.active::after,
+.mainNavV82 a[aria-current="page"]::after,
+nav a[aria-current="page"]::after{
+  content:""!important;
+  position:absolute!important;
+  left:18px!important;
+  right:18px!important;
+  bottom:-7px!important;
+  height:3px!important;
+  border-radius:999px!important;
+  background:#ff1024!important;
+  box-shadow:0 0 18px rgba(255,16,36,.36)!important;
+}
+
+/* убираем старый эффект слишком темной зоны */
+.siteHeader + .mainNavV82,
+.header + .mainNavV82{
+  margin-top:0!important;
+}
+
+.heroV45,
+.heroV44,
+.heroV43{
+  margin-top:0!important;
+}
+
+/* адаптив */
+@media(max-width:950px){
+  .siteHeader,
+  .header,
+  header{
+    width:calc(100% - 28px)!important;
+    margin:18px auto 34px!important;
+    padding:18px!important;
+    border-radius:28px!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:18px!important;
+  }
+
+  .mainNavV82,
+  nav{
+    width:100%!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
+  }
+
+  .mainNavV82 a,
+  nav a{
+    min-height:42px!important;
+    padding:0 14px!important;
+    border-radius:15px!important;
+  }
+
+  header img[src="apex-logo.png"],
+  .siteHeader img[src="apex-logo.png"],
+  .header img[src="apex-logo.png"],
+  .heroBrand img[src="apex-logo.png"],
+  .brand img[src="apex-logo.png"]{
+    width:66px!important;
+    height:66px!important;
+    border-radius:19px!important;
+  }
+
+  .brand h1,
+  .logo h1,
+  .heroBrand h1,
+  .siteBrand h1,
+  .headerBrand h1,
+  header h1{
+    font-size:34px!important;
+  }
+}
+
+@media(max-width:560px){
+  .mainNavV82,
+  nav{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+
+
+/* v97 — полноценная страница горячих предложений */
+
+.hotPageV97{
+  max-width:1380px;
+  width:calc(100% - 40px);
+  margin:0 auto 70px;
+}
+
+.hotHeroV97{
+  display:grid;
+  grid-template-columns:1.45fr .85fr;
+  gap:28px;
+  align-items:stretch;
+  margin-top:18px;
+}
+
+.hotHeroV97 > div:first-child{
+  padding:38px 0 26px;
+}
+
+.hotHeroV97 h1{
+  margin:14px 0 18px;
+  max-width:820px;
+  color:#111827;
+  font-size:56px;
+  line-height:1.03;
+  letter-spacing:-.06em;
+}
+
+.hotHeroV97 p{
+  max-width:840px;
+  margin:0;
+  color:rgba(17,24,39,.66);
+  font-size:18px;
+  line-height:1.55;
+}
+
+.hotTelegramV97{
+  padding:30px;
+  border-radius:32px;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(255,45,56,.20), transparent 36%),
+    rgba(255,255,255,.36);
+  border:1px solid rgba(255,255,255,.70);
+  box-shadow:0 28px 80px rgba(31,41,55,.13), inset 0 1px 0 rgba(255,255,255,.72);
+  backdrop-filter:blur(28px) saturate(170%);
+  -webkit-backdrop-filter:blur(28px) saturate(170%);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.hotTelegramIconV97{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.46);
+  border:1px solid rgba(255,255,255,.74);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82);
+  font-size:24px;
+  margin-bottom:18px;
+}
+
+.hotTelegramV97 h2{
+  margin:0 0 14px;
+  font-size:30px;
+  line-height:1.07;
+  letter-spacing:-.045em;
+  color:#111827;
+}
+
+.hotTelegramV97 p{
+  margin:0 0 24px;
+  font-size:15.5px;
+  line-height:1.5;
+  color:rgba(17,24,39,.68);
+}
+
+.hotTelegramV97 a,
+.hotNoteV97 a,
+.hotOfferCardV97 a{
+  min-height:52px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#ff2030,#ff5964);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 18px 34px rgba(255,32,48,.22);
+}
+
+.hotFilterV97{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:10px 0 26px;
+}
+
+.hotFilterV97 button{
+  min-height:44px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.70);
+  background:rgba(255,255,255,.34);
+  color:rgba(17,24,39,.72);
+  font-weight:850;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72), 0 10px 28px rgba(31,41,55,.06);
+  backdrop-filter:blur(18px) saturate(165%);
+  -webkit-backdrop-filter:blur(18px) saturate(165%);
+}
+
+.hotFilterV97 button.active{
+  color:#ff1024;
+  background:rgba(255,255,255,.54);
+}
+
+.hotGridV97{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+}
+
+.hotOfferCardV97{
+  min-height:430px;
+  padding:26px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255,45,56,.08), transparent 36%),
+    rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.70);
+  box-shadow:0 22px 70px rgba(31,41,55,.12), inset 0 1px 0 rgba(255,255,255,.70);
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+  display:flex;
+  flex-direction:column;
+}
+
+.hotOfferTopV97{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.hotOfferTopV97 span{
+  min-height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#111827;
+  color:#fff;
+  font-weight:900;
+}
+
+.hotOfferTopV97 em{
+  min-height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.46);
+  color:#111827;
+  font-style:normal;
+  font-weight:850;
+}
+
+.hotOfferCardV97 h3{
+  margin:0 0 16px;
+  min-height:58px;
+  color:#111827;
+  font-size:30px;
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+
+.hotOfferCardV97 p{
+  margin:0 0 20px;
+  color:rgba(17,24,39,.62);
+  font-size:15.5px;
+  line-height:1.46;
+}
+
+.hotOfferPriceV97{
+  margin-top:auto;
+  padding-top:14px;
+}
+
+.hotOfferPriceV97 small{
+  display:block;
+  color:rgba(17,24,39,.55);
+  font-weight:850;
+  margin-bottom:4px;
+}
+
+.hotOfferPriceV97 strong{
+  display:block;
+  color:#ef0015;
+  font-size:32px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.hotOfferRowsV97{
+  margin:20px 0 22px;
+  border-top:1px dashed rgba(17,24,39,.10);
+}
+
+.hotOfferRowsV97 div{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px dashed rgba(17,24,39,.10);
+}
+
+.hotOfferRowsV97 span{
+  color:rgba(17,24,39,.58);
+}
+
+.hotOfferRowsV97 b{
+  color:#111827;
+}
+
+.hotOfferRowsV97 .greenV97{
+  color:#0a9b4c;
+}
+
+.hotNoteV97{
+  margin-top:28px;
+  padding:30px;
+  border-radius:32px;
+  background:rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.70);
+  box-shadow:0 24px 80px rgba(31,41,55,.11);
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+  display:grid;
+  grid-template-columns:1fr 260px;
+  gap:28px;
+  align-items:center;
+}
+
+.hotNoteV97 h2{
+  margin:10px 0 10px;
+  color:#111827;
+  font-size:34px;
+  line-height:1.1;
+  letter-spacing:-.05em;
+}
+
+.hotNoteV97 p{
+  margin:0;
+  color:rgba(17,24,39,.65);
+  font-size:16px;
+  line-height:1.5;
+}
+
+@media(max-width:1100px){
+  .hotHeroV97,
+  .hotNoteV97{
+    grid-template-columns:1fr;
+  }
+  .hotGridV97{
+    grid-template-columns:repeat(2, 1fr);
+  }
+}
+
+@media(max-width:700px){
+  .hotPageV97{
+    width:calc(100% - 28px);
+  }
+  .hotHeroV97 h1{
+    font-size:38px;
+  }
+  .hotGridV97{
+    grid-template-columns:1fr;
+  }
+  .hotOfferCardV97{
+    min-height:auto;
+  }
+}
+
+
+/* v98 — fixed hot.html layout */
+
+.hotPageV98{
+  max-width:1380px;
+  width:calc(100% - 40px);
+  margin:0 auto 80px;
+}
+
+.hotHeroV98{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(340px,.85fr);
+  gap:28px;
+  align-items:stretch;
+  margin:10px 0 28px;
+}
+
+.hotHeroTextV98{
+  padding:28px 0;
+}
+
+.hotHeroTextV98 h1{
+  max-width:860px;
+  margin:14px 0 18px;
+  color:#111827;
+  font-size:56px;
+  line-height:1.03;
+  letter-spacing:-.06em;
+}
+
+.hotHeroTextV98 p{
+  max-width:880px;
+  margin:0;
+  color:rgba(17,24,39,.66);
+  font-size:18px;
+  line-height:1.55;
+}
+
+.hotTelegramV98{
+  padding:30px;
+  border-radius:32px;
+  background:
+    radial-gradient(circle at 90% 12%, rgba(255,45,56,.20), transparent 38%),
+    rgba(255,255,255,.38);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 28px 80px rgba(31,41,55,.13), inset 0 1px 0 rgba(255,255,255,.74);
+  backdrop-filter:blur(28px) saturate(170%);
+  -webkit-backdrop-filter:blur(28px) saturate(170%);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.hotTelegramIconV98{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.46);
+  border:1px solid rgba(255,255,255,.74);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82);
+  font-size:24px;
+  margin-bottom:18px;
+}
+
+.hotTelegramV98 h2{
+  margin:0 0 14px;
+  font-size:30px;
+  line-height:1.07;
+  letter-spacing:-.045em;
+  color:#111827;
+}
+
+.hotTelegramV98 p{
+  margin:0 0 24px;
+  font-size:15.5px;
+  line-height:1.5;
+  color:rgba(17,24,39,.68);
+}
+
+.hotTelegramV98 a,
+.hotOfferCardV98 a,
+.hotNoteV98 a{
+  min-height:52px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#ff2030,#ff5964);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 18px 34px rgba(255,32,48,.22);
+}
+
+.hotFilterV98{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:0 0 26px;
+}
+
+.hotFilterV98 button{
+  min-height:44px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.70);
+  background:rgba(255,255,255,.34);
+  color:rgba(17,24,39,.72);
+  font-weight:850;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72), 0 10px 28px rgba(31,41,55,.06);
+  backdrop-filter:blur(18px) saturate(165%);
+  -webkit-backdrop-filter:blur(18px) saturate(165%);
+}
+
+.hotFilterV98 button.active{
+  color:#ff1024;
+  background:rgba(255,255,255,.54);
+}
+
+.hotGridV98{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:18px;
+}
+
+.hotOfferCardV98{
+  min-height:430px;
+  padding:26px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255,45,56,.08), transparent 36%),
+    rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.70);
+  box-shadow:0 22px 70px rgba(31,41,55,.12), inset 0 1px 0 rgba(255,255,255,.70);
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+}
+
+.hotOfferTopV98{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.hotOfferTopV98 span,
+.hotOfferTopV98 em{
+  min-height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.hotOfferTopV98 span{
+  background:#111827;
+  color:#fff;
+}
+
+.hotOfferTopV98 em{
+  background:rgba(255,255,255,.46);
+  color:#111827;
+  font-style:normal;
+}
+
+.hotOfferCardV98 h3{
+  margin:0 0 16px;
+  min-height:58px;
+  color:#111827;
+  font-size:30px;
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+
+.hotOfferCardV98 p{
+  margin:0 0 20px;
+  color:rgba(17,24,39,.62);
+  font-size:15.5px;
+  line-height:1.46;
+}
+
+.hotOfferPriceV98{
+  margin-top:auto;
+  padding-top:14px;
+}
+
+.hotOfferPriceV98 small{
+  display:block;
+  color:rgba(17,24,39,.55);
+  font-weight:850;
+  margin-bottom:4px;
+}
+
+.hotOfferPriceV98 strong{
+  display:block;
+  color:#ef0015;
+  font-size:32px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.hotOfferRowsV98{
+  margin:20px 0 22px;
+  border-top:1px dashed rgba(17,24,39,.10);
+}
+
+.hotOfferRowsV98 div{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px dashed rgba(17,24,39,.10);
+}
+
+.hotOfferRowsV98 span{
+  color:rgba(17,24,39,.58);
+}
+
+.hotOfferRowsV98 b{
+  color:#0a9b4c;
+}
+
+.hotOfferRowsV98 div:first-child b{
+  color:#111827;
+}
+
+.hotNoteV98{
+  margin-top:28px;
+  padding:30px;
+  border-radius:32px;
+  background:rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.70);
+  box-shadow:0 24px 80px rgba(31,41,55,.11);
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+  display:grid;
+  grid-template-columns:1fr 260px;
+  gap:28px;
+  align-items:center;
+}
+
+.hotNoteV98 h2{
+  margin:10px 0 10px;
+  color:#111827;
+  font-size:34px;
+  line-height:1.1;
+  letter-spacing:-.05em;
+}
+
+.hotNoteV98 p{
+  margin:0;
+  color:rgba(17,24,39,.65);
+  font-size:16px;
+  line-height:1.5;
+}
+
+@media(max-width:1100px){
+  .hotHeroV98,
+  .hotNoteV98{
+    grid-template-columns:1fr;
+  }
+  .hotGridV98{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media(max-width:700px){
+  .hotPageV98{
+    width:calc(100% - 28px);
+  }
+  .hotHeroTextV98 h1{
+    font-size:38px;
+  }
+  .hotGridV98{
+    grid-template-columns:1fr;
+  }
+  .hotOfferCardV98{
+    min-height:auto;
+  }
+}
+
+
+/* v99 — hot page only */
+.hotPageV99{
+  margin-top:0!important;
+}
+
+/* На странице hot.html не показываем главные блоки, если они случайно остались */
+body:has(.hotPageV99) .leadSection,
+body:has(.hotPageV99) .selectionSection,
+body:has(.hotPageV99) .checkSection,
+body:has(.hotPageV99) .homeOnly,
+body:has(.hotPageV99) .hotSectionIntroV89:not(.hotHeroV98 .hotSectionIntroV89),
+body:has(.hotPageV99) .hotLots:not(.hotGridV98),
+body:has(.hotPageV99) .hotPageGridV82{
+  display:none!important;
+}
+
+.hotPageV99 .hotHeroV98{
+  margin-top:18px!important;
+}
+
+
+/* v100 — hot offers page: 12 cars / 4 in row */
+.hotPageV100{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin:0 auto 80px!important;
+}
+
+.hotHeroV100{
+  margin-bottom:24px!important;
+}
+
+.hotGridV100{
+  display:grid!important;
+  grid-template-columns:repeat(4, minmax(0, 1fr))!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+
+.hotOfferCardV100{
+  min-height:465px;
+  padding:24px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255,45,56,.08), transparent 38%),
+    rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.70);
+  box-shadow:0 22px 70px rgba(31,41,55,.12), inset 0 1px 0 rgba(255,255,255,.70);
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+}
+
+.hotOfferTopV100{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.hotOfferTopV100 span,
+.hotOfferTopV100 em{
+  min-height:32px;
+  padding:0 12px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:13px;
+  white-space:nowrap;
+}
+
+.hotOfferTopV100 span{
+  background:#111827;
+  color:#fff;
+}
+
+.hotOfferTopV100 em{
+  background:rgba(255,255,255,.48);
+  color:#111827;
+  font-style:normal;
+}
+
+.hotOfferCardV100 h3{
+  margin:0 0 14px;
+  min-height:64px;
+  color:#111827;
+  font-size:27px;
+  line-height:1.06;
+  letter-spacing:-.048em;
+}
+
+.hotOfferCardV100 p{
+  margin:0 0 18px;
+  color:rgba(17,24,39,.62);
+  font-size:14.5px;
+  line-height:1.45;
+}
+
+.hotOfferPriceV100{
+  margin-top:auto;
+  padding-top:12px;
+}
+
+.hotOfferPriceV100 small{
+  display:block;
+  color:rgba(17,24,39,.55);
+  font-weight:850;
+  margin-bottom:5px;
+}
+
+.hotOfferPriceV100 strong{
+  display:block;
+  color:#ef0015;
+  font-size:30px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.hotOfferRowsV100{
+  margin:18px 0 18px;
+  border-top:1px dashed rgba(17,24,39,.10);
+}
+
+.hotOfferRowsV100 div{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 0;
+  border-bottom:1px dashed rgba(17,24,39,.10);
+}
+
+.hotOfferRowsV100 span{
+  color:rgba(17,24,39,.58);
+  font-size:14px;
+}
+
+.hotOfferRowsV100 b{
+  color:#111827;
+  font-size:14px;
+}
+
+.hotOfferRowsV100 div:last-child b{
+  color:#0a9b4c;
+}
+
+.hotOfferActionsV100{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+.hotOfferActionsV100 a{
+  min-height:48px;
+  border-radius:16px;
+  text-decoration:none;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.examplesBtnV100{
+  background:rgba(255,255,255,.54);
+  border:1px solid rgba(255,255,255,.78);
+  color:#111827;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82), 0 12px 24px rgba(31,41,55,.06);
+  backdrop-filter:blur(18px) saturate(165%);
+  -webkit-backdrop-filter:blur(18px) saturate(165%);
+}
+
+.requestBtnV100{
+  background:linear-gradient(135deg,#ff2030,#ff5964);
+  color:#fff;
+  box-shadow:0 18px 34px rgba(255,32,48,.22);
+}
+
+@media(max-width:1220px){
+  .hotGridV100{
+    grid-template-columns:repeat(3, minmax(0, 1fr))!important;
+  }
+}
+
+@media(max-width:900px){
+  .hotGridV100{
+    grid-template-columns:repeat(2, minmax(0, 1fr))!important;
+  }
+}
+
+@media(max-width:620px){
+  .hotPageV100{
+    width:calc(100% - 28px)!important;
+  }
+  .hotGridV100{
+    grid-template-columns:1fr!important;
+  }
+  .hotOfferCardV100{
+    min-height:auto;
+  }
+}
+
+
+/* v101 — fixed hot page content visibility */
+.hotPageV101{
+  max-width:1380px!important;
+  width:calc(100% - 40px)!important;
+  margin:0 auto 80px!important;
+  display:block!important;
+}
+
+.hotHeroV101{
+  display:grid!important;
+  grid-template-columns:minmax(0, 1.42fr) minmax(340px, .88fr)!important;
+  gap:28px!important;
+  align-items:stretch!important;
+  margin:10px 0 28px!important;
+}
+
+.hotHeroTextV101{
+  padding:28px 0!important;
+}
+
+.hotHeroTextV101 h1{
+  max-width:860px!important;
+  margin:14px 0 18px!important;
+  color:#111827!important;
+  font-size:56px!important;
+  line-height:1.03!important;
+  letter-spacing:-.06em!important;
+}
+
+.hotHeroTextV101 p{
+  max-width:880px!important;
+  margin:0!important;
+  color:rgba(17,24,39,.66)!important;
+  font-size:18px!important;
+  line-height:1.55!important;
+}
+
+.hotTelegramV101{
+  padding:30px!important;
+  border-radius:32px!important;
+  background:radial-gradient(circle at 90% 12%, rgba(255,45,56,.20), transparent 38%), rgba(255,255,255,.38)!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  box-shadow:0 28px 80px rgba(31,41,55,.13), inset 0 1px 0 rgba(255,255,255,.74)!important;
+  backdrop-filter:blur(28px) saturate(170%)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(170%)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+}
+
+.hotTelegramIconV101{
+  width:54px!important;
+  height:54px!important;
+  border-radius:18px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:rgba(255,255,255,.46)!important;
+  border:1px solid rgba(255,255,255,.74)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82)!important;
+  font-size:24px!important;
+  margin-bottom:18px!important;
+}
+
+.hotTelegramV101 h2{
+  margin:0 0 14px!important;
+  font-size:30px!important;
+  line-height:1.07!important;
+  letter-spacing:-.045em!important;
+  color:#111827!important;
+}
+
+.hotTelegramV101 p{
+  margin:0 0 24px!important;
+  font-size:15.5px!important;
+  line-height:1.5!important;
+  color:rgba(17,24,39,.68)!important;
+}
+
+.hotTelegramV101 a,
+.hotNoteV101 a,
+.requestBtnV101{
+  min-height:52px!important;
+  border-radius:18px!important;
+  background:linear-gradient(135deg,#ff2030,#ff5964)!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  font-weight:900!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 18px 34px rgba(255,32,48,.22)!important;
+}
+
+.hotFilterV101{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:12px!important;
+  margin:0 0 26px!important;
+}
+
+.hotFilterV101 button{
+  min-height:44px!important;
+  padding:0 18px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(255,255,255,.70)!important;
+  background:rgba(255,255,255,.34)!important;
+  color:rgba(17,24,39,.72)!important;
+  font-weight:850!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72), 0 10px 28px rgba(31,41,55,.06)!important;
+  backdrop-filter:blur(18px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(165%)!important;
+}
+
+.hotFilterV101 button.active{
+  color:#ff1024!important;
+  background:rgba(255,255,255,.54)!important;
+}
+
+.hotGridV101{
+  display:grid!important;
+  grid-template-columns:repeat(4, minmax(0, 1fr))!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+
+.hotOfferCardV101{
+  min-height:465px!important;
+  padding:24px!important;
+  border-radius:30px!important;
+  background:radial-gradient(circle at 88% 10%, rgba(255,45,56,.08), transparent 38%), rgba(255,255,255,.34)!important;
+  border:1px solid rgba(255,255,255,.70)!important;
+  box-shadow:0 22px 70px rgba(31,41,55,.12), inset 0 1px 0 rgba(255,255,255,.70)!important;
+  backdrop-filter:blur(26px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(26px) saturate(165%)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  box-sizing:border-box!important;
+}
+
+.hotOfferTopV101{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  margin-bottom:20px!important;
+}
+
+.hotOfferTopV101 span,
+.hotOfferTopV101 em{
+  min-height:32px!important;
+  padding:0 12px!important;
+  border-radius:999px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  font-weight:900!important;
+  font-size:13px!important;
+  white-space:nowrap!important;
+}
+
+.hotOfferTopV101 span{background:#111827!important;color:#fff!important;}
+.hotOfferTopV101 em{background:rgba(255,255,255,.48)!important;color:#111827!important;font-style:normal!important;}
+
+.hotOfferCardV101 h3{
+  margin:0 0 14px!important;
+  min-height:64px!important;
+  color:#111827!important;
+  font-size:27px!important;
+  line-height:1.06!important;
+  letter-spacing:-.048em!important;
+}
+
+.hotOfferCardV101 p{
+  margin:0 0 18px!important;
+  color:rgba(17,24,39,.62)!important;
+  font-size:14.5px!important;
+  line-height:1.45!important;
+}
+
+.hotOfferPriceV101{margin-top:auto!important;padding-top:12px!important;}
+.hotOfferPriceV101 small{display:block!important;color:rgba(17,24,39,.55)!important;font-weight:850!important;margin-bottom:5px!important;}
+.hotOfferPriceV101 strong{display:block!important;color:#ef0015!important;font-size:30px!important;line-height:1!important;letter-spacing:-.04em!important;}
+
+.hotOfferRowsV101{
+  margin:18px 0 18px!important;
+  border-top:1px dashed rgba(17,24,39,.10)!important;
+}
+
+.hotOfferRowsV101 div{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  padding:11px 0!important;
+  border-bottom:1px dashed rgba(17,24,39,.10)!important;
+}
+
+.hotOfferRowsV101 span{color:rgba(17,24,39,.58)!important;font-size:14px!important;}
+.hotOfferRowsV101 b{color:#111827!important;font-size:14px!important;}
+.hotOfferRowsV101 div:last-child b{color:#0a9b4c!important;}
+
+.hotOfferActionsV101{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:10px!important;
+}
+
+.hotOfferActionsV101 a{
+  min-height:48px!important;
+  border-radius:16px!important;
+  text-decoration:none!important;
+  font-weight:900!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+.examplesBtnV101{
+  background:rgba(255,255,255,.54)!important;
+  border:1px solid rgba(255,255,255,.78)!important;
+  color:#111827!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82), 0 12px 24px rgba(31,41,55,.06)!important;
+  backdrop-filter:blur(18px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(165%)!important;
+}
+
+.hotNoteV101{
+  margin-top:28px!important;
+  padding:30px!important;
+  border-radius:32px!important;
+  background:rgba(255,255,255,.34)!important;
+  border:1px solid rgba(255,255,255,.70)!important;
+  box-shadow:0 24px 80px rgba(31,41,55,.11)!important;
+  backdrop-filter:blur(26px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(26px) saturate(165%)!important;
+  display:grid!important;
+  grid-template-columns:1fr 260px!important;
+  gap:28px!important;
+  align-items:center!important;
+}
+
+.hotNoteV101 h2{
+  margin:10px 0 10px!important;
+  color:#111827!important;
+  font-size:34px!important;
+  line-height:1.1!important;
+  letter-spacing:-.05em!important;
+}
+
+.hotNoteV101 p{
+  margin:0!important;
+  color:rgba(17,24,39,.65)!important;
+  font-size:16px!important;
+  line-height:1.5!important;
+}
+
+@media(max-width:1220px){
+  .hotGridV101{grid-template-columns:repeat(3, minmax(0, 1fr))!important;}
+}
+@media(max-width:900px){
+  .hotHeroV101,.hotNoteV101{grid-template-columns:1fr!important;}
+  .hotGridV101{grid-template-columns:repeat(2, minmax(0, 1fr))!important;}
+}
+@media(max-width:620px){
+  .hotPageV101{width:calc(100% - 28px)!important;}
+  .hotHeroTextV101 h1{font-size:38px!important;}
+  .hotGridV101{grid-template-columns:1fr!important;}
+  .hotOfferCardV101{min-height:auto!important;}
+}
+
+
+/* v105 — hot.html без нижних дублей главной страницы */
+body:has(.hotPageV101) .trustV102,
+body:has(.hotPageV101) .processV102,
+body:has(.hotPageV101) .transitV102,
+body:has(.hotPageV100) .trustV102,
+body:has(.hotPageV100) .processV102,
+body:has(.hotPageV100) .transitV102,
+body:has(.hotPageV99) .trustV102,
+body:has(.hotPageV99) .processV102,
+body:has(.hotPageV99) .transitV102{
+  display:none!important;
+}
+
+
+/* v110 — contacts page rebuild */
+body:has(.contactsHeroV110){
+  isolation:isolate;
+  overflow-x:clip!important;
+  background:
+    linear-gradient(90deg, rgba(248,250,252,.82) 0%, rgba(248,250,252,.66) 42%, rgba(248,250,252,.28) 66%, rgba(9,11,15,.30) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.12) 36%, rgba(7,8,12,.20) 100%)!important;
+}
+
+body:has(.contactsHeroV110)::before{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:-2!important;
+  pointer-events:none!important;
+  background:url("bg-port-v36.jpg") center/cover no-repeat!important;
+  filter:blur(24px) saturate(118%)!important;
+  transform:none!important;
+}
+
+
+/* v111 — shared Liquid Glass background across the whole site */
+body{
+  isolation:isolate!important;
+  overflow-x:clip!important;
+  background:
+    linear-gradient(90deg, rgba(248,250,252,.82) 0%, rgba(248,250,252,.66) 42%, rgba(248,250,252,.28) 66%, rgba(9,11,15,.30) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.12) 36%, rgba(7,8,12,.20) 100%)!important;
+}
+
+body::before{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:-2!important;
+  pointer-events:none!important;
+  background:url("bg-port-v36.jpg") center/cover no-repeat!important;
+  filter:blur(24px) saturate(118%)!important;
+  transform:none!important;
+}
+
+body::after{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:-1!important;
+  pointer-events:none!important;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.62), transparent 28%),
+    radial-gradient(circle at 68% 34%, rgba(237,0,18,.12), transparent 26%),
+    linear-gradient(90deg, rgba(255,255,255,.46), rgba(255,255,255,.18) 56%, rgba(5,6,10,.22))!important;
+}
+
+body:has(.contactsHeroV110)::after{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:-1!important;
+  pointer-events:none!important;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.62), transparent 28%),
+    radial-gradient(circle at 68% 34%, rgba(237,0,18,.12), transparent 26%),
+    linear-gradient(90deg, rgba(255,255,255,.46), rgba(255,255,255,.18) 56%, rgba(5,6,10,.22))!important;
+}
+
+.contactsHeroV110,
+.contactsPageV110{
+  width:min(1260px, calc(100% - 56px));
+  margin:0 auto;
+}
+
+.contactsHeroV110{
+  padding:34px 0 24px;
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) minmax(292px, 330px);
+  gap:20px;
+  align-items:center;
+}
+
+.contactsHeroTextV110{
+  min-height:410px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.contactsHeroTextV110 h1{
+  max-width:680px;
+  margin:12px 0 18px;
+  color:#101010;
+  font-size:clamp(38px, 4.75vw, 58px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.035em;
+}
+
+.contactsHeroTextV110 p{
+  max-width:620px;
+  margin:0;
+  color:rgba(17,24,39,.78);
+  font-size:17px;
+  line-height:1.5;
+  font-weight:750;
+}
+
+.contactsHeroActionsV110{
+  margin-top:26px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.contactsHeroActionsV110 a,
+.contactsQuickCardV110 a,
+.contactFormV110 button{
+  min-height:54px;
+  border-radius:16px;
+  text-decoration:none;
+  font-weight:950;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.contactsHeroActionsV110 a{
+  padding:0 22px;
+  color:#111827;
+  background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.42));
+  border:1px solid rgba(255,255,255,.68);
+  box-shadow:0 14px 32px rgba(31,41,55,.10), inset 0 1px 0 rgba(255,255,255,.88);
+  backdrop-filter:blur(24px) saturate(165%);
+  -webkit-backdrop-filter:blur(24px) saturate(165%);
+}
+
+.contactsHeroActionsV110 .primaryContactV110,
+.contactFormV110 button{
+  color:#fff;
+  background:linear-gradient(90deg,#e80012,#ff1728);
+  border-color:transparent;
+  box-shadow:0 18px 36px rgba(237,0,18,.24);
+}
+
+.contactsQuickCardV110{
+  min-height:320px;
+  padding:26px;
+  border-radius:26px;
+  background:linear-gradient(145deg, rgba(8,10,14,.80), rgba(8,10,14,.58));
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 28px 80px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.20);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden;
+  position:relative;
+  backdrop-filter:blur(30px) saturate(165%);
+  -webkit-backdrop-filter:blur(30px) saturate(165%);
+}
+
+.contactsQuickCardV110::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(237,0,18,.28), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,.13), transparent 44%);
+  pointer-events:none;
+}
+
+.contactsQuickCardV110 > *{
+  position:relative;
+  z-index:1;
+}
+
+.contactsQuickCardV110 span{
+  color:#ffb7bd;
+  text-transform:uppercase;
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.12em;
+}
+
+.contactsQuickCardV110 strong{
+  display:block;
+  margin:12px 0 10px;
+  font-size:36px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.045em;
+}
+
+.contactsQuickCardV110 p{
+  margin:0 0 20px;
+  color:rgba(255,255,255,.76);
+  font-size:16px;
+  line-height:1.45;
+}
+
+.contactsQuickCardV110 div{
+  display:grid;
+  gap:10px;
+}
+
+.contactsQuickCardV110 a{
+  color:#fff;
+  background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+.contactsPageV110{
+  padding:8px 0 58px;
+}
+
+.contactMethodsV110{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:16px;
+  margin-bottom:18px;
+}
+
+.contactMethodV110{
+  min-height:176px;
+  padding:20px;
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.34));
+  border:1px solid rgba(255,255,255,.66);
+  box-shadow:0 18px 48px rgba(31,41,55,.11), inset 0 1px 0 rgba(255,255,255,.80);
+  text-decoration:none;
+  color:#111827;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  backdrop-filter:blur(26px) saturate(165%);
+  -webkit-backdrop-filter:blur(26px) saturate(165%);
+}
+
+.contactMethodV110 span{
+  color:#e80012;
+  font-size:13px;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.contactMethodV110 strong{
+  display:block;
+  margin:16px 0 8px;
+  font-size:24px;
+  line-height:1.08;
+  font-weight:950;
+  letter-spacing:-.025em;
+}
+
+.contactMethodV110 small{
+  color:#606771;
+  font-size:14px;
+  line-height:1.35;
+  font-weight:700;
+}
+
+.contactPanelV110{
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:18px;
+  align-items:stretch;
+}
+
+.contactChecklistV110,
+.contactFormV110{
+  padding:28px;
+  border-radius:26px;
+  background:linear-gradient(180deg, rgba(255,255,255,.64), rgba(255,255,255,.38));
+  border:1px solid rgba(255,255,255,.70);
+  box-shadow:0 22px 60px rgba(31,41,55,.12), inset 0 1px 0 rgba(255,255,255,.82);
+  backdrop-filter:blur(28px) saturate(165%);
+  -webkit-backdrop-filter:blur(28px) saturate(165%);
+}
+
+.contactChecklistV110 h2{
+  margin:12px 0 20px;
+  color:#111827;
+  font-size:34px;
+  line-height:1.06;
+  font-weight:950;
+  letter-spacing:-.04em;
+}
+
+.contactChecklistV110 ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:12px;
+}
+
+.contactChecklistV110 li{
+  position:relative;
+  padding-left:26px;
+  color:#343941;
+  font-size:16px;
+  line-height:1.45;
+  font-weight:750;
+}
+
+.contactChecklistV110 li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.62em;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#e80012;
+  box-shadow:0 0 0 5px rgba(232,0,18,.10);
+}
+
+.contactFormV110{
+  display:grid;
+  gap:14px;
+}
+
+.contactFormGridV110{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.contactFormV110 input,
+.contactFormV110 textarea{
+  width:100%;
+  min-height:54px;
+  border:1px solid rgba(17,24,39,.12)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.72)!important;
+  color:#111827!important;
+  font-size:16px!important;
+  font-family:Inter,Arial,sans-serif!important;
+  outline:none;
+}
+
+.contactFormV110 textarea{
+  min-height:136px;
+  padding:16px 18px;
+  resize:vertical;
+}
+
+.contactFormV110 button{
+  width:100%;
+  border:0;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.contactFormV110 small{
+  color:#69717d;
+  font-size:14px;
+  font-weight:700;
+  text-align:center;
+}
+
+@media(max-width:820px){
+  .contactsHeroV110,
+  .contactPanelV110{
+    grid-template-columns:1fr;
+  }
+
+  .contactsHeroTextV110{
+    min-height:auto;
+  }
+
+}
+
+@media(max-width:1040px){
+  .contactMethodsV110{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media(max-width:650px){
+  body:has(.contactsHeroV110){
+    background-attachment:scroll!important;
+  }
+
+  .contactsHeroV110,
+  .contactsPageV110{
+    width:calc(100% - 28px);
+  }
+
+  .contactsHeroV110{
+    padding-top:28px;
+  }
+
+  .contactsHeroTextV110 h1{
+    font-size:40px;
+    letter-spacing:0;
+  }
+
+  .contactsHeroTextV110 p{
+    font-size:16px;
+  }
+
+  .contactsHeroActionsV110 a{
+    width:100%;
+  }
+
+  .contactMethodsV110,
+  .contactFormGridV110{
+    grid-template-columns:1fr;
+  }
+
+  .contactsQuickCardV110,
+  .contactChecklistV110,
+  .contactFormV110{
+    padding:22px;
+    border-radius:22px;
+  }
+
+  .contactChecklistV110 h2{
+    font-size:30px;
+  }
+}
+
+
+/* v112 — fix main page section seams */
+.calcInfoPlainV52,
+.leadSection{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+.calcInfoPlainV52{
+  padding:18px 0 36px!important;
+}
+
+.calcInfoPlainV52 > .container{
+  padding:30px 34px!important;
+  border-radius:30px!important;
+  background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.36))!important;
+  border:1px solid rgba(255,255,255,.70)!important;
+  box-shadow:0 22px 60px rgba(31,41,55,.12), inset 0 1px 0 rgba(255,255,255,.82)!important;
+  backdrop-filter:blur(28px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(165%)!important;
+}
+
+.leadSection{
+  padding-top:0!important;
+}
+
+.leadSection > .container{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+@media(max-width:650px){
+  .calcInfoPlainV52 > .container{
+    padding:24px!important;
+    border-radius:24px!important;
+  }
+}
+
+
+/* v117 — uploaded Liquid Glass logo mark */
+.headerBrand{
+  gap:14px!important;
+}
+
+.headerBrand img[src*="apex-logo-glass-upload-v117.png"],
+.siteHeader img[src*="apex-logo-glass-upload-v117.png"],
+header img[src*="apex-logo-glass-upload-v117.png"]{
+  width:156px!important;
+  height:128px!important;
+  object-fit:contain!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  filter:
+    drop-shadow(0 16px 16px rgba(15,23,42,.14))
+    drop-shadow(0 7px 14px rgba(237,0,18,.12))!important;
+}
+
+.headerBrand .brandTextV77{
+  font-size:46px!important;
+  line-height:.94!important;
+  letter-spacing:-.045em!important;
+}
+
+.headerBrand small{
+  margin-top:10px!important;
+  font-size:17px!important;
+  color:rgba(17,24,39,.66)!important;
+}
+
+@media(max-width:950px){
+  .headerBrand img[src*="apex-logo-glass-upload-v117.png"],
+  .siteHeader img[src*="apex-logo-glass-upload-v117.png"],
+  header img[src*="apex-logo-glass-upload-v117.png"]{
+    width:136px!important;
+    height:112px!important;
+  }
+
+  .headerBrand .brandTextV77{
+    font-size:36px!important;
+  }
+
+  .headerBrand small{
+    font-size:14px!important;
+  }
+}
+
+/* v118 — auction link import for calculator */
+.lotImportV118{
+  display:grid;
+  gap:10px;
+  margin-bottom:18px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.58);
+  border-radius:20px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.74),rgba(255,255,255,.34)),
+    radial-gradient(circle at 12% 0,rgba(237,0,18,.12),transparent 34%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 18px 42px rgba(15,23,42,.08);
+}
+
+.lotImportV118 label{
+  font-size:14px;
+  font-weight:950;
+  color:rgba(17,24,39,.86);
+}
+
+.lotImportControlV118{
+  display:grid;
+  grid-template-columns:1fr 128px;
+  gap:10px;
+}
+
+.lotImportControlV118 input{
+  min-width:0;
+}
+
+.lotImportControlV118 button{
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.38));
+  color:#111827;
+  font-weight:950;
+  cursor:pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82),0 12px 28px rgba(15,23,42,.08);
+}
+
+.lotImportStatusV118{
+  padding:12px;
+  border-radius:16px;
+  background:rgba(17,24,39,.86);
+  color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.lotImportStatusV118 strong{
+  display:block;
+  margin-bottom:8px;
+  font-size:15px;
+}
+
+.lotImportStatusV118 p{
+  margin:8px 0 0;
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+  line-height:1.35;
+}
+
+.lotImportStatusV118.isWarningV120{
+  background:linear-gradient(135deg,rgba(31,41,55,.92),rgba(85,58,12,.88));
+  border:1px solid rgba(255,197,82,.24);
+}
+
+.lotImportChipsV118{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.lotImportChipsV118 span{
+  padding:6px 9px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.92);
+  font-size:12px;
+  font-weight:850;
+}
+
+.lotImportCheckBtnV120{
+  width:100%;
+  min-height:48px;
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:16px;
+  background:linear-gradient(90deg,#e80012,#ff4b55);
+  color:#fff;
+  font-weight:950;
+  cursor:pointer;
+  box-shadow:0 14px 32px rgba(237,0,18,.18);
+}
+
+.lotImportCheckBtnV120[hidden]{
+  display:none!important;
+}
+
+.hybridGuardV125{
+  margin:0 0 18px;
+  padding:14px;
+  border:1px solid rgba(255,191,72,.42);
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(255,248,232,.78),rgba(255,255,255,.42));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 16px 34px rgba(120,74,0,.08);
+}
+
+.hybridGuardV125 strong{
+  display:block;
+  color:#111827;
+  font-size:15px;
+  font-weight:950;
+}
+
+.hybridGuardV125 p{
+  margin:6px 0 12px;
+  color:rgba(17,24,39,.68);
+  font-size:13px;
+  line-height:1.38;
+}
+
+.hybridGuardV125 div{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.hybridGuardV125 button{
+  min-height:42px;
+  border:1px solid rgba(255,255,255,.78);
+  border-radius:14px;
+  background:rgba(255,255,255,.64);
+  color:#111827;
+  font-weight:950;
+  cursor:pointer;
+}
+
+.hybridGuardV125.isPhevV125 button[data-fuel-choice="phev"],
+.hybridGuardV125:not(.isPhevV125) button[data-fuel-choice="hybrid"]{
+  background:linear-gradient(90deg,#e80012,#ff4b55);
+  color:#fff;
+  box-shadow:0 10px 24px rgba(237,0,18,.18);
+}
+
+@media(max-width:560px){
+  .lotImportControlV118{
+    grid-template-columns:1fr;
+  }
+
+  .lotImportControlV118 button{
+    min-height:48px;
+  }
+}
+
+@media(max-width:560px){
+  .headerBrand{
+    gap:12px!important;
+  }
+
+  .headerBrand img[src*="apex-logo-glass-upload-v117.png"],
+  .siteHeader img[src*="apex-logo-glass-upload-v117.png"],
+  header img[src*="apex-logo-glass-upload-v117.png"]{
+    width:88px!important;
+    height:76px!important;
+  }
+
+  .headerBrand .brandTextV77{
+    font-size:28px!important;
+  }
+}
+
+/* v146 — lot assessment below both calculator columns */
+#calculator.layout{
+  align-items:start!important;
+}
+
+.calcWideAdviceV146{
+  grid-column:1 / -1!important;
+  justify-self:stretch;
+  width:100%!important;
+  max-width:none!important;
+  margin-top:-4px;
+  padding:24px 28px;
+  border-radius:24px;
+}
+
+.calcWideAdviceV146 .smartHeadV129{
+  margin-bottom:12px;
+}
+
+.calcWideAdviceV146 .smartHeadV129 span{
+  font-size:14px;
+}
+
+.calcWideAdviceV146 .smartHeadV129 b{
+  min-width:74px;
+  padding:8px 13px;
+  font-size:15px;
+}
+
+.calcWideAdviceV146 strong{
+  font-size:26px;
+}
+
+.calcWideAdviceV146 p{
+  max-width:1120px;
+  font-size:17px;
+}
+
+.calcWideAdviceV146 ul{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px 22px;
+}
+
+.calcWideAdviceV146 li{
+  font-size:15px;
+}
+
+@media(max-width:980px){
+  .calcWideAdviceV146{
+    grid-column:1 / -1!important;
+    padding:20px;
+  }
+
+  .calcWideAdviceV146 ul{
+    grid-template-columns:1fr;
+  }
+
+  .calcWideAdviceV146 strong{
+    font-size:22px;
+  }
+}
+
+/* v156 — trade recommendation below lot assessment */
+.bidAdvisorWideV156{
+  grid-column:1 / -1!important;
+  justify-self:stretch;
+  width:100%!important;
+  max-width:none!important;
+  margin-top:0;
+  padding:24px 28px;
+  border-radius:24px;
+}
+
+.bidAdvisorWideV156 .smartHeadV129{
+  margin-bottom:16px;
+}
+
+.bidAdvisorWideV156 .bidAdvisorGridV138{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.bidAdvisorWideV156 .bidAdvisorGridV138 label:last-child{
+  grid-column:auto;
+}
+
+.bidAdvisorWideV156 .bidAdvisorGridV138 input{
+  height:50px;
+  font-size:15px;
+  border-radius:16px;
+}
+
+.bidAdvisorWideV156 .aiBidBtnV139{
+  height:54px;
+  border-radius:17px;
+  font-size:16px;
+}
+
+.bidAdvisorWideV156 .bidAdvisorResultV138{
+  padding:16px 18px;
+  border-radius:18px;
+}
+
+@media(max-width:1100px){
+  .bidAdvisorWideV156 .bidAdvisorGridV138{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .bidAdvisorWideV156 .bidAdvisorGridV138 label:last-child{
+    grid-column:1 / -1;
+  }
+}
+
+@media(max-width:680px){
+  .bidAdvisorWideV156{
+    padding:20px;
+  }
+
+  .bidAdvisorWideV156 .bidAdvisorGridV138{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v148 — auction link as full-width calculator entry */
+.lotImportWideV148{
+  grid-column:1 / -1!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0 0 0;
+  padding:22px 24px;
+  border-radius:24px;
+}
+
+.lotImportWideV148 label{
+  font-size:17px;
+}
+
+.lotImportWideV148 .lotImportControlV118{
+  grid-template-columns:minmax(0,1fr) 180px;
+  gap:14px;
+}
+
+.lotImportWideV148 .lotImportControlV118 input,
+.lotImportWideV148 .lotImportControlV118 button{
+  height:58px;
+  border-radius:18px;
+  font-size:17px;
+}
+
+.lotImportWideV148 .lotImportStatusV118{
+  padding:18px 20px;
+  border-radius:20px;
+}
+
+.lotImportWideV148 .lotImportStatusV118 strong{
+  font-size:20px;
+}
+
+.lotImportWideV148 .lotImportStatusV118 p{
+  font-size:15px;
+}
+
+.lotImportWideV148 .lotImportCheckBtnV120{
+  min-height:56px;
+  border-radius:18px;
+  font-size:16px;
+}
+
+@media(max-width:760px){
+  .lotImportWideV148{
+    padding:16px;
+  }
+
+  .lotImportWideV148 .lotImportControlV118{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v150 — liquid glass selects */
+select{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  color:#111827!important;
+  border:1px solid rgba(255,255,255,.78)!important;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(17,24,39,.82) 50%) calc(100% - 24px) 50% / 8px 8px no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.38))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.86),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 14px 34px rgba(15,23,42,.08)!important;
+  backdrop-filter:blur(22px) saturate(170%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(170%)!important;
+}
+
+select:hover{
+  border-color:rgba(255,255,255,.92)!important;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(237,0,18,.90) 50%) calc(100% - 24px) 50% / 8px 8px no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,255,255,.46))!important;
+}
+
+select:focus{
+  border-color:rgba(255,56,72,.68)!important;
+  box-shadow:
+    0 0 0 5px rgba(255,56,72,.13),
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 18px 42px rgba(237,0,18,.12)!important;
+}
+
+select option{
+  background:#5e5e5b!important;
+  color:rgba(255,255,255,.92)!important;
+  font-weight:750;
+}
+
+select option:checked{
+  background:#5b8dea!important;
+  color:#fff!important;
+}
+
+/* v160 — calculator fields back to one compact size */
+.formCard .grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+
+.formCard input,
+.formCard select,
+.formCard select.nativeSelectV152{
+  height:42px!important;
+  min-height:42px!important;
+  border-radius:11px!important;
+  font-size:13px!important;
+  font-weight:500!important;
+  line-height:1!important;
+  padding-left:14px!important;
+  color:#111827!important;
+}
+
+.formCard select,
+.formCard select.nativeSelectV152{
+  padding-right:36px!important;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(17,24,39,.82) 50%) calc(100% - 18px) 50% / 7px 7px no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.48))!important;
+}
+
+.formCard select:hover,
+.formCard select:focus,
+.formCard select.nativeSelectV152:hover,
+.formCard select.nativeSelectV152:focus{
+  border-color:rgba(255,255,255,.92)!important;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(17,24,39,.82) 50%) calc(100% - 18px) 50% / 7px 7px no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.86),rgba(255,255,255,.52))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.90),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 10px 26px rgba(15,23,42,.07)!important;
+}
+
+.formCard .formRow.wide{
+  width:100%!important;
+}
+
+.formCard .formRow.wide select{
+  width:100%!important;
+}
+
+/* v161 — compact checkbox rows to match calculator fields */
+.formCard .offsiteCheck,
+.formCard .options .check{
+  min-height:42px!important;
+  height:42px!important;
+  padding:0 14px!important;
+  border-radius:11px!important;
+  gap:10px!important;
+  font-size:13px!important;
+  font-weight:760!important;
+  line-height:1!important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,255,255,.30))!important;
+  border:1px solid rgba(255,255,255,.66)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    inset 0 -1px 0 rgba(17,24,39,.04),
+    0 10px 24px rgba(15,23,42,.06)!important;
+  backdrop-filter:blur(18px) saturate(135%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(135%)!important;
+}
+
+.formCard .offsiteCheck input,
+.formCard .options .check input{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  display:block!important;
+  width:38px!important;
+  height:22px!important;
+  min-width:38px!important;
+  min-height:22px!important;
+  max-width:38px!important;
+  max-height:22px!important;
+  padding:0!important;
+  margin:0!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:999px!important;
+  background:
+    radial-gradient(circle at 11px 50%,rgba(255,255,255,.98) 0 7px,rgba(255,255,255,0) 7.4px),
+    linear-gradient(135deg,rgba(108,114,124,.58),rgba(71,76,86,.44))!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:100% 100%!important;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.50),
+    inset 0 -1px 2px rgba(17,24,39,.16),
+    0 8px 18px rgba(15,23,42,.12)!important;
+  flex:0 0 38px!important;
+  align-self:center!important;
+  cursor:pointer!important;
+  transition:background .18s ease, box-shadow .18s ease, border-color .18s ease!important;
+}
+
+.formCard .offsiteCheck input:checked,
+.formCard .options .check input:checked{
+  border-color:rgba(255,255,255,.82)!important;
+  background:
+    radial-gradient(circle at 27px 50%,rgba(255,255,255,.98) 0 7px,rgba(255,255,255,0) 7.4px),
+    linear-gradient(135deg,#ed0012,#ff4b59)!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:100% 100%!important;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.38),
+    inset 0 -1px 2px rgba(80,0,10,.20),
+    0 8px 20px rgba(237,0,18,.20)!important;
+}
+
+.formCard .offsiteCheck .infoTipV65,
+.formCard .options .check .infoTipV65{
+  width:22px!important;
+  height:22px!important;
+  min-width:22px!important;
+  margin-left:auto!important;
+  font-size:12px!important;
+  line-height:22px!important;
+}
+
+.formCard .options{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin:14px 0 12px!important;
+}
+
+.formCard .offsiteCheck{
+  margin-top:-2px!important;
+  margin-bottom:10px!important;
+}
+
+/* v165 — language switcher */
+.langSwitcherV165{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  margin-left:10px;
+  padding:4px;
+  border:1px solid rgba(255,255,255,.58);
+  border-radius:999px;
+  background:linear-gradient(135deg,rgba(255,255,255,.42),rgba(255,255,255,.20));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    0 12px 28px rgba(15,23,42,.08);
+  backdrop-filter:blur(18px) saturate(145%);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+}
+
+.langSwitcherV165 button{
+  appearance:none;
+  border:0;
+  border-radius:999px;
+  min-width:34px;
+  height:30px;
+  padding:0 9px;
+  background:transparent;
+  color:#111827;
+  font-size:12px;
+  font-weight:800;
+  line-height:30px;
+  letter-spacing:0;
+  cursor:pointer;
+}
+
+.langSwitcherV165 button.active{
+  color:#fff;
+  background:linear-gradient(135deg,#ed0012,#ff4b59);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    0 10px 22px rgba(237,0,18,.20);
+}
+
+@media (max-width:760px){
+  .langSwitcherV165{
+    width:100%;
+    justify-content:center;
+    margin-left:0;
+    margin-top:8px;
+  }
+}
+
+select option:hover{
+  background:#6f6f6c!important;
+  color:#fff!important;
+}
+
+/* v152 — custom liquid glass dropdowns */
+.nativeSelectV152{
+  display:none!important;
+}
+
+.glassSelectV152{
+  position:relative;
+  width:100%;
+  z-index:12;
+}
+
+.glassSelectV152.isOpenV152{
+  z-index:3000;
+}
+
+.glassSelectButtonV152{
+  width:100%;
+  min-height:42px;
+  padding:0 42px 0 14px;
+  border:1px solid rgba(255,255,255,.78)!important;
+  border-radius:11px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.38))!important;
+  color:#111827!important;
+  font:inherit;
+  font-size:13px;
+  text-align:left;
+  cursor:pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.86),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 14px 34px rgba(15,23,42,.08);
+  backdrop-filter:blur(22px) saturate(170%);
+  -webkit-backdrop-filter:blur(22px) saturate(170%);
+}
+
+.glassSelectButtonV152 span{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.glassSelectButtonV152 b{
+  position:absolute;
+  right:17px;
+  top:50%;
+  width:10px;
+  height:10px;
+  border-right:2px solid rgba(17,24,39,.82);
+  border-bottom:2px solid rgba(17,24,39,.82);
+  transform:translateY(-65%) rotate(45deg);
+  pointer-events:none;
+}
+
+.glassSelectV152.isOpenV152 .glassSelectButtonV152{
+  border-color:rgba(255,56,72,.68)!important;
+  box-shadow:
+    0 0 0 5px rgba(255,56,72,.13),
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 18px 42px rgba(237,0,18,.12)!important;
+}
+
+.glassSelectMenuV152{
+  position:absolute;
+  left:0;
+  top:calc(100% + 7px);
+  width:100%;
+  max-height:420px;
+  overflow:auto;
+  padding:8px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.30);
+  background:
+    linear-gradient(135deg,rgba(86,86,84,.90),rgba(58,58,56,.86)),
+    radial-gradient(circle at 28% 0,rgba(255,255,255,.16),transparent 36%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.24),
+    inset 0 -1px 0 rgba(0,0,0,.22),
+    0 24px 58px rgba(0,0,0,.30);
+  backdrop-filter:blur(28px) saturate(135%);
+  -webkit-backdrop-filter:blur(28px) saturate(135%);
+  opacity:0;
+  transform:translateY(-4px) scale(.985);
+  pointer-events:none;
+  transition:opacity .16s ease, transform .16s ease;
+}
+
+.glassSelectV152.isOpenV152 .glassSelectMenuV152{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+}
+
+.glassSelectMenuV152 button{
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr);
+  align-items:center;
+  width:100%;
+  min-height:36px;
+  padding:0 12px;
+  border:0!important;
+  border-radius:10px;
+  background:transparent!important;
+  color:rgba(255,255,255,.90)!important;
+  font:inherit;
+  font-size:15px;
+  font-weight:780;
+  text-align:left;
+  cursor:pointer;
+}
+
+.glassSelectMenuV152 button:hover{
+  background:rgba(255,255,255,.12)!important;
+}
+
+.glassSelectMenuV152 button.isSelectedV152{
+  background:#5b8dea!important;
+  color:#fff!important;
+}
+
+.glassSelectMenuV152 button span{
+  color:#fff;
+  font-weight:950;
+}
+
+@media(max-width:560px){
+  .glassSelectMenuV152{
+    max-height:260px;
+  }
+}
+
+#location + .glassSelectV152 .glassSelectMenuV152{
+  max-height:min(620px, 70vh);
+}
+
+/* v157 — dropdowns tuned back to the first reference */
+.glassSelectV152.isOpenV152 .glassSelectButtonV152{
+  border-color:rgba(255,255,255,.84)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.86),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 14px 34px rgba(15,23,42,.08)!important;
+}
+
+.glassSelectMenuV152{
+  top:calc(100% + 5px)!important;
+  padding:6px!important;
+  border-radius:16px!important;
+  border:1px solid rgba(255,255,255,.26)!important;
+  background:rgba(76,76,74,.94)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.20),
+    0 18px 42px rgba(0,0,0,.26)!important;
+  backdrop-filter:blur(18px) saturate(120%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(120%)!important;
+}
+
+.glassSelectMenuV152 button{
+  min-height:34px!important;
+  padding:0 10px!important;
+  border-radius:8px!important;
+  font-size:14px!important;
+  font-weight:560!important;
+  line-height:1.15!important;
+  letter-spacing:0!important;
+}
+
+.glassSelectMenuV152 button span{
+  font-weight:700!important;
+}
+
+.glassSelectMenuV152 button.isSelectedV152{
+  background:#5b8dea!important;
+}
+
+/* v158 — calm calculator dropdown style: thin type, neutral blur, no red glow */
+.glassSelectButtonV152{
+  min-height:54px!important;
+  padding:0 46px 0 18px!important;
+  border-radius:20px!important;
+  border:1px solid rgba(255,255,255,.88)!important;
+  background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.50))!important;
+  color:#111827!important;
+  font-size:16px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 10px 26px rgba(15,23,42,.07)!important;
+}
+
+.glassSelectButtonV152 b{
+  right:22px!important;
+  width:0!important;
+  height:0!important;
+  border-right:6px solid transparent!important;
+  border-left:6px solid transparent!important;
+  border-bottom:0!important;
+  border-top:8px solid rgba(17,24,39,.82)!important;
+  transform:translateY(-35%)!important;
+}
+
+.glassSelectV152.isOpenV152 .glassSelectButtonV152{
+  border-color:rgba(255,255,255,.92)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 10px 26px rgba(15,23,42,.07)!important;
+}
+
+.glassSelectMenuV152{
+  top:calc(100% + 4px)!important;
+  padding:6px!important;
+  border-radius:16px!important;
+  border:1px solid rgba(255,255,255,.26)!important;
+  background:rgba(72,72,70,.97)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 18px 42px rgba(0,0,0,.24)!important;
+  backdrop-filter:blur(18px) saturate(100%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(100%)!important;
+}
+
+.glassSelectMenuV152 button{
+  min-height:34px!important;
+  padding:0 10px!important;
+  border-radius:8px!important;
+  color:rgba(255,255,255,.88)!important;
+  font-size:15px!important;
+  font-weight:500!important;
+  line-height:1.15!important;
+  text-shadow:none!important;
+}
+
+.glassSelectMenuV152 button:hover{
+  background:rgba(255,255,255,.10)!important;
+}
+
+.glassSelectMenuV152 button.isSelectedV152{
+  background:#5b8dea!important;
+  color:#fff!important;
+  font-weight:520!important;
+}
+
+.glassSelectMenuV152 button span{
+  font-weight:650!important;
+}
+
+/* v159 — rollback dropdown UI to the calm v150 native select style */
+.glassSelectV152{
+  display:none!important;
+}
+
+select,
+select.nativeSelectV152{
+  display:block!important;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  width:100%!important;
+  min-height:54px!important;
+  height:54px!important;
+  padding:0 48px 0 18px!important;
+  border-radius:20px!important;
+  border:1px solid rgba(255,255,255,.86)!important;
+  color:#111827!important;
+  font-size:16px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(17,24,39,.82) 50%) calc(100% - 25px) 50% / 8px 8px no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.48))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.88),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 10px 26px rgba(15,23,42,.07)!important;
+  backdrop-filter:blur(22px) saturate(140%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(140%)!important;
+}
+
+select:hover,
+select.nativeSelectV152:hover,
+select:focus,
+select.nativeSelectV152:focus{
+  border-color:rgba(255,255,255,.92)!important;
+  outline:none!important;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(17,24,39,.82) 50%) calc(100% - 25px) 50% / 8px 8px no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.86),rgba(255,255,255,.52))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.90),
+    inset 0 -1px 0 rgba(17,24,39,.05),
+    0 10px 26px rgba(15,23,42,.07)!important;
+}
+
+select option{
+  background:#4f4f4d!important;
+  color:rgba(255,255,255,.90)!important;
+  font-size:15px!important;
+  font-weight:500!important;
+}
+
+select option:checked{
+  background:#5b8dea!important;
+  color:#fff!important;
+}
