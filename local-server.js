@@ -6,6 +6,7 @@ const bidAdviceHandler = require("./api/bid-advice.js");
 
 const apiRoutes = {
   "/api/admin":"./api/admin.js",
+  "/api/auctions":"./api/auctions.js",
   "/api/vehicles":"./api/vehicles.js",
   "/api/customers":"./api/customers.js",
   "/api/leads":"./api/leads.js",
@@ -93,7 +94,9 @@ http.createServer((req, res) => {
       .catch(error => send(res, 500, JSON.stringify({ok:false,error:error.message}), "application/json; charset=utf-8"));
   }
 
-  const pathname = url.pathname === "/admin" ? "/admin/" : url.pathname;
+  let pathname = url.pathname === "/admin" ? "/admin/" : url.pathname;
+  if(pathname === "/auctions") pathname = "/auctions.html";
+  if(/^\/auctions\/[^/]+$/.test(pathname)) pathname = "/auctions.html";
   const safePath = path.normalize(pathname === "/" ? "/index.html" : pathname);
   const filePath = path.join(root, safePath.endsWith("/") ? `${safePath}index.html` : safePath);
   if(!filePath.startsWith(root)){
