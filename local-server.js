@@ -5,18 +5,12 @@ const handler = require("./api/lot.js");
 const bidAdviceHandler = require("./api/bid-advice.js");
 
 const apiRoutes = {
-  "/api/admin/login":"./api/admin/login.js",
-  "/api/admin/logout":"./api/admin/logout.js",
-  "/api/admin/me":"./api/admin/me.js",
-  "/api/admin/dashboard":"./api/admin/dashboard.js",
-  "/api/vehicles":"./api/vehicles/index.js",
-  "/api/vehicles/item":"./api/vehicles/item.js",
-  "/api/customers":"./api/customers/index.js",
-  "/api/customers/item":"./api/customers/item.js",
-  "/api/leads":"./api/leads/index.js",
-  "/api/leads/item":"./api/leads/item.js",
-  "/api/content":"./api/content/index.js",
-  "/api/uploads/blob":"./api/uploads/blob.js"
+  "/api/admin":"./api/admin.js",
+  "/api/vehicles":"./api/vehicles.js",
+  "/api/customers":"./api/customers.js",
+  "/api/leads":"./api/leads.js",
+  "/api/content":"./api/content.js",
+  "/api/uploads":"./api/uploads.js"
 };
 
 const root = __dirname;
@@ -85,6 +79,11 @@ http.createServer((req, res) => {
   }
 
   if(apiRoutes[url.pathname]){
+    if(url.pathname === "/api/uploads"){
+      const routeHandler = require(apiRoutes[url.pathname]);
+      return routeHandler(req, jsonResponse(res));
+    }
+
     return readBody(req)
       .then(body => {
         if(body) req.body = body;

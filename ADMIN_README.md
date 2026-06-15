@@ -85,7 +85,7 @@ supabase/migrations/20260614_admin_crm.sql
 Загрузка идет через:
 
 ```txt
-POST /api/uploads/blob
+POST /api/uploads
 ```
 
 Frontend не получает Blob token.
@@ -95,10 +95,10 @@ Frontend не получает Blob token.
 Auth:
 
 ```txt
-POST /api/admin/login
-POST /api/admin/logout
-GET  /api/admin/me
-GET  /api/admin/dashboard
+POST /api/admin?action=login
+POST /api/admin?action=logout
+GET  /api/admin?action=me
+GET  /api/admin?action=dashboard
 ```
 
 Vehicles:
@@ -106,8 +106,8 @@ Vehicles:
 ```txt
 GET    /api/vehicles
 POST   /api/vehicles
-PATCH  /api/vehicles/item?id=...
-DELETE /api/vehicles/item?id=...
+PATCH  /api/vehicles?id=...
+DELETE /api/vehicles?id=...
 ```
 
 Customers:
@@ -115,8 +115,8 @@ Customers:
 ```txt
 GET    /api/customers
 POST   /api/customers
-PATCH  /api/customers/item?id=...
-DELETE /api/customers/item?id=...
+PATCH  /api/customers?id=...
+DELETE /api/customers?id=...
 ```
 
 Leads:
@@ -124,8 +124,8 @@ Leads:
 ```txt
 GET    /api/leads
 POST   /api/leads
-PATCH  /api/leads/item?id=...
-DELETE /api/leads/item?id=...
+PATCH  /api/leads?id=...
+DELETE /api/leads?id=...
 ```
 
 Content:

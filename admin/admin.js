@@ -143,7 +143,7 @@ function fillLeadSelects(){
 }
 
 async function loadDashboard(){
-  const data = await api("/api/admin/dashboard");
+  const data = await api("/api/admin?action=dashboard");
   $("#statCustomers").textContent = data.stats.customers;
   $("#statLeads").textContent = data.stats.leads;
   $("#statVehicles").textContent = data.stats.vehicles;
@@ -197,7 +197,7 @@ async function refresh(){
 async function uploadFiles(input, folder){
   const urls = [];
   for(const file of Array.from(input.files || [])){
-    const data = await api("/api/uploads/blob", {
+    const data = await api("/api/uploads", {
       method:"POST",
       body:file,
       raw:true,
@@ -236,7 +236,7 @@ function bindForms(){
     data.photos = [...existing, ...photoUrls];
     const id = data.id;
     delete data.id;
-    await api(id ? `/api/vehicles/item?id=${encodeURIComponent(id)}` : "/api/vehicles", {method:id ? "PATCH" : "POST", body:data});
+    await api(id ? `/api/vehicles?id=${encodeURIComponent(id)}` : "/api/vehicles", {method:id ? "PATCH" : "POST", body:data});
     resetForm("vehicleForm");
     await loadVehicles();
     showNotice("Автомобиль сохранен", true);
@@ -247,7 +247,7 @@ function bindForms(){
     const data = formData(event.currentTarget);
     const id = data.id;
     delete data.id;
-    await api(id ? `/api/customers/item?id=${encodeURIComponent(id)}` : "/api/customers", {method:id ? "PATCH" : "POST", body:data});
+    await api(id ? `/api/customers?id=${encodeURIComponent(id)}` : "/api/customers", {method:id ? "PATCH" : "POST", body:data});
     resetForm("customerForm");
     await loadCustomers();
     showNotice("Клиент сохранен", true);
@@ -258,7 +258,7 @@ function bindForms(){
     const data = formData(event.currentTarget);
     const id = data.id;
     delete data.id;
-    await api(id ? `/api/leads/item?id=${encodeURIComponent(id)}` : "/api/leads", {method:id ? "PATCH" : "POST", body:data});
+    await api(id ? `/api/leads?id=${encodeURIComponent(id)}` : "/api/leads", {method:id ? "PATCH" : "POST", body:data});
     resetForm("leadForm");
     await loadLeads();
     showNotice("Заявка сохранена", true);
@@ -304,9 +304,9 @@ function bindLists(){
     }
 
     const deleteMap = [
-      ["deleteVehicle", "/api/vehicles/item", loadVehicles],
-      ["deleteCustomer", "/api/customers/item", loadCustomers],
-      ["deleteLead", "/api/leads/item", loadLeads]
+      ["deleteVehicle", "/api/vehicles", loadVehicles],
+      ["deleteCustomer", "/api/customers", loadCustomers],
+      ["deleteLead", "/api/leads", loadLeads]
     ];
     for(const [key, path, reload] of deleteMap){
       if(target.dataset[key]){
@@ -332,7 +332,7 @@ function bindFilters(){
 }
 
 async function checkAuth(){
-  const data = await api("/api/admin/me");
+  const data = await api("/api/admin?action=me");
   $("#loginScreen").hidden = data.authenticated;
   $("#appScreen").hidden = !data.authenticated;
   if(data.authenticated) await refresh();
@@ -345,14 +345,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   bindFilters();
   $("#refreshBtn").addEventListener("click", () => refresh().catch(error => showNotice(error.message)));
   $("#logoutBtn").addEventListener("click", async () => {
-    await api("/api/admin/logout", {method:"POST", body:{}});
+    await api("/api/admin?action=logout", {method:"POST", body:{}});
     location.reload();
   });
   $("#loginForm").addEventListener("submit", async event => {
     event.preventDefault();
     $("#loginError").textContent = "";
     try{
-      await api("/api/admin/login", {method:"POST", body:{password:$("#adminPassword").value}});
+      await api("/api/admin?action=login", {method:"POST", body:{password:$("#adminPassword").value}});
       await checkAuth();
     }catch(error){
       $("#loginError").textContent = error.message;
