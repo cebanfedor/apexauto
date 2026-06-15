@@ -29,6 +29,12 @@
   letter-spacing:.22em;
   text-transform:uppercase;
 }
+.auctionCrumbsV1{
+  display:block;
+  margin-bottom:8px;
+  color:#667085;
+  font-weight:850;
+}
 .auctionsHeroV1 h1{
   margin:10px 0 12px;
   color:#101828;
@@ -70,6 +76,33 @@
   padding:18px;
   border-radius:26px;
   margin-bottom:14px;
+}
+.auctionTabsV1{
+  display:flex;
+  gap:8px;
+  padding:8px;
+  margin-bottom:14px;
+  overflow:auto;
+  border-radius:22px;
+  background:rgba(255,255,255,.40);
+  border:1px solid rgba(255,255,255,.68);
+  backdrop-filter:blur(20px);
+}
+.auctionTabsV1 button{
+  min-height:44px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.70);
+  border-radius:16px;
+  background:rgba(255,255,255,.48);
+  color:#1f2937;
+  font-weight:900;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.auctionTabsV1 button.active{
+  color:#fff;
+  border-color:transparent;
+  background:linear-gradient(135deg,#ed0012,#ff5360);
 }
 .auctionSearchV1{
   flex:1;
@@ -158,7 +191,7 @@
 .auctionCountV1 b{color:#ed0012}
 .auctionLayoutV1{
   display:grid;
-  grid-template-columns:330px minmax(0,1fr);
+  grid-template-columns:310px minmax(0,1fr);
   gap:18px;
   align-items:start;
 }
@@ -166,7 +199,7 @@
   position:sticky;
   top:18px;
   border-radius:28px;
-  padding:18px;
+  padding:16px;
 }
 .filterHeadV1{
   display:flex;
@@ -178,7 +211,7 @@
 .filterHeadV1 button{display:none;width:42px;height:42px}
 .auctionFiltersV1 form{
   display:grid;
-  gap:12px;
+  gap:10px;
 }
 .auctionFiltersV1 label,
 .auctionLeadFormV1 label{
@@ -205,16 +238,23 @@
 }
 .auctionCardsV1{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
+  grid-template-columns:1fr;
+  gap:12px;
 }
 .auctionCardV1{
   overflow:hidden;
-  border-radius:26px;
+  border-radius:24px;
+}
+.auctionLotRowV1{
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr) 300px;
+  gap:0;
+  align-items:stretch;
 }
 .auctionCardImageV1{
   position:relative;
-  aspect-ratio:16/10;
+  min-height:100%;
+  aspect-ratio:auto;
   background:linear-gradient(135deg,#e8ebf0,#cfd5df);
 }
 .auctionCardImageV1 img{
@@ -230,8 +270,34 @@
   background:rgba(20,24,33,.70);
   color:#fff;
 }
+.photoCountV1{
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  min-height:30px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 10px;
+  border-radius:999px;
+  color:#fff;
+  background:rgba(17,24,39,.70);
+  font-size:12px;
+  font-weight:900;
+}
 .auctionCardBodyV1{
-  padding:16px;
+  padding:18px;
+}
+.auctionLotMainV1{
+  display:flex;
+  align-items:start;
+  justify-content:space-between;
+  gap:12px;
+}
+.detailInlineV1{
+  color:#ed0012;
+  font-weight:950;
+  text-decoration:none;
+  white-space:nowrap;
 }
 .auctionCardBodyV1 h3{
   margin:0 0 10px;
@@ -240,7 +306,7 @@
 }
 .auctionMetaGridV1{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
   margin:12px 0;
 }
@@ -288,8 +354,41 @@
 .lotStatusV1{background:rgba(255,255,255,.60)}
 .auctionCardActionsV1{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr;
   gap:8px;
+}
+.auctionLotSideV1{
+  display:grid;
+  align-content:start;
+  gap:10px;
+  padding:18px;
+  background:rgba(17,24,39,.07);
+  border-left:1px solid rgba(255,255,255,.55);
+}
+.auctionSideFactsV1{
+  display:grid;
+  gap:7px;
+}
+.auctionSideFactsV1 div{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding-bottom:7px;
+  border-bottom:1px solid rgba(17,24,39,.08);
+}
+.auctionSideFactsV1 span{
+  color:#667085;
+  font-size:12px;
+  font-weight:900;
+}
+.auctionSideFactsV1 b{
+  max-width:150px;
+  color:#111827;
+  font-size:13px;
+  text-align:right;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .auctionCardActionsV1 a,
 .auctionCardActionsV1 button,
@@ -416,6 +515,24 @@
 }
 .detailTextBlocksV1 h2{margin:0 0 10px}
 .detailTextBlocksV1 p{margin:0;color:#4b5565;line-height:1.5}
+.priceHistoryV1{
+  grid-column:1/-1;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.42);
+}
+.priceHistoryV1 h2{width:100%;margin:0 0 4px}
+.priceHistoryV1 span{
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.62);
+  font-weight:850;
+  color:#1f2937;
+}
 .auctionModalV1{
   position:fixed;
   inset:0;
@@ -451,7 +568,11 @@ body.filtersOpenV1{overflow:hidden}
 body.leadModalOpenV1{overflow:hidden}
 
 @media (max-width:1320px){
-  .auctionCardsV1{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .auctionLotRowV1{grid-template-columns:220px minmax(0,1fr)}
+  .auctionLotSideV1{grid-column:1/-1;border-left:0;border-top:1px solid rgba(255,255,255,.55)}
+  .auctionSideFactsV1{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .auctionSideFactsV1 div{display:grid}
+  .auctionSideFactsV1 b{text-align:left;max-width:100%}
   .detailHeroV1{grid-template-columns:1fr}
 }
 @media (max-width:860px){
@@ -477,7 +598,10 @@ body.leadModalOpenV1{overflow:hidden}
   }
   body.filtersOpenV1 .auctionFiltersV1{transform:translateX(0)}
   .filterHeadV1 button{display:block}
-  .auctionCardsV1{grid-template-columns:1fr}
+  .auctionLotRowV1{grid-template-columns:1fr}
+  .auctionCardImageV1{aspect-ratio:16/10}
+  .auctionMetaGridV1{grid-template-columns:1fr 1fr}
+  .auctionSideFactsV1{grid-template-columns:1fr 1fr}
   .detailSpecGridV1,
   .detailTextBlocksV1{grid-template-columns:1fr}
   .detailActionsV1{grid-template-columns:1fr}

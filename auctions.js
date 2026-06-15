@@ -2,6 +2,7 @@
   const $ = selector => document.querySelector(selector);
   const state = {
     auction:"copart",
+    tab:"all",
     page:1,
     hasMore:false,
     loading:false,
@@ -67,9 +68,10 @@
     const quick = $("#auctionQuickSearch").value.trim();
     if(quick) params.set("q", quick);
     params.set("auction", state.auction);
+    params.set("tab", state.tab);
     params.set("sort", $("#auctionSort").value);
     params.set("page", state.page);
-    params.set("limit", "24");
+    params.set("per_page", "50");
     Array.from(params.entries()).forEach(([key, value]) => {
       if(!value) params.delete(key);
     });
@@ -84,39 +86,49 @@
 
   function renderCard(lot){
     const title = lotTitle(lot);
-    return `<article class="auctionCardV1">
+    return `<article class="auctionCardV1 auctionLotRowV1">
       <a class="auctionCardImageV1" href="${detailHref(lot)}">
         ${lot.image ? `<img src="${escapeHtml(lot.image)}" alt="${escapeHtml(title)}" loading="lazy">` : ""}
         <span class="auctionChipV1">${escapeHtml(lot.auction.toUpperCase())}</span>
+        <span class="photoCountV1">${escapeHtml(lot.photoCount || lot.images?.length || 0)} фото</span>
       </a>
       <div class="auctionCardBodyV1">
-        <h3>${escapeHtml(title)}</h3>
+        <div class="auctionLotMainV1">
+          <h3>${escapeHtml(title)}</h3>
+          <a class="detailInlineV1" href="${detailHref(lot)}">Подробнее</a>
+        </div>
         <div class="auctionBadgesV1">
           <span class="lotStatusV1">${escapeHtml(lot.lotStatus || "Live")}</span>
           ${lot.saleStatus ? `<span class="saleBadgeV1 ${saleClass(lot.saleStatus)}">${escapeHtml(lot.saleStatus)}</span>` : ""}
+        </div>
+        <div class="auctionMetaGridV1">
+          <div><span>VIN</span><b>${escapeHtml(lot.vin || "—")}</b></div>
+          <div><span>LOT</span><b>${escapeHtml(lot.lot || "—")}</b></div>
+          <div><span>Двигатель</span><b>${escapeHtml(lot.engine || "—")}</b></div>
+          <div><span>Топливо</span><b>${escapeHtml(lot.fuel || "—")}</b></div>
+          <div><span>КПП / привод</span><b>${escapeHtml([lot.transmission, lot.drive].filter(Boolean).join(" / ") || "—")}</b></div>
+          <div><span>Пробег</span><b>${escapeHtml(lot.odometerText || "—")}</b></div>
+          <div><span>Повреждение</span><b>${escapeHtml(lot.damage || "—")}</b></div>
+          <div><span>Документ</span><b>${escapeHtml(lot.document || "—")}</b></div>
+          <div><span>Локация</span><b>${escapeHtml(lot.location || "—")}</b></div>
+        </div>
+      </div>
+      <aside class="auctionLotSideV1">
+        <div class="auctionSideFactsV1">
+          <div><span>Дата торгов</span><b>${escapeHtml(dateText(lot.auctionDate))}</b></div>
+          <div><span>Состояние</span><b>${escapeHtml(lot.condition || "—")}</b></div>
+          <div><span>Продавец</span><b>${escapeHtml(lot.seller || "—")}</b></div>
+          <div><span>Ключи</span><b>${escapeHtml(lot.keys || "—")}</b></div>
         </div>
         <div class="auctionPriceRowV1">
           <strong>Ставка<br>${money(lot.currentBid)}</strong>
           <strong>Buy Now<br>${money(lot.buyNow)}</strong>
         </div>
-        <div class="auctionMetaGridV1">
-          <div><span>VIN</span><b>${escapeHtml(lot.vin || "—")}</b></div>
-          <div><span>LOT</span><b>${escapeHtml(lot.lot || "—")}</b></div>
-          <div><span>Локация</span><b>${escapeHtml(lot.location || "—")}</b></div>
-          <div><span>Дата торгов</span><b>${escapeHtml(dateText(lot.auctionDate))}</b></div>
-          <div><span>Пробег</span><b>${escapeHtml(lot.odometerText || "—")}</b></div>
-          <div><span>Повреждение</span><b>${escapeHtml(lot.damage || "—")}</b></div>
-          <div><span>Документ</span><b>${escapeHtml(lot.document || "—")}</b></div>
-          <div><span>Топливо</span><b>${escapeHtml(lot.fuel || "—")}</b></div>
-          <div><span>Двигатель</span><b>${escapeHtml(lot.engine || "—")}</b></div>
-          <div><span>КПП / привод</span><b>${escapeHtml([lot.transmission, lot.drive].filter(Boolean).join(" / ") || "—")}</b></div>
-        </div>
         <div class="auctionCardActionsV1">
-          <a class="auctionBtnGhostV1" href="${detailHref(lot)}">Подробнее</a>
           <a class="auctionBtnGhostV1" href="${calcHref(lot)}">Рассчитать доставку</a>
           <button class="auctionBtnPrimaryV1 fullV1" type="button" data-lead="${escapeHtml(lot.id)}">Оставить заявку</button>
         </div>
-      </div>
+      </aside>
     </article>`;
   }
 
@@ -138,14 +150,16 @@
       const nextItems = payload.items || [];
       state.items = append ? state.items.concat(nextItems) : nextItems;
       $("#auctionResultCount").textContent = payload.total || state.items.length || 0;
-      $("#auctionResultLabel").textContent = payload.cached ? "лотов найдено · кэш" : "лотов найдено";
+      $("#auctionResultLabel").textContent = payload.total
+        ? (payload.cached ? "лотов найдено · кэш" : "лотов найдено")
+        : `Показано ${state.items.length} лотов`;
       renderCards(false);
       if(!state.items.length) setMessage("По этим фильтрам лоты не найдены. Попробуйте изменить параметры поиска.");
     }catch(error){
       state.hasMore = false;
       $("#loadMoreLots").hidden = true;
       $("#auctionResultCount").textContent = "0";
-      setMessage(error.message || "Каталог временно недоступен. Попробуйте позже.");
+      setMessage(error.message || "Не удалось загрузить реальные лоты AuctionsAPI. Проверьте AUCTIONS_API_KEY или попробуйте позже.");
     }finally{
       state.loading = false;
     }
@@ -240,6 +254,10 @@
           ${spec("Estimated retail value", money(lot.estimatedRetailValue))}
           ${spec("Seller", lot.seller)}
         </div>
+        ${Array.isArray(lot.priceHistory) && lot.priceHistory.length ? `<div class="priceHistoryV1">
+          <h2>История цены</h2>
+          ${lot.priceHistory.slice(0, 8).map(item => `<span>${escapeHtml(item.date || item.sale_date || "")} ${escapeHtml(money(item.price || item.bid || item.amount))}</span>`).join("")}
+        </div>` : ""}
       </section>
       <section class="detailTextBlocksV1">
         <article>
@@ -316,6 +334,15 @@
         document.querySelectorAll("[data-auction-switch]").forEach(item => item.classList.remove("active"));
         button.classList.add("active");
         state.auction = button.dataset.auctionSwitch;
+        state.page = 1;
+        loadLots();
+      });
+    });
+    document.querySelectorAll("[data-tab]").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("[data-tab]").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        state.tab = button.dataset.tab || "all";
         state.page = 1;
         loadLots();
       });

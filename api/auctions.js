@@ -44,6 +44,10 @@ function auctionsApiDomain(auction){
   return auction === "iaai" ? "iaai_com" : "copart_com";
 }
 
+function auctionsApiDomainId(auction){
+  return auction === "iaai" ? "1" : "3";
+}
+
 function auctionUrl(auction, lot){
   if(!lot) return "";
   return auction === "iaai"
@@ -120,7 +124,7 @@ function normalizeLot(source, fallbackAuction = "copart"){
   const item = source?.data && !Array.isArray(source.data) ? source.data : source;
   const lots = Array.isArray(item?.lots) ? item.lots : [];
   const lot = lots[0] || item?.lot || item;
-  const auction = normalizeAuction(item?.auction || lot?.auction || fallbackAuction);
+  const auction = normalizeAuction(item?.auction || lot?.auction || item?.domain || lot?.domain || fallbackAuction);
   const make = safeName(item?.manufacturer || item?.make || item?.brand);
   const model = safeName(item?.model);
   const year = safeNumber(item?.year);
@@ -165,6 +169,9 @@ function normalizeLot(source, fallbackAuction = "copart"){
     keys:safeName(item?.keys || lot?.keys),
     estimatedRetailValue:safeNumber(lot?.actual_cash_value || lot?.estimated_retail_value || item?.estimated_retail_value || item?.acv),
     seller:safeName(lot?.seller || item?.seller),
+    condition:safeName(lot?.condition || item?.condition),
+    priceHistory:Array.isArray(lot?.prices) ? lot.prices : Array.isArray(item?.prices) ? item.prices : [],
+    photoCount:images.length,
     lotStatus:lotStatus(item, lot),
     saleStatus:saleStatusLabel(rawSaleStatus),
     saleStatusRaw:rawSaleStatus,
@@ -197,22 +204,26 @@ function buildSearchParams(query){
   const params = new URLSearchParams();
   const map = {
     q:"search_query",
-    make:"make",
-    model:"model",
-    yearFrom:"year_from",
-    yearTo:"year_to",
-    bidFrom:"bid_from",
-    bidTo:"bid_to",
-    buyNowFrom:"buy_now_from",
-    buyNowTo:"buy_now_to",
-    mileageFrom:"odometer_from",
-    mileageTo:"odometer_to",
+    vin:"vin",
+    name:"name",
+    yearFrom:"from_year",
+    yearTo:"to_year",
+    bidFrom:"bid_price_from",
+    bidTo:"bid_price_to",
+    buyNowFrom:"buy_now_price_from",
+    buyNowTo:"buy_now_price_to",
+    mileageFrom:"odometer_from_mi",
+    mileageTo:"odometer_to_mi",
     body:"body_type",
-    fuel:"fuel",
+    fuel:"fuel_type",
+    transmission:"transmission",
+    drive:"drive",
+    condition:"condition",
     damage:"damage",
-    document:"title",
+    document:"document_title",
     location:"location",
-    auctionDate:"sale_date",
+    auctionDateFrom:"sale_date_from",
+    auctionDateTo:"sale_date_to",
     lotStatus:"status",
     saleStatus:"sale_status"
   };
@@ -220,8 +231,18 @@ function buildSearchParams(query){
     const value = query.get(from);
     if(value) params.set(to, value);
   }
+  const make = query.get("make");
+  const model = query.get("model");
+  if(make && /^\d+$/.test(make)) params.set("manufacturer_id", make);
+  if(model && /^\d+$/.test(model)) params.set("model_id", model);
+  if((make && !/^\d+$/.test(make)) || (model && !/^\d+$/.test(model))){
+    params.set("search_query", [params.get("search_query"), make, model].filter(Boolean).join(" "));
+  }
+  if(query.get("tab") === "buy_now") params.set("buy_now", "1");
   params.set("page", query.get("page") || "1");
-  params.set("per_page", query.get("limit") || "24");
+  params.set("per_page", query.get("per_page") || query.get("limit") || "50");
+  params.set("simple_paginate", "0");
+  params.set("exclude_expired_auctions", query.get("tab") === "archived" ? "0" : "1");
   return params;
 }
 
@@ -251,25 +272,29 @@ async function fetchSearch(query){
   const auction = normalizeAuction(query.get("auction"));
   const params = buildSearchParams(query);
   const domain = auctionsApiDomain(auction);
-  params.set("domain", domain);
+  params.set("domain_id", auctionsApiDomainId(auction));
   const attempts = [
     `${AUCTIONS_API_BASE}/cars?${params}`,
-    `${AUCTIONS_API_BASE}/search/${auction}?${params}`,
-    `${AUCTIONS_API_BASE}/search-lots/${auction}?${params}`,
-    `${AUCTIONS_API_BASE}/lots/${auction}?${params}`,
-    `${AUCTIONS_API_BASE}/search?auction=${auction}&${params}`
+    `${AUCTIONS_API_BASE}/cars?${new URLSearchParams({...Object.fromEntries(params), domain})}`
   ];
 
   let lastError;
+  let lastEndpoint = attempts[0];
   for(const url of attempts){
     try{
+      lastEndpoint = url;
       const payload = await fetchJson(url);
       const items = findItems(payload).map(item => normalizeLot(item, auction));
+      const perPage = safeNumber(query.get("per_page") || query.get("limit") || 50) || 50;
+      const total = safeNumber(payload?.total || payload?.count || payload?.data?.total || payload?.data?.count || payload?.meta?.total);
       return {
         items,
-        total:safeNumber(payload?.total || payload?.count || payload?.data?.total || payload?.data?.count) || items.length,
+        total,
+        shown:items.length,
         page:safeNumber(query.get("page")) || 1,
-        hasMore:items.length >= safeNumber(query.get("limit") || 24)
+        perPage,
+        hasMore:total ? (safeNumber(query.get("page")) || 1) * perPage < total : items.length >= perPage,
+        endpoint:lastEndpoint.replace(process.env.AUCTIONS_API_KEY || "", "")
       };
     }catch(error){
       lastError = error;
@@ -300,6 +325,40 @@ async function fetchDetail(query){
     }
   }
   throw lastError || new Error("Lot detail failed");
+}
+
+async function handleDebug(query, response){
+  const auction = normalizeAuction(query.get("auction"));
+  const searchParams = buildSearchParams(query);
+  searchParams.set("domain_id", auctionsApiDomainId(auction));
+  const endpoint = `${AUCTIONS_API_BASE}/cars?${searchParams}`;
+  const debug = {
+    ok:true,
+    hasAuctionsApiKey:Boolean(process.env.AUCTIONS_API_KEY),
+    endpoint,
+    page:searchParams.get("page"),
+    per_page:searchParams.get("per_page"),
+    source:"real-api",
+    returned:0,
+    error:null
+  };
+
+  if(!process.env.AUCTIONS_API_KEY){
+    debug.source = "none";
+    debug.error = "AUCTIONS_API_KEY is not configured";
+    sendJson(response, 200, debug);
+    return;
+  }
+
+  try{
+    const payload = await fetchJson(endpoint);
+    debug.returned = findItems(payload).length;
+    debug.total = safeNumber(payload?.total || payload?.count || payload?.data?.total || payload?.data?.count || payload?.meta?.total);
+    sendJson(response, 200, debug);
+  }catch(error){
+    debug.error = error.message || "Auctions API request failed";
+    sendJson(response, 200, debug);
+  }
 }
 
 function sortItems(items, sort){
@@ -370,6 +429,11 @@ module.exports = async function handler(request, response){
   }
 
   try{
+    if(action === "debug"){
+      await handleDebug(query, response);
+      return;
+    }
+
     if(action === "detail"){
       const lot = await fetchDetail(query);
       const payload = {ok:true,lot};
@@ -390,7 +454,9 @@ module.exports = async function handler(request, response){
   }catch(error){
     sendJson(response, error.status || 502, {
       ok:false,
-      error:error.status === 500 ? "Каталог временно недоступен: не настроен API ключ." : "Каталог аукционов временно недоступен. Попробуйте обновить страницу позже."
+      error:error.status === 500
+        ? "Не удалось загрузить реальные лоты AuctionsAPI. Проверьте AUCTIONS_API_KEY или попробуйте позже."
+        : "Не удалось загрузить реальные лоты AuctionsAPI. Попробуйте позже."
     });
   }
 };

@@ -9,7 +9,7 @@
   <meta property="og:description" content="Каталог лотов Copart и IAAI в стиле ApexAuto Liquid Glass.">
   <meta property="og:image" content="/assets/apex-logo-glass-upload-v117.png">
   <link rel="stylesheet" href="/styles.css?v=ai-bid-fixed-v144">
-  <link rel="stylesheet" href="/auctions.css?v=auctions-v2">
+  <link rel="stylesheet" href="/auctions.css?v=auctions-v3">
   <link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>
@@ -38,8 +38,9 @@
       <div class="auctionsHeroV1">
         <div>
           <span class="auctionsKickerV1">COPART / IAAI</span>
-          <h1>Аукционы автомобилей из США</h1>
-          <p>Найдите подходящий лот, проверьте статус продажи и отправьте заявку на расчет под ключ в ApexAuto.</p>
+          <span class="auctionCrumbsV1">Главная / Аукционы</span>
+          <h1>Текущие аукционы</h1>
+          <p>Реальные лоты Copart и IAAI через AuctionsAPI: поиск, фильтры, отдельная страница лота и заявка в ApexAuto.</p>
         </div>
         <div class="auctionsHeroStatsV1">
           <span>Run & Drive</span>
@@ -47,6 +48,14 @@
           <span>No Reserve</span>
         </div>
       </div>
+
+      <section class="auctionTabsV1" aria-label="Статус каталога">
+        <button class="active" type="button" data-tab="all">Все</button>
+        <button type="button" data-tab="open">Открытые</button>
+        <button type="button" data-tab="sold">Завершенные</button>
+        <button type="button" data-tab="buy_now">Купить сейчас</button>
+        <button type="button" data-tab="archived">Архивные</button>
+      </section>
 
       <section class="auctionTopbarV1">
         <div class="auctionSearchV1">
@@ -84,6 +93,7 @@
             <label>Поиск
               <input name="q" placeholder="VIN / LOT / марка / модель">
             </label>
+            <label>VIN<input name="vin" placeholder="Например 4T1..."></label>
             <label>Марка<input name="make" placeholder="BMW, Toyota, Tesla"></label>
             <label>Модель<input name="model" placeholder="X5, Camry, Model Y"></label>
             <div class="filterGridV1">
@@ -112,10 +122,18 @@
                 <option value="electric">Электро</option>
               </select>
             </label>
+            <div class="filterGridV1">
+              <label>КПП<input name="transmission" placeholder="Automatic"></label>
+              <label>Привод<input name="drive" placeholder="AWD, RWD"></label>
+            </div>
+            <label>Состояние<input name="condition" placeholder="Run & Drive"></label>
             <label>Повреждение<input name="damage" placeholder="Front End, Rear, Hail"></label>
             <label>Документ / Title<input name="document" placeholder="Salvage, Clear, Bill of Sale"></label>
             <label>Локация<input name="location" placeholder="Chicago North, Fremont"></label>
-            <label>Дата торгов<input name="auctionDate" type="date"></label>
+            <div class="filterGridV1">
+              <label>Дата от<input name="auctionDateFrom" type="date"></label>
+              <label>Дата до<input name="auctionDateTo" type="date"></label>
+            </div>
             <label>Статус лота
               <select name="lotStatus">
                 <option value="">Любой</option>
@@ -170,7 +188,7 @@
     </form>
   </div>
 
-  <script src="/auctions.js?v=auctions-v2" defer></script>
+  <script src="/auctions.js?v=auctions-v3" defer></script>
   <script src="/site-content.js?v=admin-v166" defer></script>
   <script src="/i18n.js?v=multilang-v165" defer></script>
 </body>
