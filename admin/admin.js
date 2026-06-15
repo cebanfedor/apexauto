@@ -333,9 +333,26 @@ function bindFilters(){
 
 async function checkAuth(){
   const data = await api("/api/admin?action=me");
-  $("#loginScreen").hidden = data.authenticated;
-  $("#appScreen").hidden = !data.authenticated;
-  if(data.authenticated) await refresh();
+  setAuthScreen(data.authenticated);
+  if(data.authenticated){
+    try{
+      await refresh();
+    }catch(error){
+      showNotice(error.message);
+    }
+    window.scrollTo({top:0, left:0});
+  }
+}
+
+function setAuthScreen(authenticated){
+  $("#loginScreen").hidden = authenticated;
+  $("#appScreen").hidden = !authenticated;
+  document.body.classList.toggle("isAdminAuthenticated", authenticated);
+  document.body.classList.toggle("isAdminLogin", !authenticated);
+  if(!authenticated){
+    $("#adminPassword").value = "";
+    $("#loginError").textContent = "";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -346,7 +363,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   $("#refreshBtn").addEventListener("click", () => refresh().catch(error => showNotice(error.message)));
   $("#logoutBtn").addEventListener("click", async () => {
     await api("/api/admin?action=logout", {method:"POST", body:{}});
-    location.reload();
+    setAuthScreen(false);
+    window.scrollTo({top:0, left:0});
   });
   $("#loginForm").addEventListener("submit", async event => {
     event.preventDefault();
@@ -359,7 +377,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
   await checkAuth().catch(() => {
-    $("#loginScreen").hidden = false;
-    $("#appScreen").hidden = true;
+    setAuthScreen(false);
   });
 });
